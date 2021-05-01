@@ -67,29 +67,11 @@
     <Compile Include="SpaceTeam\DanhMucNhanVien.Designer.cs">
       <DependentUpon>DanhMucNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\DanhSachHangHoaDaBan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\DanhSachHangHoaDaBan.Designer.cs">
-      <DependentUpon>DanhSachHangHoaDaBan.cs</DependentUpon>
-    </Compile>
     <Compile Include="SpaceTeam\DanhMucNV\DiemDanh.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SpaceTeam\DanhMucNV\DiemDanh.Designer.cs">
       <DependentUpon>DiemDanh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\DoanhThu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\DoanhThu.Designer.cs">
-      <DependentUpon>DoanhThu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\DanhSachDonHang.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\DanhSachDonHang.Designer.cs">
-      <DependentUpon>DanhSachDonHang.cs</DependentUpon>
     </Compile>
     <Compile Include="SpaceTeam\DanhMucNV\TaoDonHang.cs">
       <SubType>Form</SubType>
@@ -97,17 +79,59 @@
     <Compile Include="SpaceTeam\DanhMucNV\TaoDonHang.Designer.cs">
       <DependentUpon>TaoDonHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\ThongTinCaNhan.cs">
+    <Compile Include="SpaceTeam\DanhMucQL.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpaceTeam\DanhMucNV\ThongTinCaNhan.Designer.cs">
+    <Compile Include="SpaceTeam\DanhMucQL.Designer.cs">
+      <DependentUpon>DanhMucQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\DanhMucQuanLy\PhanCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\DanhMucQuanLy\PhanCong.Designer.cs">
+      <DependentUpon>PhanCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\ChiTietDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\ChiTietDonHang.Designer.cs">
+      <DependentUpon>ChiTietDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\DanhSachDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\DanhSachDonHang.Designer.cs">
+      <DependentUpon>DanhSachDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\DanhSachHangHoaDaBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\DanhSachHangHoaDaBan.Designer.cs">
+      <DependentUpon>DanhSachHangHoaDaBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\DoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\DoanhThu.Designer.cs">
+      <DependentUpon>DoanhThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\QuanLyKhoHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\QuanLyKhoHang.Designer.cs">
+      <DependentUpon>QuanLyKhoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\QuanLyNhanViencs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\QuanLyNhanViencs.Designer.cs">
+      <DependentUpon>QuanLyNhanViencs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\ThongTinCaNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceTeam\ManHinhChung\ThongTinCaNhan.Designer.cs">
       <DependentUpon>ThongTinCaNhan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SpaceTeam\DanhMucQuanLy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SpaceTeam\DanhMucQuanLy.Designer.cs">
-      <DependentUpon>DanhMucQuanLy.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,26 +151,35 @@
     <EmbeddedResource Include="SpaceTeam\DanhMucNhanVien.resx">
       <DependentUpon>DanhMucNhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SpaceTeam\DanhMucNV\DanhSachDonHang.resx">
-      <DependentUpon>DanhSachDonHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SpaceTeam\DanhMucNV\DanhSachHangHoaDaBan.resx">
-      <DependentUpon>DanhSachHangHoaDaBan.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SpaceTeam\DanhMucNV\DiemDanh.resx">
       <DependentUpon>DiemDanh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SpaceTeam\DanhMucNV\DoanhThu.resx">
-      <DependentUpon>DoanhThu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SpaceTeam\DanhMucNV\TaoDonHang.resx">
       <DependentUpon>TaoDonHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SpaceTeam\DanhMucNV\ThongTinCaNhan.resx">
-      <DependentUpon>ThongTinCaNhan.cs</DependentUpon>
+    <EmbeddedResource Include="SpaceTeam\DanhMucQL.resx">
+      <DependentUpon>DanhMucQL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SpaceTeam\DanhMucQuanLy.resx">
-      <DependentUpon>DanhMucQuanLy.cs</DependentUpon>
+    <EmbeddedResource Include="SpaceTeam\DanhMucQuanLy\PhanCong.resx">
+      <DependentUpon>PhanCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpaceTeam\ManHinhChung\DanhSachDonHang.resx">
+      <DependentUpon>DanhSachDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpaceTeam\ManHinhChung\DanhSachHangHoaDaBan.resx">
+      <DependentUpon>DanhSachHangHoaDaBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpaceTeam\ManHinhChung\DoanhThu.resx">
+      <DependentUpon>DoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpaceTeam\ManHinhChung\QuanLyKhoHang.resx">
+      <DependentUpon>QuanLyKhoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpaceTeam\ManHinhChung\QuanLyNhanViencs.resx">
+      <DependentUpon>QuanLyNhanViencs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpaceTeam\ManHinhChung\ThongTinCaNhan.resx">
+      <DependentUpon>ThongTinCaNhan.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -163,7 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SpaceTeam\DanhMucAdmin\" />
-    <Folder Include="SpaceTeam\DanhMucQuanLy\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

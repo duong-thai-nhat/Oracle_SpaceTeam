@@ -1,4 +1,4 @@
-﻿namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
+﻿namespace SpaceTeam_Oracle.SpaceTeam.ManHinhChung
 {
     partial class DoanhThu
     {
@@ -28,83 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbTenNhanVien = new System.Windows.Forms.ComboBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageTheoNgay = new System.Windows.Forms.TabPage();
-            this.tabPageTheoTuan = new System.Windows.Forms.TabPage();
-            this.tabPageTheoThang = new System.Windows.Forms.TabPage();
             this.dataGridViewTheoNgay = new System.Windows.Forms.DataGridView();
+            this.tabPageTheoTuan = new System.Windows.Forms.TabPage();
             this.dataGridViewTheoTuan = new System.Windows.Forms.DataGridView();
+            this.tabPageTheoThang = new System.Windows.Forms.TabPage();
             this.dataGridViewTheoThang = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbTenNhanVien = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageTheoNgay.SuspendLayout();
-            this.tabPageTheoTuan.SuspendLayout();
-            this.tabPageTheoThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoNgay)).BeginInit();
+            this.tabPageTheoTuan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoTuan)).BeginInit();
+            this.tabPageTheoThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoThang)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label1.Location = new System.Drawing.Point(350, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 25);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Doanh Thu";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // cmbChiNhanh
-            // 
-            this.cmbChiNhanh.FormattingEnabled = true;
-            this.cmbChiNhanh.Location = new System.Drawing.Point(142, 65);
-            this.cmbChiNhanh.Name = "cmbChiNhanh";
-            this.cmbChiNhanh.Size = new System.Drawing.Size(181, 21);
-            this.cmbChiNhanh.TabIndex = 35;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "Chi Nhánh";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(448, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 13);
-            this.label5.TabIndex = 41;
-            this.label5.Text = "Tên Nhân Viên";
-            // 
-            // cmbTenNhanVien
-            // 
-            this.cmbTenNhanVien.FormattingEnabled = true;
-            this.cmbTenNhanVien.Location = new System.Drawing.Point(551, 64);
-            this.cmbTenNhanVien.Name = "cmbTenNhanVien";
-            this.cmbTenNhanVien.Size = new System.Drawing.Size(181, 21);
-            this.cmbTenNhanVien.TabIndex = 40;
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabPageTheoNgay);
             this.tabControl.Controls.Add(this.tabPageTheoTuan);
             this.tabControl.Controls.Add(this.tabPageTheoThang);
-            this.tabControl.Location = new System.Drawing.Point(32, 109);
+            this.tabControl.Location = new System.Drawing.Point(20, 105);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(758, 248);
-            this.tabControl.TabIndex = 42;
+            this.tabControl.TabIndex = 48;
             // 
             // tabPageTheoNgay
             // 
@@ -116,7 +70,14 @@
             this.tabPageTheoNgay.TabIndex = 0;
             this.tabPageTheoNgay.Text = "Theo Ngày";
             this.tabPageTheoNgay.UseVisualStyleBackColor = true;
-            this.tabPageTheoNgay.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // dataGridViewTheoNgay
+            // 
+            this.dataGridViewTheoNgay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTheoNgay.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewTheoNgay.Name = "dataGridViewTheoNgay";
+            this.dataGridViewTheoNgay.Size = new System.Drawing.Size(738, 210);
+            this.dataGridViewTheoNgay.TabIndex = 0;
             // 
             // tabPageTheoTuan
             // 
@@ -129,6 +90,14 @@
             this.tabPageTheoTuan.Text = "Theo Tuần";
             this.tabPageTheoTuan.UseVisualStyleBackColor = true;
             // 
+            // dataGridViewTheoTuan
+            // 
+            this.dataGridViewTheoTuan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTheoTuan.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewTheoTuan.Name = "dataGridViewTheoTuan";
+            this.dataGridViewTheoTuan.Size = new System.Drawing.Size(738, 210);
+            this.dataGridViewTheoTuan.TabIndex = 1;
+            // 
             // tabPageTheoThang
             // 
             this.tabPageTheoThang.Controls.Add(this.dataGridViewTheoThang);
@@ -140,23 +109,6 @@
             this.tabPageTheoThang.Text = "Theo Tháng";
             this.tabPageTheoThang.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewTheoNgay
-            // 
-            this.dataGridViewTheoNgay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTheoNgay.Location = new System.Drawing.Point(6, 6);
-            this.dataGridViewTheoNgay.Name = "dataGridViewTheoNgay";
-            this.dataGridViewTheoNgay.Size = new System.Drawing.Size(738, 210);
-            this.dataGridViewTheoNgay.TabIndex = 0;
-            this.dataGridViewTheoNgay.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // dataGridViewTheoTuan
-            // 
-            this.dataGridViewTheoTuan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTheoTuan.Location = new System.Drawing.Point(6, 6);
-            this.dataGridViewTheoTuan.Name = "dataGridViewTheoTuan";
-            this.dataGridViewTheoTuan.Size = new System.Drawing.Size(738, 210);
-            this.dataGridViewTheoTuan.TabIndex = 1;
-            // 
             // dataGridViewTheoThang
             // 
             this.dataGridViewTheoThang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -165,11 +117,56 @@
             this.dataGridViewTheoThang.Size = new System.Drawing.Size(738, 210);
             this.dataGridViewTheoThang.TabIndex = 1;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(436, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.TabIndex = 47;
+            this.label5.Text = "Tên Nhân Viên";
+            // 
+            // cmbTenNhanVien
+            // 
+            this.cmbTenNhanVien.FormattingEnabled = true;
+            this.cmbTenNhanVien.Location = new System.Drawing.Point(539, 60);
+            this.cmbTenNhanVien.Name = "cmbTenNhanVien";
+            this.cmbTenNhanVien.Size = new System.Drawing.Size(181, 21);
+            this.cmbTenNhanVien.TabIndex = 46;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 13);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "Chi Nhánh";
+            // 
+            // cmbChiNhanh
+            // 
+            this.cmbChiNhanh.FormattingEnabled = true;
+            this.cmbChiNhanh.Location = new System.Drawing.Point(130, 61);
+            this.cmbChiNhanh.Name = "cmbChiNhanh";
+            this.cmbChiNhanh.Size = new System.Drawing.Size(181, 21);
+            this.cmbChiNhanh.TabIndex = 44;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label1.Location = new System.Drawing.Point(338, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 25);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Doanh Thu";
+            // 
             // DoanhThu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 369);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbTenNhanVien);
@@ -177,14 +174,13 @@
             this.Controls.Add(this.cmbChiNhanh);
             this.Controls.Add(this.label1);
             this.Name = "DoanhThu";
-            this.Text = "DoanhThu";
-            this.Load += new System.EventHandler(this.DoanhThu_Load);
+            this.Text = " ";
             this.tabControl.ResumeLayout(false);
             this.tabPageTheoNgay.ResumeLayout(false);
-            this.tabPageTheoTuan.ResumeLayout(false);
-            this.tabPageTheoThang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoNgay)).EndInit();
+            this.tabPageTheoTuan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoTuan)).EndInit();
+            this.tabPageTheoThang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoThang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,17 +189,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbChiNhanh;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbTenNhanVien;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageTheoNgay;
-        private System.Windows.Forms.TabPage tabPageTheoTuan;
-        private System.Windows.Forms.TabPage tabPageTheoThang;
         private System.Windows.Forms.DataGridView dataGridViewTheoNgay;
+        private System.Windows.Forms.TabPage tabPageTheoTuan;
         private System.Windows.Forms.DataGridView dataGridViewTheoTuan;
+        private System.Windows.Forms.TabPage tabPageTheoThang;
         private System.Windows.Forms.DataGridView dataGridViewTheoThang;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbTenNhanVien;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbChiNhanh;
+        private System.Windows.Forms.Label label1;
     }
 }

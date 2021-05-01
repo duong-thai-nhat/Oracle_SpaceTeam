@@ -365,7 +365,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(785, 601);
+            this.ClientSize = new System.Drawing.Size(785, 612);
             this.Controls.Add(this.btnXoaKhachHang);
             this.Controls.Add(this.btnSuaSP);
             this.Controls.Add(this.btnSuaKhachHang);

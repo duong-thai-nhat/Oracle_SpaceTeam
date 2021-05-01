@@ -1,5 +1,6 @@
 ﻿using SpaceTeam_Oracle.SpaceTeam;
 using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+using SpaceTeam_Oracle.SpaceTeam.ManHinhChung;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace SpaceTeam_Oracle
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DangNhap());
+            Application.Run(new ThongTinCaNhan());
         }
     }
 }

@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
+namespace SpaceTeam_Oracle.SpaceTeam.ManHinhChung
 {
     public partial class DanhSachHangHoaDaBan : Form
     {
         public DanhSachHangHoaDaBan()
         {
             InitializeComponent();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

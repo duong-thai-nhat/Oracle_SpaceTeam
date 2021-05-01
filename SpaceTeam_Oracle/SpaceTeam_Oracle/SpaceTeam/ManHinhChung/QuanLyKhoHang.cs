@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
+namespace SpaceTeam_Oracle.SpaceTeam.ManHinhChung
 {
-    public partial class DanhSachDonHang : Form
+    public partial class QuanLyKhoHang : Form
     {
-        public DanhSachDonHang()
+        public QuanLyKhoHang()
         {
             InitializeComponent();
         }
