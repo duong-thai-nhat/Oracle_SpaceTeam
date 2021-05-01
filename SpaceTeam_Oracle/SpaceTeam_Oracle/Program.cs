@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SpaceTeam_Oracle.SpaceTeam;
+using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace SpaceTeam_Oracle
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new DangNhap());
         }
     }
 }
