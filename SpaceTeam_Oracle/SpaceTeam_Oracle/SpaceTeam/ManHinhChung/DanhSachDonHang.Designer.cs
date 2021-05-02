@@ -37,13 +37,15 @@
             this.btnXem = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbChiNhanh
             // 
             this.cmbChiNhanh.FormattingEnabled = true;
-            this.cmbChiNhanh.Location = new System.Drawing.Point(533, 59);
+            this.cmbChiNhanh.Location = new System.Drawing.Point(526, 26);
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(121, 21);
             this.cmbChiNhanh.TabIndex = 43;
@@ -51,7 +53,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(433, 62);
+            this.label9.Location = new System.Drawing.Point(426, 29);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 44;
@@ -60,7 +62,7 @@
             // cmbTenNhanVien
             // 
             this.cmbTenNhanVien.FormattingEnabled = true;
-            this.cmbTenNhanVien.Location = new System.Drawing.Point(161, 59);
+            this.cmbTenNhanVien.Location = new System.Drawing.Point(154, 26);
             this.cmbTenNhanVien.Name = "cmbTenNhanVien";
             this.cmbTenNhanVien.Size = new System.Drawing.Size(121, 21);
             this.cmbTenNhanVien.TabIndex = 41;
@@ -68,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 62);
+            this.label2.Location = new System.Drawing.Point(54, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 42;
@@ -76,7 +78,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(545, 100);
+            this.btnSua.Location = new System.Drawing.Point(538, 67);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(137, 26);
             this.btnSua.TabIndex = 40;
@@ -85,7 +87,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(347, 100);
+            this.btnXoa.Location = new System.Drawing.Point(340, 67);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(137, 26);
             this.btnXoa.TabIndex = 39;
@@ -94,7 +96,7 @@
             // 
             // btnXem
             // 
-            this.btnXem.Location = new System.Drawing.Point(142, 100);
+            this.btnXem.Location = new System.Drawing.Point(135, 67);
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(137, 26);
             this.btnXem.TabIndex = 38;
@@ -104,7 +106,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 145);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 112);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(763, 277);
             this.dataGridView1.TabIndex = 37;
@@ -119,23 +121,34 @@
             this.label1.TabIndex = 36;
             this.label1.Text = "Danh Sách Đơn Hàng";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cmbChiNhanh);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.cmbTenNhanVien);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.btnSua);
+            this.groupBox1.Controls.Add(this.btnXoa);
+            this.groupBox1.Controls.Add(this.btnXem);
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 58);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(787, 399);
+            this.groupBox1.TabIndex = 45;
+            this.groupBox1.TabStop = false;
+            // 
             // DanhSachDonHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cmbChiNhanh);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.cmbTenNhanVien);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnSua);
-            this.Controls.Add(this.btnXoa);
-            this.Controls.Add(this.btnXem);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(812, 463);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "DanhSachDonHang";
             this.Text = "DanhSachDonHang";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,5 +165,6 @@
         private System.Windows.Forms.Button btnXem;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

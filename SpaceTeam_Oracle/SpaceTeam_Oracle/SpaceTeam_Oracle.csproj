@@ -141,6 +141,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SpaceTeam\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
@@ -162,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SpaceTeam\DanhMucQuanLy\PhanCong.resx">
       <DependentUpon>PhanCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpaceTeam\ManHinhChung\ChiTietDonHang.resx">
+      <DependentUpon>ChiTietDonHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SpaceTeam\ManHinhChung\DanhSachDonHang.resx">
       <DependentUpon>DanhSachDonHang.cs</DependentUpon>
@@ -196,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SpaceTeam\DanhMucAdmin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hinh-nen-mua-thu-5.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

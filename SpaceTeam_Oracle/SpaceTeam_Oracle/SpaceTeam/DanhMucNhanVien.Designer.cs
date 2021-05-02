@@ -40,7 +40,7 @@
             // btnDiemDanh
             // 
             this.btnDiemDanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDiemDanh.Location = new System.Drawing.Point(536, 218);
+            this.btnDiemDanh.Location = new System.Drawing.Point(536, 202);
             this.btnDiemDanh.Margin = new System.Windows.Forms.Padding(4);
             this.btnDiemDanh.Name = "btnDiemDanh";
             this.btnDiemDanh.Size = new System.Drawing.Size(159, 70);
@@ -51,7 +51,7 @@
             // btnDSHHDaBan
             // 
             this.btnDSHHDaBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDSHHDaBan.Location = new System.Drawing.Point(318, 218);
+            this.btnDSHHDaBan.Location = new System.Drawing.Point(318, 202);
             this.btnDSHHDaBan.Margin = new System.Windows.Forms.Padding(4);
             this.btnDSHHDaBan.Name = "btnDSHHDaBan";
             this.btnDSHHDaBan.Size = new System.Drawing.Size(159, 70);
@@ -62,7 +62,7 @@
             // btnDanhSachDonHang
             // 
             this.btnDanhSachDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDanhSachDonHang.Location = new System.Drawing.Point(105, 218);
+            this.btnDanhSachDonHang.Location = new System.Drawing.Point(105, 202);
             this.btnDanhSachDonHang.Margin = new System.Windows.Forms.Padding(4);
             this.btnDanhSachDonHang.Name = "btnDanhSachDonHang";
             this.btnDanhSachDonHang.Size = new System.Drawing.Size(159, 70);
@@ -73,7 +73,7 @@
             // btnTTCaNhan
             // 
             this.btnTTCaNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnTTCaNhan.Location = new System.Drawing.Point(536, 110);
+            this.btnTTCaNhan.Location = new System.Drawing.Point(536, 94);
             this.btnTTCaNhan.Margin = new System.Windows.Forms.Padding(4);
             this.btnTTCaNhan.Name = "btnTTCaNhan";
             this.btnTTCaNhan.Size = new System.Drawing.Size(159, 70);
@@ -84,7 +84,7 @@
             // btnDoanhThu
             // 
             this.btnDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDoanhThu.Location = new System.Drawing.Point(318, 110);
+            this.btnDoanhThu.Location = new System.Drawing.Point(318, 94);
             this.btnDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.btnDoanhThu.Name = "btnDoanhThu";
             this.btnDoanhThu.Size = new System.Drawing.Size(159, 70);
@@ -95,7 +95,7 @@
             // btnTaoDonHang
             // 
             this.btnTaoDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnTaoDonHang.Location = new System.Drawing.Point(105, 110);
+            this.btnTaoDonHang.Location = new System.Drawing.Point(105, 94);
             this.btnTaoDonHang.Margin = new System.Windows.Forms.Padding(4);
             this.btnTaoDonHang.Name = "btnTaoDonHang";
             this.btnTaoDonHang.Size = new System.Drawing.Size(159, 70);
@@ -107,7 +107,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label1.Location = new System.Drawing.Point(349, 56);
+            this.label1.Location = new System.Drawing.Point(349, 40);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 25);
@@ -118,6 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::SpaceTeam_Oracle.Properties.Resources.hinh_nen_mua_thu_5;
             this.ClientSize = new System.Drawing.Size(800, 349);
             this.Controls.Add(this.btnDiemDanh);
             this.Controls.Add(this.btnDSHHDaBan);

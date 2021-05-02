@@ -36,5 +36,30 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThemSP_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSuaSP_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoaSP_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

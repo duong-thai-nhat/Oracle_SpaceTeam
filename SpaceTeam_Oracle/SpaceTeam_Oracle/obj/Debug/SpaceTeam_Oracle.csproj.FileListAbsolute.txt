@@ -19,3 +19,5 @@ G:\HK2_năm 3\oracle\SpaceTeam_HTQLchuoiCHTienLoi_Oracle\SpaceTeam_Oracle\SpaceT
 G:\HK2_năm 3\oracle\SpaceTeam_HTQLchuoiCHTienLoi_Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\obj\Debug\SpaceTeam_Oracle.SpaceTeam.ManHinhChung.QuanLyNhanViencs.resources
 G:\HK2_năm 3\oracle\SpaceTeam_HTQLchuoiCHTienLoi_Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\obj\Debug\SpaceTeam_Oracle.SpaceTeam.ManHinhChung.ThongTinCaNhan.resources
 G:\HK2_năm 3\oracle\SpaceTeam_HTQLchuoiCHTienLoi_Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\obj\Debug\SpaceTeam_Oracle.SpaceTeam.DanhMucQL.resources
+G:\HK2_năm 3\oracle\SpaceTeam_HTQLchuoiCHTienLoi_Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\obj\Debug\SpaceTeam_Oracle.SpaceTeam.ManHinhChung.ChiTietDonHang.resources
+G:\HK2_năm 3\oracle\SpaceTeam_HTQLchuoiCHTienLoi_Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\obj\Debug\SpaceTeam_Oracle.SpaceTeam.ManHinhChung.QuanLyKhoHang.resources

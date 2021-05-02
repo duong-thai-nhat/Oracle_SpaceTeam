@@ -16,5 +16,15 @@ namespace SpaceTeam_Oracle.SpaceTeam.ManHinhChung
         {
             InitializeComponent();
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

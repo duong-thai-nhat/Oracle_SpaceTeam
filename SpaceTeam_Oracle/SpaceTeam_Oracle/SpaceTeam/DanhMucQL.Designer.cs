@@ -142,6 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::SpaceTeam_Oracle.Properties.Resources.hinh_nen_mua_thu_5;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnPhanCong);
             this.Controls.Add(this.btnQLDSDonHang);
@@ -152,6 +153,7 @@
             this.Controls.Add(this.btnDoanhThu);
             this.Controls.Add(this.btnQLNhanVien);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DanhMucQL";
             this.Text = "DanhMucQL";
             this.ResumeLayout(false);

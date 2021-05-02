@@ -36,11 +36,11 @@
             this.dataGridViewTheoTuan = new System.Windows.Forms.DataGridView();
             this.tabPageHangXuatKho = new System.Windows.Forms.TabPage();
             this.dataGridViewTheoThang = new System.Windows.Forms.DataGridView();
-            this.label10 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl.SuspendLayout();
             this.tabPageHangNhapKho.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoNgay)).BeginInit();
@@ -48,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoTuan)).BeginInit();
             this.tabPageHangXuatKho.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoThang)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -66,10 +67,10 @@
             this.tabControl.Controls.Add(this.tabPageHangNhapKho);
             this.tabControl.Controls.Add(this.tabPageHangTrongKho);
             this.tabControl.Controls.Add(this.tabPageHangXuatKho);
-            this.tabControl.Location = new System.Drawing.Point(19, 240);
+            this.tabControl.Location = new System.Drawing.Point(6, 111);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(758, 292);
+            this.tabControl.Size = new System.Drawing.Size(758, 289);
             this.tabControl.TabIndex = 49;
             // 
             // tabPageHangNhapKho
@@ -78,7 +79,7 @@
             this.tabPageHangNhapKho.Location = new System.Drawing.Point(4, 22);
             this.tabPageHangNhapKho.Name = "tabPageHangNhapKho";
             this.tabPageHangNhapKho.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHangNhapKho.Size = new System.Drawing.Size(750, 266);
+            this.tabPageHangNhapKho.Size = new System.Drawing.Size(750, 263);
             this.tabPageHangNhapKho.TabIndex = 0;
             this.tabPageHangNhapKho.Text = "Hàng Nhập Kho";
             this.tabPageHangNhapKho.UseVisualStyleBackColor = true;
@@ -129,26 +130,16 @@
             this.dataGridViewTheoThang.Size = new System.Drawing.Size(738, 254);
             this.dataGridViewTheoThang.TabIndex = 1;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(26, 209);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(139, 15);
-            this.label10.TabIndex = 51;
-            this.label10.Text = "Thông Tin Hàng Hóa";
-            // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(103, 70);
+            this.dateTimePicker1.Location = new System.Drawing.Point(91, 19);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(186, 20);
             this.dateTimePicker1.TabIndex = 52;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(392, 70);
+            this.dateTimePicker2.Location = new System.Drawing.Point(380, 19);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(186, 20);
             this.dateTimePicker2.TabIndex = 53;
@@ -156,7 +147,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 76);
+            this.label4.Location = new System.Drawing.Point(14, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 54;
@@ -165,23 +156,32 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(318, 76);
+            this.label2.Location = new System.Drawing.Point(306, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 55;
             this.label2.Text = "Đến Ngày";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.tabControl);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(19, 54);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(769, 407);
+            this.groupBox1.TabIndex = 56;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thông Tin Hàng Hóa";
+            // 
             // QuanLyKhoHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 562);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.tabControl);
+            this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "QuanLyKhoHang";
             this.Text = "QuanLyKhoHang";
@@ -192,6 +192,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoTuan)).EndInit();
             this.tabPageHangXuatKho.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTheoThang)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,10 +209,10 @@
         private System.Windows.Forms.DataGridView dataGridViewTheoTuan;
         private System.Windows.Forms.TabPage tabPageHangXuatKho;
         private System.Windows.Forms.DataGridView dataGridViewTheoThang;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
