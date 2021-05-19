@@ -1,2 +1,2 @@
-# SpaceTeam_HTQLchuoiCHTienLoi_Oracle
+# Oracle_SpaceTeam
 Hệ Thống Quản Lý Chuỗi Cửa Hàng Tiện Lợi
