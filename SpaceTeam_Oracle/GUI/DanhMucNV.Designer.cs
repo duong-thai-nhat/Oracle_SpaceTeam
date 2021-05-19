@@ -41,10 +41,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label1.Location = new System.Drawing.Point(456, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(346, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 29);
+            this.label1.Size = new System.Drawing.Size(104, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nhân Viên";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -52,10 +51,9 @@
             // btnTaoDonHang
             // 
             this.btnTaoDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnTaoDonHang.Location = new System.Drawing.Point(78, 87);
-            this.btnTaoDonHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTaoDonHang.Location = new System.Drawing.Point(107, 132);
             this.btnTaoDonHang.Name = "btnTaoDonHang";
-            this.btnTaoDonHang.Size = new System.Drawing.Size(212, 86);
+            this.btnTaoDonHang.Size = new System.Drawing.Size(159, 70);
             this.btnTaoDonHang.TabIndex = 1;
             this.btnTaoDonHang.Text = "Tạo Đơn Hàng";
             this.btnTaoDonHang.UseVisualStyleBackColor = true;
@@ -63,10 +61,9 @@
             // btnDoanhThu
             // 
             this.btnDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDoanhThu.Location = new System.Drawing.Point(417, 87);
-            this.btnDoanhThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDoanhThu.Location = new System.Drawing.Point(323, 132);
             this.btnDoanhThu.Name = "btnDoanhThu";
-            this.btnDoanhThu.Size = new System.Drawing.Size(212, 86);
+            this.btnDoanhThu.Size = new System.Drawing.Size(159, 70);
             this.btnDoanhThu.TabIndex = 2;
             this.btnDoanhThu.Text = "Doanh Thu";
             this.btnDoanhThu.UseVisualStyleBackColor = true;
@@ -74,10 +71,9 @@
             // btnTTCaNhan
             // 
             this.btnTTCaNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnTTCaNhan.Location = new System.Drawing.Point(740, 87);
-            this.btnTTCaNhan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTTCaNhan.Location = new System.Drawing.Point(540, 132);
             this.btnTTCaNhan.Name = "btnTTCaNhan";
-            this.btnTTCaNhan.Size = new System.Drawing.Size(212, 86);
+            this.btnTTCaNhan.Size = new System.Drawing.Size(159, 70);
             this.btnTTCaNhan.TabIndex = 3;
             this.btnTTCaNhan.Text = "Thông tin cá nhân";
             this.btnTTCaNhan.UseVisualStyleBackColor = true;
@@ -85,10 +81,9 @@
             // btnDSDonHang
             // 
             this.btnDSDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDSDonHang.Location = new System.Drawing.Point(78, 229);
-            this.btnDSDonHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDSDonHang.Location = new System.Drawing.Point(107, 247);
             this.btnDSDonHang.Name = "btnDSDonHang";
-            this.btnDSDonHang.Size = new System.Drawing.Size(212, 86);
+            this.btnDSDonHang.Size = new System.Drawing.Size(159, 70);
             this.btnDSDonHang.TabIndex = 4;
             this.btnDSDonHang.Text = "Danh Sách Đơn Hàng";
             this.btnDSDonHang.UseVisualStyleBackColor = true;
@@ -96,10 +91,9 @@
             // btnDSHHDaBan
             // 
             this.btnDSHHDaBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDSHHDaBan.Location = new System.Drawing.Point(417, 229);
-            this.btnDSHHDaBan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDSHHDaBan.Location = new System.Drawing.Point(323, 247);
             this.btnDSHHDaBan.Name = "btnDSHHDaBan";
-            this.btnDSHHDaBan.Size = new System.Drawing.Size(212, 86);
+            this.btnDSHHDaBan.Size = new System.Drawing.Size(159, 70);
             this.btnDSHHDaBan.TabIndex = 5;
             this.btnDSHHDaBan.Text = "Danh Sách Hàng Hóa Đã Bán";
             this.btnDSHHDaBan.UseVisualStyleBackColor = true;
@@ -107,19 +101,18 @@
             // btnDiemDanh
             // 
             this.btnDiemDanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDiemDanh.Location = new System.Drawing.Point(740, 229);
-            this.btnDiemDanh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDiemDanh.Location = new System.Drawing.Point(540, 247);
             this.btnDiemDanh.Name = "btnDiemDanh";
-            this.btnDiemDanh.Size = new System.Drawing.Size(212, 86);
+            this.btnDiemDanh.Size = new System.Drawing.Size(159, 70);
             this.btnDiemDanh.TabIndex = 6;
             this.btnDiemDanh.Text = "Điểm Danh";
             this.btnDiemDanh.UseVisualStyleBackColor = true;
             // 
             // DanhMucNV
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 495);
+            this.ClientSize = new System.Drawing.Size(785, 402);
             this.Controls.Add(this.btnDiemDanh);
             this.Controls.Add(this.btnDSHHDaBan);
             this.Controls.Add(this.btnDSDonHang);
@@ -127,7 +120,6 @@
             this.Controls.Add(this.btnDoanhThu);
             this.Controls.Add(this.btnTaoDonHang);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DanhMucNV";
             this.Text = "Danh mục Nhân Viên";
             this.Load += new System.EventHandler(this.Form2_Load);
