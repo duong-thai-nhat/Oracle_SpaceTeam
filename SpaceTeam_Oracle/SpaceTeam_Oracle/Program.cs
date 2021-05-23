@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+using System;
 using System.Windows.Forms;
 
-namespace SpaceTeam_Oracle
+namespace GUI
 {
     static class Program
     {
@@ -16,7 +14,7 @@ namespace SpaceTeam_Oracle
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new TaoDonHang());
         }
     }
 }
