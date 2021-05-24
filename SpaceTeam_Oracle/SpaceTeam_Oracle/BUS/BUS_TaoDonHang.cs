@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SpaceTeam_Oracle.BUS
 {
-    class BUS_TaoDonHang
+    public class BUS_TaoDonHang
     {
         SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
 

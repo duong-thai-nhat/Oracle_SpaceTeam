@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SpaceTeam_Oracle.SpaceTeam
 {
-    class TaoDonHang_Services
+    public class TaoDonHang_Services
     {
         SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
 

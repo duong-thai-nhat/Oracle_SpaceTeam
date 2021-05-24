@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
@@ -22,53 +23,14 @@ namespace SpaceTeam_Oracle.UI
             GetDataGridView();
         }
 
-        #region Cell CLick
-
-        private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = this.dataGridViewEmployee.Rows[e.RowIndex];
-                txtMaNV.Text = row.Cells[0].Value.ToString();
-                txtHoTen.Text = row.Cells[1].Value.ToString();
-                if (row.Cells[2].Value.ToString() == "True")
-                    radioMen.Checked = true;
-                if (row.Cells[2].Value.ToString() == "False")
-                    radioFemale.Checked = true;
-                dtpkBD.Value = Convert.ToDateTime(row.Cells[3].Value);
-                txtSDT.Text = row.Cells[4].Value.ToString();
-                txtDiaChi.Text = row.Cells[5].Value.ToString();
-                txtTenDN.Text = row.Cells[6].Value.ToString();
-                cmbChiNhanh.Text = row.Cells[7].Value.ToString();
-                cmbChucVu.Text = row.Cells[8].Value.ToString();
-            }
-        }
-
-        #endregion DONE 
-
         #region Load Combobox Chi Nhanh
 
         public void LoadComboboxChiNhanh()
         {
             try
             {
-              var ds = from c in db.CHINHANHs
-                         select new
-                         {
-                             c.MACHINHANH,
-                             c.TENCHINHANH
-                         };
-                DataTable tb = new DataTable();
-                tb.Columns.Add("MACHINHANH");
-                tb.Columns.Add("TENCHINHANH");
-                foreach (var item in ds)
-                {
-                    DataRow dr = tb.NewRow();
-                    dr["MACHINHANH"] = item.MACHINHANH;
-                    dr["TENCHINHANH"] = item.TENCHINHANH;
-                    tb.Rows.Add(dr);
-                }
-                cmbChiNhanh.DataSource = tb;
+                List<CHINHANH> listChiNhanh = db.CHINHANHs.ToList();
+                cmbChiNhanh.DataSource = listChiNhanh;
                 cmbChiNhanh.DisplayMember = "TENCHINHANH";
                 cmbChiNhanh.ValueMember = "MACHINHANH";
             }
@@ -86,23 +48,8 @@ namespace SpaceTeam_Oracle.UI
         {
             try
             {
-                var ds = from c in db.CHUCVUs
-                         select new
-                         {
-                             c.MACHUCVU,
-                             c.TENCHUCVU
-                         };
-                DataTable tb = new DataTable();
-                tb.Columns.Add("MACHUCVU");
-                tb.Columns.Add("TENCHUCVU");
-                foreach (var item in ds)
-                {
-                    DataRow dr = tb.NewRow();
-                    dr["MACHUCVU"] = item.MACHUCVU;
-                    dr["TENCHUCVU"] = item.TENCHUCVU;
-                    tb.Rows.Add(dr);
-                }
-                cmbChucVu.DataSource = tb;
+                List<CHUCVU> listChucVu = db.CHUCVUs.ToList();
+                cmbChucVu.DataSource = listChucVu;
                 cmbChucVu.DisplayMember = "TENCHUCVU";
                 cmbChucVu.ValueMember = "MACHUCVU";
             }
@@ -111,6 +58,78 @@ namespace SpaceTeam_Oracle.UI
                 MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+        #endregion
+
+        #region Hàm GetIDNV
+        int GetIdNV()
+        {
+            int dem = 1;
+            while (true)
+            {
+                var c = db.NHANVIENs.Where(w => w.MANV == dem).SingleOrDefault();
+                if (c == null)
+                {
+                    return dem;
+                }
+                dem++;
+            }
+        }
+        #endregion
+
+        #region Hàm mã hóa SHA1
+        public static byte[] GetHashSHA1(string inputString)
+        {
+            using (HashAlgorithm algorithm = SHA1.Create())
+                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+        #endregion
+
+        #region Hàm Insert NhanVien
+        public void InsertNV(string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
+        {
+            NHANVIEN add = new NHANVIEN();
+            add.MANV = GetIdNV();
+            add.HOTEN = hoTen;
+            add.GIOITINH = gioiTinh;
+            add.NGAYSINH = ngaySinh;
+            add.SDT = SDT;
+            add.DIACHI = diaChi;
+            add.TENDN = tenDN;
+            add.MATKHAU = matKhau;
+            add.MACHINHANH = maChiNhanh;
+            add.MACHUCVU = maChucVu;
+            db.NHANVIENs.Add(add);
+            db.SaveChanges();
+        }
+        #endregion
+
+        #region Hàm Update Nhân Viên
+        public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
+        {
+            SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
+            NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
+            update.HOTEN = hoTen;
+            update.GIOITINH = gioiTinh;
+            update.NGAYSINH = ngaySinh;
+            update.SDT = SDT;
+            update.DIACHI = diaChi;
+            update.TENDN = tenDN;
+            update.MATKHAU = matKhau;
+            update.MACHINHANH = maChiNhanh;
+            update.MACHUCVU = maChucVu;
+            db.SaveChanges();
+        }
+        #endregion
+
+        #region Hàm Delete Bill
+        public void Delete(int maNV)
+        {
+            SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
+            var nhanVien = db.NHANVIENs.Where(nv => nv.MANV == maNV).SingleOrDefault();
+
+            db.NHANVIENs.Remove(nhanVien);
+            db.SaveChanges();
         }
         #endregion
 
@@ -144,9 +163,7 @@ namespace SpaceTeam_Oracle.UI
             dataGridViewEmployee.Columns[4].HeaderText = "Số điện thoại";
             dataGridViewEmployee.Columns[5].HeaderText = "Địa chỉ";
             dataGridViewEmployee.Columns[6].HeaderText = "Tên đăng nhập";
-           // dataGridViewEmployee.Columns[7].HeaderText = "Mã chi nhánh";
             dataGridViewEmployee.Columns[7].HeaderText = "Tên chi nhánh";
-            //dataGridViewEmployee.Columns[9].HeaderText = "Mã chức vụ";
             dataGridViewEmployee.Columns[8].HeaderText = "Chức vụ";
             dataGridViewEmployee.Columns[0].Width = 100;
             dataGridViewEmployee.Columns[1].Width = 130;
@@ -154,45 +171,35 @@ namespace SpaceTeam_Oracle.UI
             dataGridViewEmployee.Columns[3].Width = 90;
             dataGridViewEmployee.Columns[4].Width = 120;
             dataGridViewEmployee.Columns[5].Width = 190;
-            dataGridViewEmployee.Columns[6].Width = 90;
-            dataGridViewEmployee.Columns[7].Width = 200;
+            dataGridViewEmployee.Columns[6].Width = 140;
+            dataGridViewEmployee.Columns[7].Width = 120;
+            dataGridViewEmployee.Columns[8].Width = 160;
         }
         #endregion
 
-        #region Hàm GetIDNV
-        int GetIdNV()
+        #region Cell CLick
+
+        private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int dem = 1;
-            while (true)
+            if (e.RowIndex >= 0)
             {
-                var c = db.NHANVIENs.Where(w => w.MANV == dem).SingleOrDefault();
-                if (c == null)
-                {
-                    return dem;
-                }
-                dem++;
+                DataGridViewRow row = this.dataGridViewEmployee.Rows[e.RowIndex];
+                txtMaNV.Text = row.Cells[0].Value.ToString();
+                txtHoTen.Text = row.Cells[1].Value.ToString();
+                if (row.Cells[2].Value.ToString() == "True")
+                    radioMen.Checked = true;
+                if (row.Cells[2].Value.ToString() == "False")
+                    radioFemale.Checked = true;
+                dtpkBD.Value = Convert.ToDateTime(row.Cells[3].Value);
+                txtSDT.Text = row.Cells[4].Value.ToString();
+                txtDiaChi.Text = row.Cells[5].Value.ToString();
+                txtTenDN.Text = row.Cells[6].Value.ToString();
+                cmbChiNhanh.Text = row.Cells[7].Value.ToString();
+                cmbChucVu.Text = row.Cells[8].Value.ToString();
             }
         }
-        #endregion
 
-        #region Hàm Insert NhanVien
-        public void InsertNV( string hoTen,bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
-        {
-            NHANVIEN add = new NHANVIEN();
-            add.MANV = GetIdNV();
-            add.HOTEN = hoTen;
-            add.GIOITINH = gioiTinh;
-            add.NGAYSINH = ngaySinh;
-            add.SDT = SDT;
-            add.DIACHI = diaChi;
-            add.TENDN = tenDN;
-            add.MATKHAU = matKhau;
-            add.MACHINHANH = maChiNhanh;
-            add.MACHUCVU = maChucVu;
-            db.NHANVIENs.Add(add);
-            db.SaveChanges();
-        }
-        #endregion
+        #endregion DONE 
 
         #region btn Add
         private void btnAdd_Click(object sender, EventArgs e)
@@ -230,14 +237,6 @@ namespace SpaceTeam_Oracle.UI
                 MessageBox.Show("Thêm Nhân Viên Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-        }
-        #endregion
-
-        #region Hàm mã hóa SHA1
-        public static byte[] GetHashSHA1(string inputString)
-        {
-            using (HashAlgorithm algorithm = SHA1.Create())
-                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
         }
         #endregion
 
@@ -281,35 +280,6 @@ namespace SpaceTeam_Oracle.UI
         }
         #endregion
 
-        #region Hàm Update Nhân Viên
-        public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
-        {
-            SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
-            NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
-            update.HOTEN = hoTen;
-            update.GIOITINH = gioiTinh;
-            update.NGAYSINH = ngaySinh;
-            update.SDT = SDT;
-            update.DIACHI = diaChi;
-            update.TENDN = tenDN;
-            update.MATKHAU = matKhau;
-            update.MACHINHANH = maChiNhanh;
-            update.MACHUCVU = maChucVu;
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region Hàm Delete Bill
-        public void Delete(int maNV)
-        {
-            SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
-            var nhanVien = db.NHANVIENs.Where(nv => nv.MANV == maNV).SingleOrDefault();
-
-            db.NHANVIENs.Remove(nhanVien);
-            db.SaveChanges();
-        }
-        #endregion
-
         #region btn Delete
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -350,5 +320,6 @@ namespace SpaceTeam_Oracle.UI
             txtTenDN.Text = " ";
         }
         #endregion
+
     }
 }
