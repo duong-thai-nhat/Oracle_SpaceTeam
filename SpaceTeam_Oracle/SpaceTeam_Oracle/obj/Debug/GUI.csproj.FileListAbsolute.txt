@@ -24,3 +24,4 @@ C:\Users\Nguyen Quoc Cuong\Desktop\Source Oracle\SpaceTeam_Oracle\SpaceTeam_Orac
 C:\Users\Nguyen Quoc Cuong\Desktop\Source Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\bin\Debug\Oracle.ManagedDataAccess.dll
 C:\Users\Nguyen Quoc Cuong\Desktop\Source Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
 C:\Users\Nguyen Quoc Cuong\Desktop\Source Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nguyen Quoc Cuong\Desktop\Source Oracle\SpaceTeam_Oracle\SpaceTeam_Oracle\obj\Debug\SpaceTeam_Oracle.UI.QLNhanVien.resources

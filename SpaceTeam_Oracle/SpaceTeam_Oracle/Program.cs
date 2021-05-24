@@ -1,4 +1,5 @@
 ﻿using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+using SpaceTeam_Oracle.UI;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TaoDonHang());
+            Application.Run(new QLNhanVien());
         }
     }
 }

@@ -23,9 +23,10 @@ namespace SpaceTeam_Oracle
         public decimal MANV { get; set; }
         public string HOTEN { get; set; }
         public bool GIOITINH { get; set; }
-        public System.DateTime NGAYSINH { get; set; }
+        public Nullable<System.DateTime> NGAYSINH { get; set; }
         public string SDT { get; set; }
         public string DIACHI { get; set; }
+        public string TENDN { get; set; }
         public byte[] MATKHAU { get; set; }
         public decimal MACHINHANH { get; set; }
         public string MACHUCVU { get; set; }

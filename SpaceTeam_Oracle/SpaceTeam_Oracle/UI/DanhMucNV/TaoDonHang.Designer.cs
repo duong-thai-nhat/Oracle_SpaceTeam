@@ -78,6 +78,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.cmbLoai = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -320,6 +322,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.cmbLoai);
             this.groupBox2.Controls.Add(this.numericUpDown1);
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.button4);
@@ -474,6 +478,7 @@
             this.txtTenHang.Name = "txtTenHang";
             this.txtTenHang.Size = new System.Drawing.Size(244, 22);
             this.txtTenHang.TabIndex = 48;
+            this.txtTenHang.TextChanged += new System.EventHandler(this.txtTenHang_TextChanged);
             // 
             // txtThanhTien
             // 
@@ -579,6 +584,25 @@
             this.button6.Text = "Tìm Đơn Hàng";
             this.button6.UseVisualStyleBackColor = true;
             // 
+            // cmbLoai
+            // 
+            this.cmbLoai.FormattingEnabled = true;
+            this.cmbLoai.Location = new System.Drawing.Point(496, 19);
+            this.cmbLoai.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbLoai.Name = "cmbLoai";
+            this.cmbLoai.Size = new System.Drawing.Size(166, 24);
+            this.cmbLoai.TabIndex = 67;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(331, 18);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(35, 17);
+            this.label22.TabIndex = 68;
+            this.label22.Text = "Loại";
+            // 
             // TaoDonHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -659,5 +683,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox cmbLoai;
     }
 }

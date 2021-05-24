@@ -2,50 +2,20 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Collections.Generic;
 
 namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class TaoDonHang : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
+
         public TaoDonHang()
         {
             InitializeComponent();
         }
-
-        private void TaoDonHang_Load(object sender, EventArgs e)
-        {
-            //this.TopMost = true;
-            //this.WindowState = FormWindowState.Maximized;
-        }
-
-
-        #region Hàm Load Data Grid View Dưới DB lên
-        /// <summary>
-        /// 
-        /// </summary>
-        private void LoadDataGridView()
-        {
-            //string sql;
-            //sql = "SELECT a.MaHang, b.TenHang, a.SoLuong, b.DonGiaBan, a.GiamGia,a.ThanhTien FROM tblChiTietHDBan AS a, tblHang AS b WHERE a.MaHDBan = N'" + txtMaHDBan.Text + "' AND a.MaHang=b.MaHang";
-            
-            //dataGridDonHang.DataSource = ;
-            dataGridDonHang.Columns[0].HeaderText = "Mã hàng";
-            dataGridDonHang.Columns[1].HeaderText = "Tên hàng";
-            dataGridDonHang.Columns[2].HeaderText = "Số lượng";
-            dataGridDonHang.Columns[3].HeaderText = "Đơn giá";
-            dataGridDonHang.Columns[4].HeaderText = "Giảm giá %";
-            dataGridDonHang.Columns[5].HeaderText = "Thành tiền";
-            dataGridDonHang.Columns[0].Width = 80;
-            dataGridDonHang.Columns[1].Width = 130;
-            dataGridDonHang.Columns[2].Width = 80;
-            dataGridDonHang.Columns[3].Width = 90;
-            dataGridDonHang.Columns[4].Width = 90;
-            dataGridDonHang.Columns[5].Width = 90;
-            dataGridDonHang.AllowUserToAddRows = false;
-            dataGridDonHang.EditMode = DataGridViewEditMode.EditProgrammatically;
-        }
-        #endregion
 
         #region Hàm chuyển giờ 1-12 thành  0-12
         public static string ConvertTimeTo24(string hour)
@@ -197,10 +167,19 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
             string tongTien = txtTongTien.Text;
 
-            InsertBill(maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV);
+            try
+            {
+                InsertBill(maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV);
+                MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         #endregion
-
 
         #region Get Id Hóa Đơn
         int GetIdBill()
@@ -217,7 +196,6 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             }
         }
         #endregion
-
 
         #region Hàm Insert Bill
         public void InsertBill(int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV)
@@ -237,11 +215,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
-
         #region Hàm Update Bill
         public void Update(int maHD,int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
             HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
             //update.MAHD = maHD;
             //add.MAKH = maKH;
@@ -256,11 +233,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
-
         #region Hàm Delete Bill
         public void Delete(int maHD)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
             var hoaDon = db.HOADONs.Where(hd => hd.MAHD == 1).SingleOrDefault();
 
             db.HOADONs.Remove(hoaDon);
@@ -274,9 +250,99 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             Delete(i);
         }
 
+        #region btn Thoat
         private void btnThoat_Click(object sender, EventArgs e)
         {
+            DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (mess == DialogResult.OK)
+            {
+                Close();
+            }
+        }
+        #endregion
 
+        
+
+        private void txtTenHang_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void TaoDonHang_Load(object sender, EventArgs e)
+        {
+            LoadComboboxLoai();
+            LoadComboboxKH();
+            LoadComboboxCN();
+        }
+
+        #region Load Combobox
+
+        public void LoadComboboxLoai()
+        {
+            var ds = from l in db.LOAIs
+                        select new
+                        {
+                            l.MALOAI,
+                            l.TENLOAI
+                        };
+
+            cmbLoai.DataSource = ds;
+            cmbLoai.DisplayMember = "TENLOAI";
+            cmbLoai.ValueMember = "MALOAI";
+        }
+
+        public void LoadComboboxKH()
+        {
+            var ds = from l in db.KHACHHANGs
+                     select new
+                     {
+                         l.MAKH,
+                         l.HOTEN
+                     };
+
+            cmbMaKhachHang.DataSource = ds;
+            cmbMaKhachHang.DisplayMember = "MAKH";
+            cmbMaKhachHang.ValueMember = "MAKH";
+            
+        }
+
+        public void LoadComboboxCN()
+        {
+            var ds = from l in db.CHINHANHs
+                     select new
+                     {
+                         l.MACHINHANH,
+                         l.TENCHINHANH
+                     };
+
+            cmbChiNhanh.DataSource = ds;
+            cmbMaKhachHang.DisplayMember = "TENCHINHANH";
+            cmbMaKhachHang.ValueMember = "MACHINHANH";
+        }
+        #endregion Load Combobox
+
+        public void LoadFoodListByCategoryID(int id)
+        {
+            var listproduct = from l in db.LOAIs
+                              join p in db.HANGHOAs
+                              on l.MALOAI equals p.MALOAI
+                              where l.MALOAI == id
+                              select new
+                              {
+                                  p.MAHH,
+                                  p.TENHH,
+                                  p.MALOAI,
+                                  l.TENLOAI,
+                                  p.DONGIA,
+                                  p.GIAMGIA,
+                                  p.MOTA,
+                                  p.NHACUNGCAP
+                              };
+
+            cmbMaHang.DataSource = listproduct;
+            cmbMaHang.DisplayMember = "TENHH";
+            cmbMaHang.ValueMember = "MAHH";
         }
     }
 }

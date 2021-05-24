@@ -14,16 +14,21 @@ namespace SpaceTeam_Oracle
     
     public partial class KHACHHANG
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KHACHHANG()
+        {
+            this.HOADONs = new HashSet<HOADON>();
+        }
+    
         public int MAKH { get; set; }
-        public string MATKHAU { get; set; }
         public string HOTEN { get; set; }
         public string DIACHI { get; set; }
         public string DIENTHOAI { get; set; }
         public string EMAIL { get; set; }
-        public string HINH { get; set; }
-        public string TAIKHOAN { get; set; }
         public string GIOITINH { get; set; }
         public Nullable<System.DateTime> NGAYSINH { get; set; }
-        public Nullable<bool> TRANGTHAIHD { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOADON> HOADONs { get; set; }
     }
 }

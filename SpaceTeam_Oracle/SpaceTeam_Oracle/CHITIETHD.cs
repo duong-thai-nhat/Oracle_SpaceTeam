@@ -16,10 +16,10 @@ namespace SpaceTeam_Oracle
     {
         public int MACT { get; set; }
         public int MAHD { get; set; }
-        public int MAHH { get; set; }
-        public decimal DONGIA { get; set; }
+        public Nullable<int> MAHH { get; set; }
+        public Nullable<decimal> DONGIA { get; set; }
         public Nullable<decimal> GIAMGIA { get; set; }
-        public int SOLUONG { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
         public string KICHCO { get; set; }
     
         public virtual HOADON HOADON { get; set; }

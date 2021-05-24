@@ -22,7 +22,7 @@ namespace SpaceTeam_Oracle
     
         public int MAHH { get; set; }
         public string TENHH { get; set; }
-        public string MALOAI { get; set; }
+        public decimal MALOAI { get; set; }
         public string HINH { get; set; }
         public decimal DONGIA { get; set; }
         public decimal GIAMGIA { get; set; }

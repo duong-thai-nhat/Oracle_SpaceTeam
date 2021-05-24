@@ -5,7 +5,7 @@ namespace SpaceTeam_Oracle.SpaceTeam
 {
     class TaoDonHang_Services
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
 
         #region GetIdClass
         int GetIdClass()

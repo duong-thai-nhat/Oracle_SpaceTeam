@@ -8,7 +8,7 @@ namespace SpaceTeam_Oracle.BUS
 {
     class BUS_TaoDonHang
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
 
         
 
