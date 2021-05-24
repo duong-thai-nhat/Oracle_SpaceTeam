@@ -40,6 +40,8 @@ namespace SpaceTeam_Oracle.UI
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBoxEmployeeInfo = new System.Windows.Forms.GroupBox();
+            this.radioFemale = new System.Windows.Forms.RadioButton();
+            this.radioMen = new System.Windows.Forms.RadioButton();
             this.dtpkBD = new System.Windows.Forms.DateTimePicker();
             this.cmbChucVu = new System.Windows.Forms.ComboBox();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
@@ -47,15 +49,14 @@ namespace SpaceTeam_Oracle.UI
             this.label4 = new System.Windows.Forms.Label();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtSoDienThoai = new System.Windows.Forms.TextBox();
-            this.txtSDT = new System.Windows.Forms.Label();
+            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.txt = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.txtLuong = new System.Windows.Forms.TextBox();
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.txtTenDN = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMaNV = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -63,8 +64,7 @@ namespace SpaceTeam_Oracle.UI
             this.lblSalary = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblEmployeeId = new System.Windows.Forms.Label();
-            this.radioMen = new System.Windows.Forms.RadioButton();
-            this.radioFemale = new System.Windows.Forms.RadioButton();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.groupBoxEmployeeData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
             this.groupBoxButton.SuspendLayout();
@@ -75,7 +75,7 @@ namespace SpaceTeam_Oracle.UI
             // 
             this.lblEmployeeList.AutoSize = true;
             this.lblEmployeeList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeList.Location = new System.Drawing.Point(327, 9);
+            this.lblEmployeeList.Location = new System.Drawing.Point(533, 25);
             this.lblEmployeeList.Name = "lblEmployeeList";
             this.lblEmployeeList.Size = new System.Drawing.Size(180, 24);
             this.lblEmployeeList.TabIndex = 7;
@@ -88,7 +88,7 @@ namespace SpaceTeam_Oracle.UI
             this.groupBoxEmployeeData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxEmployeeData.Name = "groupBoxEmployeeData";
             this.groupBoxEmployeeData.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxEmployeeData.Size = new System.Drawing.Size(864, 307);
+            this.groupBoxEmployeeData.Size = new System.Drawing.Size(1149, 342);
             this.groupBoxEmployeeData.TabIndex = 6;
             this.groupBoxEmployeeData.TabStop = false;
             // 
@@ -97,14 +97,15 @@ namespace SpaceTeam_Oracle.UI
             this.dataGridViewEmployee.AllowUserToAddRows = false;
             this.dataGridViewEmployee.AllowUserToDeleteRows = false;
             this.dataGridViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmployee.Location = new System.Drawing.Point(0, 11);
+            this.dataGridViewEmployee.Location = new System.Drawing.Point(6, 11);
             this.dataGridViewEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewEmployee.Name = "dataGridViewEmployee";
             this.dataGridViewEmployee.ReadOnly = true;
             this.dataGridViewEmployee.RowHeadersWidth = 51;
             this.dataGridViewEmployee.RowTemplate.Height = 24;
-            this.dataGridViewEmployee.Size = new System.Drawing.Size(858, 301);
+            this.dataGridViewEmployee.Size = new System.Drawing.Size(1137, 331);
             this.dataGridViewEmployee.TabIndex = 1;
+            this.dataGridViewEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellClick);
             // 
             // groupBoxButton
             // 
@@ -114,7 +115,7 @@ namespace SpaceTeam_Oracle.UI
             this.groupBoxButton.Controls.Add(this.btnUpdate);
             this.groupBoxButton.Controls.Add(this.btnDelete);
             this.groupBoxButton.Controls.Add(this.btnAdd);
-            this.groupBoxButton.Location = new System.Drawing.Point(6, 624);
+            this.groupBoxButton.Location = new System.Drawing.Point(155, 675);
             this.groupBoxButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxButton.Name = "groupBoxButton";
             this.groupBoxButton.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -198,8 +199,8 @@ namespace SpaceTeam_Oracle.UI
             this.groupBoxEmployeeInfo.Controls.Add(this.label4);
             this.groupBoxEmployeeInfo.Controls.Add(this.txtDiaChi);
             this.groupBoxEmployeeInfo.Controls.Add(this.label3);
-            this.groupBoxEmployeeInfo.Controls.Add(this.txtSoDienThoai);
             this.groupBoxEmployeeInfo.Controls.Add(this.txtSDT);
+            this.groupBoxEmployeeInfo.Controls.Add(this.txt);
             this.groupBoxEmployeeInfo.Controls.Add(this.label2);
             this.groupBoxEmployeeInfo.Controls.Add(this.label1);
             this.groupBoxEmployeeInfo.Controls.Add(this.txtMatKhau);
@@ -216,7 +217,7 @@ namespace SpaceTeam_Oracle.UI
             this.groupBoxEmployeeInfo.Controls.Add(this.lblEmployeeId);
             this.groupBoxEmployeeInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxEmployeeInfo.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBoxEmployeeInfo.Location = new System.Drawing.Point(43, 35);
+            this.groupBoxEmployeeInfo.Location = new System.Drawing.Point(155, 51);
             this.groupBoxEmployeeInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxEmployeeInfo.Name = "groupBoxEmployeeInfo";
             this.groupBoxEmployeeInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -225,27 +226,49 @@ namespace SpaceTeam_Oracle.UI
             this.groupBoxEmployeeInfo.TabStop = false;
             this.groupBoxEmployeeInfo.Text = "THÔNG TIN NHÂN VIÊN";
             // 
+            // radioFemale
+            // 
+            this.radioFemale.AutoSize = true;
+            this.radioFemale.Location = new System.Drawing.Point(639, 139);
+            this.radioFemale.Name = "radioFemale";
+            this.radioFemale.Size = new System.Drawing.Size(49, 21);
+            this.radioFemale.TabIndex = 25;
+            this.radioFemale.TabStop = true;
+            this.radioFemale.Text = "Nữ";
+            this.radioFemale.UseVisualStyleBackColor = true;
+            // 
+            // radioMen
+            // 
+            this.radioMen.AutoSize = true;
+            this.radioMen.Location = new System.Drawing.Point(544, 140);
+            this.radioMen.Name = "radioMen";
+            this.radioMen.Size = new System.Drawing.Size(61, 21);
+            this.radioMen.TabIndex = 24;
+            this.radioMen.TabStop = true;
+            this.radioMen.Text = "Nam";
+            this.radioMen.UseVisualStyleBackColor = true;
+            // 
             // dtpkBD
             // 
             this.dtpkBD.Location = new System.Drawing.Point(181, 139);
             this.dtpkBD.Name = "dtpkBD";
-            this.dtpkBD.Size = new System.Drawing.Size(200, 22);
+            this.dtpkBD.Size = new System.Drawing.Size(215, 22);
             this.dtpkBD.TabIndex = 23;
             // 
             // cmbChucVu
             // 
             this.cmbChucVu.FormattingEnabled = true;
-            this.cmbChucVu.Location = new System.Drawing.Point(544, 195);
+            this.cmbChucVu.Location = new System.Drawing.Point(544, 213);
             this.cmbChucVu.Name = "cmbChucVu";
-            this.cmbChucVu.Size = new System.Drawing.Size(162, 24);
+            this.cmbChucVu.Size = new System.Drawing.Size(265, 24);
             this.cmbChucVu.TabIndex = 22;
             // 
             // cmbChiNhanh
             // 
             this.cmbChiNhanh.FormattingEnabled = true;
-            this.cmbChiNhanh.Location = new System.Drawing.Point(544, 163);
+            this.cmbChiNhanh.Location = new System.Drawing.Point(544, 175);
             this.cmbChiNhanh.Name = "cmbChiNhanh";
-            this.cmbChiNhanh.Size = new System.Drawing.Size(162, 24);
+            this.cmbChiNhanh.Size = new System.Drawing.Size(265, 24);
             this.cmbChiNhanh.TabIndex = 21;
             // 
             // label5
@@ -253,7 +276,7 @@ namespace SpaceTeam_Oracle.UI
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F);
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(439, 195);
+            this.label5.Location = new System.Drawing.Point(439, 218);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 19);
             this.label5.TabIndex = 20;
@@ -264,7 +287,7 @@ namespace SpaceTeam_Oracle.UI
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(439, 160);
+            this.label4.Location = new System.Drawing.Point(439, 179);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 19);
             this.label4.TabIndex = 15;
@@ -283,30 +306,30 @@ namespace SpaceTeam_Oracle.UI
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(42, 216);
+            this.label3.Location = new System.Drawing.Point(23, 219);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 18;
             this.label3.Text = "Địa Chỉ";
             // 
-            // txtSoDienThoai
-            // 
-            this.txtSoDienThoai.Location = new System.Drawing.Point(181, 179);
-            this.txtSoDienThoai.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtSoDienThoai.Name = "txtSoDienThoai";
-            this.txtSoDienThoai.Size = new System.Drawing.Size(215, 22);
-            this.txtSoDienThoai.TabIndex = 16;
-            // 
             // txtSDT
             // 
-            this.txtSDT.AutoSize = true;
-            this.txtSDT.Font = new System.Drawing.Font("Times New Roman", 10.2F);
-            this.txtSDT.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtSDT.Location = new System.Drawing.Point(32, 179);
+            this.txtSDT.Location = new System.Drawing.Point(181, 179);
+            this.txtSDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(39, 19);
-            this.txtSDT.TabIndex = 17;
-            this.txtSDT.Text = "SĐT";
+            this.txtSDT.Size = new System.Drawing.Size(215, 22);
+            this.txtSDT.TabIndex = 16;
+            // 
+            // txt
+            // 
+            this.txt.AutoSize = true;
+            this.txt.Font = new System.Drawing.Font("Times New Roman", 10.2F);
+            this.txt.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txt.Location = new System.Drawing.Point(21, 180);
+            this.txt.Name = "txt";
+            this.txt.Size = new System.Drawing.Size(39, 19);
+            this.txt.TabIndex = 17;
+            this.txt.Text = "SĐT";
             // 
             // label2
             // 
@@ -324,7 +347,7 @@ namespace SpaceTeam_Oracle.UI
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(439, 131);
+            this.label1.Location = new System.Drawing.Point(439, 142);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 19);
             this.label1.TabIndex = 2;
@@ -362,14 +385,6 @@ namespace SpaceTeam_Oracle.UI
             this.txtTenDN.Name = "txtTenDN";
             this.txtTenDN.Size = new System.Drawing.Size(215, 22);
             this.txtTenDN.TabIndex = 1;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(181, 65);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(215, 22);
-            this.txtEmail.TabIndex = 1;
             // 
             // txtMaNV
             // 
@@ -445,33 +460,19 @@ namespace SpaceTeam_Oracle.UI
             this.lblEmployeeId.TabIndex = 0;
             this.lblEmployeeId.Text = "Mã NV";
             // 
-            // radioMen
+            // txtEmail
             // 
-            this.radioMen.AutoSize = true;
-            this.radioMen.Location = new System.Drawing.Point(544, 131);
-            this.radioMen.Name = "radioMen";
-            this.radioMen.Size = new System.Drawing.Size(61, 21);
-            this.radioMen.TabIndex = 24;
-            this.radioMen.TabStop = true;
-            this.radioMen.Text = "Nam";
-            this.radioMen.UseVisualStyleBackColor = true;
-            // 
-            // radioFemale
-            // 
-            this.radioFemale.AutoSize = true;
-            this.radioFemale.Location = new System.Drawing.Point(710, 131);
-            this.radioFemale.Name = "radioFemale";
-            this.radioFemale.Size = new System.Drawing.Size(49, 21);
-            this.radioFemale.TabIndex = 25;
-            this.radioFemale.TabStop = true;
-            this.radioFemale.Text = "Nữ";
-            this.radioFemale.UseVisualStyleBackColor = true;
+            this.txtEmail.Location = new System.Drawing.Point(181, 65);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(215, 22);
+            this.txtEmail.TabIndex = 1;
             // 
             // QLNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 711);
+            this.ClientSize = new System.Drawing.Size(1188, 762);
             this.Controls.Add(this.groupBoxEmployeeInfo);
             this.Controls.Add(this.groupBoxButton);
             this.Controls.Add(this.lblEmployeeList);
@@ -508,14 +509,13 @@ namespace SpaceTeam_Oracle.UI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtSoDienThoai;
-        private System.Windows.Forms.Label txtSDT;
+        private System.Windows.Forms.TextBox txtSDT;
+        private System.Windows.Forms.Label txt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMatKhau;
         private System.Windows.Forms.TextBox txtLuong;
         private System.Windows.Forms.TextBox txtHoTen;
-        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtMaNV;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblEmail;
@@ -527,5 +527,6 @@ namespace SpaceTeam_Oracle.UI
         private System.Windows.Forms.TextBox txtTenDN;
         private System.Windows.Forms.RadioButton radioFemale;
         private System.Windows.Forms.RadioButton radioMen;
+        private System.Windows.Forms.TextBox txtEmail;
     }
 }

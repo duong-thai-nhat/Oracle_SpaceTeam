@@ -22,6 +22,30 @@ namespace SpaceTeam_Oracle.UI
             GetDataGridView();
         }
 
+        #region Cell CLick
+
+        private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridViewEmployee.Rows[e.RowIndex];
+                txtMaNV.Text = row.Cells[0].Value.ToString();
+                txtHoTen.Text = row.Cells[1].Value.ToString();
+                if (row.Cells[2].Value.ToString() == "True")
+                    radioMen.Checked = true;
+                if (row.Cells[2].Value.ToString() == "False")
+                    radioFemale.Checked = true;
+                dtpkBD.Value = Convert.ToDateTime(row.Cells[3].Value);
+                txtSDT.Text = row.Cells[4].Value.ToString();
+                txtDiaChi.Text = row.Cells[5].Value.ToString();
+                txtTenDN.Text = row.Cells[6].Value.ToString();
+                cmbChiNhanh.Text = row.Cells[7].Value.ToString();
+                cmbChucVu.Text = row.Cells[8].Value.ToString();
+            }
+        }
+
+        #endregion DONE 
+
         #region Load Combobox Chi Nhanh
 
         public void LoadComboboxChiNhanh()
@@ -90,25 +114,29 @@ namespace SpaceTeam_Oracle.UI
         }
         #endregion
 
-        #region Hàm Get Gender
-        public string GetGender(bool gioiTinh)
-        {
-            bool cuong = Convert.ToBoolean(gioiTinh);
-            if (gioiTinh == true)
-                return "Nam";
-            else
-                return "Nữ";
-
-        }
-        #endregion
-
         #region Load DataGridView
         public void GetDataGridView ()
         {
-            var employeeData = db.NHANVIENs.Select(c => new { c.MANV, c.HOTEN, c.GIOITINH, c.NGAYSINH, c.SDT, c.DIACHI, c.TENDN, c.MACHINHANH, c.MACHUCVU }).ToList();
-            
-            dataGridViewEmployee.DataSource = employeeData;
+            var employeeData = from nv in db.NHANVIENs
+                               join cn in db.CHINHANHs 
+                               on nv.MACHINHANH equals cn.MACHINHANH
+                               join cv in db.CHUCVUs
+                               on nv.MACHUCVU equals cv.MACHUCVU
+                               select new
+                               {
+                                   nv.MANV,
+                                   nv.HOTEN,
+                                   nv.GIOITINH,
+                                   nv.NGAYSINH,
+                                   nv.SDT,
+                                   nv.DIACHI,
+                                   nv.TENDN, 
+                                   cn.TENCHINHANH,
+                                   cv.TENCHUCVU, 
+                               };
 
+            var ListEmployee = employeeData.ToList();
+            dataGridViewEmployee.DataSource = ListEmployee;
             dataGridViewEmployee.Columns[0].HeaderText = "Mã nhân viên";
             dataGridViewEmployee.Columns[1].HeaderText = "Họ tên nhân viên";
             dataGridViewEmployee.Columns[2].HeaderText = "Giới Tính";
@@ -116,8 +144,10 @@ namespace SpaceTeam_Oracle.UI
             dataGridViewEmployee.Columns[4].HeaderText = "Số điện thoại";
             dataGridViewEmployee.Columns[5].HeaderText = "Địa chỉ";
             dataGridViewEmployee.Columns[6].HeaderText = "Tên đăng nhập";
-            dataGridViewEmployee.Columns[7].HeaderText = "Mã chi nhánh";
-            dataGridViewEmployee.Columns[8].HeaderText = "Mã chức vụ";
+           // dataGridViewEmployee.Columns[7].HeaderText = "Mã chi nhánh";
+            dataGridViewEmployee.Columns[7].HeaderText = "Tên chi nhánh";
+            //dataGridViewEmployee.Columns[9].HeaderText = "Mã chức vụ";
+            dataGridViewEmployee.Columns[8].HeaderText = "Chức vụ";
             dataGridViewEmployee.Columns[0].Width = 100;
             dataGridViewEmployee.Columns[1].Width = 130;
             dataGridViewEmployee.Columns[2].Width = 80;
@@ -125,7 +155,7 @@ namespace SpaceTeam_Oracle.UI
             dataGridViewEmployee.Columns[4].Width = 120;
             dataGridViewEmployee.Columns[5].Width = 190;
             dataGridViewEmployee.Columns[6].Width = 90;
-            dataGridViewEmployee.Columns[7].Width = 90;
+            dataGridViewEmployee.Columns[7].Width = 200;
         }
         #endregion
 
@@ -167,7 +197,6 @@ namespace SpaceTeam_Oracle.UI
         #region btn Add
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //điều chỉnh
             DateTime dateBD = dtpkBD.Value;
 
             string matKhau = txtMatKhau.Text.Trim();
@@ -183,9 +212,7 @@ namespace SpaceTeam_Oracle.UI
             {
                 gioiTinh = false;
             }
-            //điều chỉnh
-            // bool gioiTinh = Convert.ToBoolean(txtGioiTinh.Text);
-            string sDT = txtSoDienThoai.Text;
+            string sDT = txtSDT.Text;
             string diaChi = txtDiaChi.Text;
             string tenDN = txtTenDN.Text;
             int chiNhanh = int.Parse(cmbChiNhanh.SelectedValue.ToString());
@@ -224,9 +251,17 @@ namespace SpaceTeam_Oracle.UI
             byte[] matKhauHash = GetHashSHA1(matKhau);
             string hoTen = txtHoTen.Text;
 
-            //điều chỉnh
-            // bool gioiTinh = Convert.ToBoolean(txtGioiTinh.Text);
-            string sDT = txtSoDienThoai.Text;
+            bool gioiTinh = true;
+            if (radioMen.Checked == true)
+            {
+                gioiTinh = true;
+            }
+            if (radioFemale.Checked == true)
+            {
+                gioiTinh = false;
+            }
+
+            string sDT = txtSDT.Text;
             string diaChi = txtDiaChi.Text;
             string tenDN = txtTenDN.Text;
             int chiNhanh = int.Parse(cmbChiNhanh.SelectedValue.ToString());
@@ -234,7 +269,7 @@ namespace SpaceTeam_Oracle.UI
 
             try
             {
-                UpdateNhanVien(maNV, hoTen, false, dateBD, sDT, diaChi, tenDN, matKhauHash, chiNhanh, chucVu);
+                UpdateNhanVien(maNV, hoTen, gioiTinh, dateBD, sDT, diaChi, tenDN, matKhauHash, chiNhanh, chucVu);
 
                 MessageBox.Show("Update Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
@@ -251,7 +286,6 @@ namespace SpaceTeam_Oracle.UI
         {
             SpaceTeam_Oracle_Context db = new SpaceTeam_Oracle_Context();
             NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
-            update.MANV = GetIdNV();
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
             update.NGAYSINH = ngaySinh;
@@ -311,11 +345,10 @@ namespace SpaceTeam_Oracle.UI
             txtMaNV.Text = "";
             txtMatKhau.Text = " ";
             txtHoTen.Text = " ";
-            txtSoDienThoai.Text = " ";
+            txtSDT.Text = " ";
             txtDiaChi.Text = " ";
             txtTenDN.Text = " ";
         }
         #endregion
-
     }
 }
