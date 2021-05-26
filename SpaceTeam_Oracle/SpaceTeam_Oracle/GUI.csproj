@@ -69,13 +69,13 @@
     <Compile Include="BUS\BUS_TaoDonHang.cs" />
     <Compile Include="BUS\TaoDonHang_Services.cs" />
     <Compile Include="CHINHANH.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="CHITIETHD.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="CHUCVU.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -84,40 +84,40 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="HANGHOA.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="HOADON.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="KHACHHANG.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="LOAI.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="NHACUNGCAP.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="NHANVIEN.cs">
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Orace_SpaceTeam_Context.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Orace_SpaceTeam_Context.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Orace_SpaceTeam_Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Orace_SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Orace_SpaceTeam_Context.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Orace_SpaceTeam_Context.edmx</DependentUpon>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpaceTeam_Oracle.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Oracle.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam_Oracle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam_Oracle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
+    </Compile>
     <Compile Include="UI\DangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,13 +226,6 @@
     <EmbeddedResource Include="UI\QLNhanVien.resx">
       <DependentUpon>QLNhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Orace_SpaceTeam_Context.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Orace_SpaceTeam_Context.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Orace_SpaceTeam_Context.edmx.diagram">
-      <DependentUpon>Orace_SpaceTeam_Context.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -243,6 +236,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EntityDeploy Include="SpaceTeam_Oracle.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SpaceTeam_Oracle.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SpaceTeam_Oracle.edmx.diagram">
+      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -255,15 +255,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Orace_SpaceTeam_Context.Context.tt">
+    <Content Include="SpaceTeam_Oracle.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Orace_SpaceTeam_Context.edmx</DependentUpon>
-      <LastGenOutput>Orace_SpaceTeam_Context.Context.cs</LastGenOutput>
+      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
+      <LastGenOutput>SpaceTeam_Oracle.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Orace_SpaceTeam_Context.tt">
+    <Content Include="SpaceTeam_Oracle.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Orace_SpaceTeam_Context.edmx</DependentUpon>
-      <LastGenOutput>Orace_SpaceTeam_Context.cs</LastGenOutput>
+      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
+      <LastGenOutput>SpaceTeam_Oracle.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

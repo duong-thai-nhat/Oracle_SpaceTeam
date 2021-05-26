@@ -17,12 +17,15 @@ namespace SpaceTeam_Oracle
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CHINHANH()
         {
+            this.HOADONs = new HashSet<HOADON>();
             this.NHANVIENs = new HashSet<NHANVIEN>();
         }
     
         public decimal MACHINHANH { get; set; }
         public string TENCHINHANH { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOADON> HOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NHANVIEN> NHANVIENs { get; set; }
     }

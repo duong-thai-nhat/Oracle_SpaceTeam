@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SpaceTeam_Context">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SpaceTeam_Oracle">
     <EntitySetMapping Name="CHINHANHs">
       <EntityTypeMapping TypeName="Model.CHINHANH">
         <MappingFragment StoreEntitySet="CHINHANH">
@@ -12,7 +12,6 @@
     <EntitySetMapping Name="CHITIETHDs">
       <EntityTypeMapping TypeName="Model.CHITIETHD">
         <MappingFragment StoreEntitySet="CHITIETHD">
-          <ScalarProperty Name="MACT" ColumnName="MACT" />
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
           <ScalarProperty Name="MAHH" ColumnName="MAHH" />
           <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
@@ -48,12 +47,14 @@
       <EntityTypeMapping TypeName="Model.HOADON">
         <MappingFragment StoreEntitySet="HOADON">
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="MACN" ColumnName="MACN" />
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
           <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
           <ScalarProperty Name="SDT" ColumnName="SDT" />
           <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
-          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
           <ScalarProperty Name="TONGTIENHANG" ColumnName="TONGTIENHANG" />
           <ScalarProperty Name="TONGTHUCTHU" ColumnName="TONGTHUCTHU" />
         </MappingFragment>
@@ -63,16 +64,12 @@
       <EntityTypeMapping TypeName="Model.KHACHHANG">
         <MappingFragment StoreEntitySet="KHACHHANG">
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-          <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
           <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
           <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
           <ScalarProperty Name="DIENTHOAI" ColumnName="DIENTHOAI" />
           <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="HINH" ColumnName="HINH" />
-          <ScalarProperty Name="TAIKHOAN" ColumnName="TAIKHOAN" />
           <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
           <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
-          <ScalarProperty Name="TRANGTHAIHD" ColumnName="TRANGTHAIHD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -104,6 +101,7 @@
           <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
           <ScalarProperty Name="SDT" ColumnName="SDT" />
           <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="TENDN" ColumnName="TENDN" />
           <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
           <ScalarProperty Name="MACHINHANH" ColumnName="MACHINHANH" />
           <ScalarProperty Name="MACHUCVU" ColumnName="MACHUCVU" />

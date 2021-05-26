@@ -14,9 +14,8 @@ namespace SpaceTeam_Oracle
     
     public partial class CHITIETHD
     {
-        public int MACT { get; set; }
         public int MAHD { get; set; }
-        public Nullable<int> MAHH { get; set; }
+        public int MAHH { get; set; }
         public Nullable<decimal> DONGIA { get; set; }
         public Nullable<decimal> GIAMGIA { get; set; }
         public Nullable<int> SOLUONG { get; set; }
