@@ -234,6 +234,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             txtDonGia.Text = hh.DONGIA.ToString();
             txtGiamGia.Text = hh.GIAMGIA.ToString();
             txtTenHang.Text = hh.TENHH.ToString();
+            
         }
         #endregion
 
@@ -247,161 +248,14 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
-        #region Hàm Insert Bill
-        public void InsertBill(int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV, DateTime ngayTao)
-        {
-            HOADON add = new HOADON();
-            add.MACN = maCN;
-            add.MAHD = maHD;
-            add.MAKH = maKH;
-            add.HOTEN = hoTen;
-            add.DIACHI = diaChi;
-            add.SDT = SDT;
-            add.GHICHU = ghiChu;
-            add.MANV = maNV;
-            add.NGAYTAO = ngayTao;
-            db.HOADONs.Add(add);
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region Hàm Insert CTHD
-        public void InsertBillDetail(int maHoaDon, int maHangHoa, int donGia, int giamgia, int soLuong)
-        {
-            CHITIETHD add = new CHITIETHD();
-            add.MAHD = maHoaDon;
-            add.MAHH = maHangHoa;
-            add.DONGIA = donGia;
-            add.GIAMGIA = giamgia;
-            add.SOLUONG = soLuong;
-            db.CHITIETHDs.Add(add);
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region Hàm Update Bill
-        public void Update(int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV)
-        {
-            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
-            HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
-            update.MACN = maCN;
-            update.MAKH = maKH;
-            update.HOTEN = hoTen;
-            update.DIACHI = diaChi;
-            update.SDT = SDT;
-            update.GHICHU = ghiChu;
-            update.MANV = maNV;
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region Hàm Delete Bill
-        public void Delete(int maHD)
-        {
-            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
-            var hoaDon = db.HOADONs.Where(hd => hd.MAHD == 1).SingleOrDefault();
-
-            db.HOADONs.Remove(hoaDon);
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region btn Add Đơn Hàng
-        private void btnAddDH_Click(object sender, EventArgs e)
-        {
-            int maHD = GetIdBill();
-            int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
-            int maCN = int.Parse(cmbChiNhanh.SelectedValue.ToString());
-            string hoTen = cmbTenKhachHang.Text;
-            string diaChi = txtDiaChi.Text;
-            string soDienThoai = txtSoDienThoai.Text;
-            string ghiChu = txtGhiChu.Text;
-            DateTime ngayTao = dtNgayBan.Value;
-            int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
-            string tongTien = txtTongTien.Text;
-            
-
-            try
-            {
-                InsertBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao);
-                MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Thêm Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        #endregion
-
-        #region button Thêm Món cho đơn hàng
-        private void btnThemMon_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int maHoaDon = int.Parse(txtMaHD.Text);
-                int check = CheckIdHD(maHoaDon);
-                int maCN = int.Parse(cmbChiNhanh.SelectedValue.ToString());
-                int maHangHoa = int.Parse(cmbMaHang.SelectedValue.ToString());
-                int soLuong = (int)nupSL.Value;
-                int giamGia = int.Parse(txtGiamGia.Text);
-                int donGia = int.Parse(txtDonGia.Text);
-                string test = cmbMaKhachHang.SelectedValue.ToString();
-                if (check == -1)
-                {
-                    int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
-                    string hoTen = cmbTenKhachHang.Text;
-                    string diaChi = txtDiaChi.Text;
-                    string soDienThoai = txtSoDienThoai.Text;
-                    string ghiChu = txtGhiChu.Text;
-                    int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
-                    string tongTien = txtTongTien.Text;
-                    DateTime ngayTao = dtNgayBan.Value;
-                    try
-                    {
-                        InsertBill(maHoaDon, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao);
-                        InsertBillDetail(maHoaDon, maHangHoa, donGia, giamGia, soLuong);
-                        GetDataGridViewCTDH(maHoaDon);
-                        MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Thêm vào Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    InsertBillDetail(maHoaDon, maHangHoa, donGia, giamGia, soLuong);
-                    GetDataGridViewCTDH(maHoaDon);
-                    MessageBox.Show("Thêm vào đơn hàng thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Thêm Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        #endregion
-
-        #region btn Thoat
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (mess == DialogResult.OK)
-            {
-                Close();
-            }
-        }
-        #endregion
-
+        #region Cell Content Click
         private void dataGridDonHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dataGridDonHang.Rows[e.RowIndex];
                 txtMaHD.Text = row.Cells[0].Value.ToString();
-               
+
                 cmbTenKhachHang.Text = row.Cells[1].Value.ToString();
                 txtDiaChi.Text = row.Cells[2].Value.ToString();
                 txtSoDienThoai.Text = row.Cells[3].Value.ToString();
@@ -415,8 +269,9 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             }
 
         }
+        #endregion
 
-        #region Load DataGridView
+        #region Load DataGridView Hóa Đơn
         public void GetDataGridView()
         {
             var employeeData = from h in db.HOADONs
@@ -430,7 +285,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                {
                                    h.MAHD,
                                    k.HOTEN,
-                                   k.DIACHI, 
+                                   k.DIACHI,
                                    k.DIENTHOAI,
                                    h.GHICHU,
                                    h.NGAYTAO,
@@ -462,7 +317,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
-        #region Load DataGridView
+        #region Load DataGridView CT Hóa Đơn
         public void GetDataGridViewCTDH(int maHD)
         {
             var employeeData = from hd in db.HOADONs
@@ -478,9 +333,11 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    hh.TENHH,
                                    ct.SOLUONG,
                                    ct.DONGIA,
+                                   hh.GIAMGIA,
                                    TONGTIEN = ct.DONGIA * ct.SOLUONG
                                };
-
+            var employt = employeeData.Sum(c => c.TONGTIEN);
+            txtTongTien.Text = employt.ToString();
             var ListEmployee = employeeData.ToList();
             dataGridBillDetail.DataSource = ListEmployee;
             dataGridBillDetail.Columns[0].HeaderText = "Mã hóa đơn";
@@ -488,14 +345,283 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridBillDetail.Columns[2].HeaderText = "Tên hàng hóa";
             dataGridBillDetail.Columns[3].HeaderText = "Số Lượng ";
             dataGridBillDetail.Columns[4].HeaderText = "Đơn Giá";
-            dataGridBillDetail.Columns[5].HeaderText = "Tổng Tiền";
+            dataGridBillDetail.Columns[5].HeaderText = "Giảm Giá";
+            dataGridBillDetail.Columns[6].HeaderText = "Thành Tiền";
             dataGridBillDetail.Columns[0].Width = 60;
             dataGridBillDetail.Columns[1].Width = 60;
-            dataGridBillDetail.Columns[2].Width = 160;
+            dataGridBillDetail.Columns[2].Width = 200;
             dataGridBillDetail.Columns[3].Width = 40;
             dataGridBillDetail.Columns[4].Width = 80;
             dataGridBillDetail.Columns[5].Width = 80;
+            dataGridBillDetail.Columns[6].Width = 100;
         }
         #endregion
+
+        #region Hàm Insert Bill
+        public void InsertBill(int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV, DateTime ngayTao, int tongTien)
+        {
+            HOADON add = new HOADON();
+            add.MACN = maCN;
+            add.MAHD = maHD;
+            add.MAKH = maKH;
+            add.HOTEN = hoTen;
+            add.DIACHI = diaChi;
+            add.SDT = SDT;
+            add.GHICHU = ghiChu;
+            add.MANV = maNV;
+            add.NGAYTAO = ngayTao;
+            add.TONGTIENHANG = tongTien;
+            db.HOADONs.Add(add);
+            db.SaveChanges();
+        }
+        #endregion
+
+        #region Hàm Insert CTHD
+        public void InsertBillDetail(int maHoaDon, int maHangHoa, int donGia, decimal giamgia, int soLuong)
+        {
+            CHITIETHD add = new CHITIETHD();
+            add.MAHD = maHoaDon;
+            add.MAHH = maHangHoa;
+            add.DONGIA = donGia;
+            add.GIAMGIA = giamgia;
+            add.SOLUONG = soLuong;
+            db.CHITIETHDs.Add(add);
+            db.SaveChanges();
+        }
+        #endregion
+
+        #region Hàm Update Bill
+        public void UpdateBill (int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV, int tongTien)
+        {
+            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+            HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
+            update.MACN = maCN;
+            update.MAKH = maKH;
+            update.HOTEN = hoTen;
+            update.DIACHI = diaChi;
+            update.SDT = SDT;
+            update.GHICHU = ghiChu;
+            update.MANV = maNV;
+            update.TONGTIENHANG = tongTien;
+            db.SaveChanges();
+        }
+        #endregion
+
+        #region Hàm Delete Bill
+        public void DeleteBill(int maHD)
+        {
+            var hoaDon = db.HOADONs.Where(nv => nv.MAHD == maHD).SingleOrDefault();
+            var ctDonHang = db.CHITIETHDs.Where(ct => ct.MAHD == maHD).ToList();
+            ctDonHang.RemoveAll(ct => ct.MAHD == maHD);
+            db.HOADONs.Remove(hoaDon);
+            db.SaveChanges();
+        }
+        #endregion
+
+        #region btn Add Đơn Hàng
+        private void btnAddDH_Click(object sender, EventArgs e)
+        {
+            int maHD = GetIdBill();
+            int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
+            int maCN = int.Parse(cmbChiNhanh.SelectedValue.ToString());
+            string hoTen = cmbTenKhachHang.Text;
+            string diaChi = txtDiaChi.Text;
+            string soDienThoai = txtSoDienThoai.Text;
+            string ghiChu = txtGhiChu.Text;
+            DateTime ngayTao = dtNgayBan.Value;
+            int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
+            int tongTien = 0;
+            if (txtTongTien.Text == "")
+                tongTien = 0;
+
+
+            try
+            {
+                InsertBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao, tongTien);
+                txtMaHD.Text = maHD.ToString();
+                MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GetDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region btn Thoat
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (mess == DialogResult.OK)
+            {
+                Close();
+            }
+        }
+        #endregion
+
+        #region button Sửa
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            int maHD = int.Parse(cmbMaNV.SelectedValue.ToString());
+            int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
+            int maCN = int.Parse(cmbChiNhanh.SelectedValue.ToString());
+            string hoTen = cmbTenKhachHang.Text;
+            string diaChi = txtDiaChi.Text;
+            string soDienThoai = txtSoDienThoai.Text;
+            string ghiChu = txtGhiChu.Text;
+            DateTime ngayTao = dtNgayBan.Value;
+            int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
+            int tongTien = int.Parse(txtTongTien.Text);
+
+            try
+            {
+                UpdateBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV,tongTien);
+                MessageBox.Show("Sửa Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GetDataGridView();
+                GetDataGridViewCTDH(maHD);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sửa Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region button Huy
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+
+            int maHD = int.Parse(txtMaHD.Text);
+            try
+            {
+                DeleteBill(maHD);
+                MessageBox.Show("Xóa Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GetDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Xóa Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region button Refesh
+        private void btnRefesh_Click(object sender, EventArgs e)
+        {
+            txtDiaChi.Text = " ";
+            txtGhiChu.Text = " ";
+            txtSoDienThoai.Text = " ";
+            txtDonGia.Text = " ";
+            txtGiamGia.Text = " ";
+            txtThanhTien.Text = " ";
+            txtTenHang.Text = " ";
+            txtTongTien.Text = " ";
+        }
+        #endregion
+
+        #region Update Tổng Tiền
+        public void UpdateTongTien(int maHD, int tongTien)
+        {
+            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+            HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
+            update.TONGTIENHANG = tongTien;
+            db.SaveChanges();
+        }
+        #endregion
+
+        #region button Thêm Món cho đơn hàng
+        private void btnThemMon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maHoaDon = int.Parse(txtMaHD.Text);
+                int check = CheckIdHD(maHoaDon);
+                int maCN = int.Parse(cmbChiNhanh.SelectedValue.ToString());
+                int maHangHoa = int.Parse(cmbMaHang.SelectedValue.ToString());
+                int soLuong = (int)nupSL.Value;
+                int tienGiamGia = Convert.ToInt32(decimal.Parse(txtThanhTien.Text));
+                int donGia = int.Parse(txtDonGia.Text);
+
+                int tongTien = 0;
+                if (txtTongTien.Text == "")
+                tongTien = 0;
+                int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
+                string hoTen = cmbTenKhachHang.Text;
+                string diaChi = txtDiaChi.Text;
+                string soDienThoai = txtSoDienThoai.Text;
+                string ghiChu = txtGhiChu.Text;
+                int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
+                DateTime ngayTao = dtNgayBan.Value;
+                if (check == -1)
+                {
+                    try
+                    {
+                        InsertBill(maHoaDon, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao,tongTien);
+                        
+
+                        InsertBillDetail(maHoaDon, maHangHoa, donGia, tienGiamGia, soLuong);
+                        GetDataGridViewCTDH(maHoaDon);
+                        MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Thêm vào Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    var check2 = db.CHITIETHDs.SingleOrDefault(dh => dh.MAHD == maHoaDon && dh.MAHH == maHangHoa);
+                    if (check2 != null)
+                    {
+                        UpdateBillDetail(maHoaDon, maHangHoa, soLuong);
+                        GetDataGridViewCTDH(maHoaDon);
+                        int tongT = int.Parse(txtTongTien.Text);
+                        UpdateTongTien(maHoaDon, tongT);
+                        MessageBox.Show("Thay đổi số lương vào đơn hàng thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        InsertBillDetail(maHoaDon, maHangHoa, donGia, tienGiamGia, soLuong);
+                        GetDataGridViewCTDH(maHoaDon);
+                        int tongT = int.Parse(txtTongTien.Text);
+                        UpdateTongTien(maHoaDon, tongT);
+                        MessageBox.Show("Thêm vào đơn hàng thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        public void UpdateBillDetail(int maHD, int maHH, int quatity)
+        {
+            CHITIETHD update = db.CHITIETHDs.SingleOrDefault(hd => hd.MAHD == maHD && hd.MAHH == maHH);
+            update.SOLUONG = update.SOLUONG  + quatity;
+            db.SaveChanges();
+        }
+
+        private void dataGridBillDetail_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridBillDetail.Rows[e.RowIndex];
+                cmbMaHang.Text = row.Cells[2].Value.ToString();
+                txtTenHang.Text = row.Cells[2].Value.ToString();
+                var cc = Convert.ToDecimal(row.Cells[5].Value.ToString());
+                txtGiamGia.Text = cc.ToString();
+                txtDonGia.Text =row.Cells[4].Value.ToString();
+                nupSL.Value = int.Parse(row.Cells[3].Value.ToString());
+            }
+        }
+
+        private void nupSL_ValueChanged(object sender, EventArgs e)
+        {
+            txtThanhTien.Text = ((int.Parse(txtDonGia.Text) * nupSL.Value) - (int.Parse(txtDonGia.Text) * decimal.Parse(txtGiamGia.Text))).ToString();
+        }
     }
 }
