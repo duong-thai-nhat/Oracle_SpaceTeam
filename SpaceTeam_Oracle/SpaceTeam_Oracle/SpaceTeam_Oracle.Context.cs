@@ -13,10 +13,10 @@ namespace SpaceTeam_Oracle
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SpaceTeam_Context : DbContext
+    public partial class SpaceTeam_Oracle : DbContext
     {
-        public SpaceTeam_Context()
-            : base("name=SpaceTeam_Context")
+        public SpaceTeam_Oracle()
+            : base("name=SpaceTeam_Oracle")
         {
         }
     

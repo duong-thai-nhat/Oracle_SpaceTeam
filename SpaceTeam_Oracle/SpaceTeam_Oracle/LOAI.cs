@@ -20,7 +20,7 @@ namespace SpaceTeam_Oracle
             this.HANGHOAs = new HashSet<HANGHOA>();
         }
     
-        public string MALOAI { get; set; }
+        public decimal MALOAI { get; set; }
         public string TENLOAI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,112 +1,125 @@
-﻿using SpaceTeam_Oracle.BUS;
+﻿
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data;
+using System.Collections.Generic;
 
 namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class TaoDonHang : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+
         public TaoDonHang()
         {
             InitializeComponent();
         }
 
+        #region Load Form
         private void TaoDonHang_Load(object sender, EventArgs e)
         {
             //this.TopMost = true;
-            //this.WindowState = FormWindowState.Maximized;
-        }
-
-
-        #region Hàm Load Data Grid View Dưới DB lên
-        /// <summary>
-        /// 
-        /// </summary>
-        private void LoadDataGridView()
-        {
-            //string sql;
-            //sql = "SELECT a.MaHang, b.TenHang, a.SoLuong, b.DonGiaBan, a.GiamGia,a.ThanhTien FROM tblChiTietHDBan AS a, tblHang AS b WHERE a.MaHDBan = N'" + txtMaHDBan.Text + "' AND a.MaHang=b.MaHang";
-            
-            //dataGridDonHang.DataSource = ;
-            dataGridDonHang.Columns[0].HeaderText = "Mã hàng";
-            dataGridDonHang.Columns[1].HeaderText = "Tên hàng";
-            dataGridDonHang.Columns[2].HeaderText = "Số lượng";
-            dataGridDonHang.Columns[3].HeaderText = "Đơn giá";
-            dataGridDonHang.Columns[4].HeaderText = "Giảm giá %";
-            dataGridDonHang.Columns[5].HeaderText = "Thành tiền";
-            dataGridDonHang.Columns[0].Width = 80;
-            dataGridDonHang.Columns[1].Width = 130;
-            dataGridDonHang.Columns[2].Width = 80;
-            dataGridDonHang.Columns[3].Width = 90;
-            dataGridDonHang.Columns[4].Width = 90;
-            dataGridDonHang.Columns[5].Width = 90;
-            dataGridDonHang.AllowUserToAddRows = false;
-            dataGridDonHang.EditMode = DataGridViewEditMode.EditProgrammatically;
+            //this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            //this.WindowState = FormWindowState.Normal;
+            LoadComboboxLoai();
+            LoadComboboxKhachHang();
+            LoadComboboxNhanVien();
+            LoadComboboxCN();
+            GetDataGridView();
         }
         #endregion
 
-        #region Hàm chuyển giờ 1-12 thành  0-12
-        public static string ConvertTimeTo24(string hour)
+        #region Load Combobox KhachHang 
+
+        public void LoadComboboxKhachHang()
         {
-            string h = "";
-            switch (hour)
+            try
             {
-                case "1":
-                    h = "13";
-                    break;
-                case "2":
-                    h = "14";
-                    break;
-                case "3":
-                    h = "15";
-                    break;
-                case "4":
-                    h = "16";
-                    break;
-                case "5":
-                    h = "17";
-                    break;
-                case "6":
-                    h = "18";
-                    break;
-                case "7":
-                    h = "19";
-                    break;
-                case "8":
-                    h = "20";
-                    break;
-                case "9":
-                    h = "21";
-                    break;
-                case "10":
-                    h = "22";
-                    break;
-                case "11":
-                    h = "23";
-                    break;
-                case "12":
-                    h = "0";
-                    break;
+                List<KHACHHANG> listKhachHang = db.KHACHHANGs.ToList();
+                cmbMaKhachHang.DataSource = listKhachHang;
+                cmbMaKhachHang.DisplayMember = "MAKH";
+                cmbMaKhachHang.ValueMember = "MAKH";
+                cmbTenKhachHang.DataSource = listKhachHang;
+                cmbTenKhachHang.DisplayMember = "HOTEN";
             }
-            return h;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
-        #region Hàm Reset Value trên form
-        private void ResetValues()
+        #region Load Combobox Loai
+
+        public void LoadComboboxLoai()
         {
-                //txtMaHDBan.Text = "";
-                //txtNgayBan.Text = DateTime.Now.ToShortDateString();
-                //cboMaNhanVien.Text = "";
-                //cboMaKhach.Text = "";
-                //txtTongTien.Text = "0";
-                //lblBangChu.Text = "Bằng chữ: ";
-                //cboMaHang.Text = "";
-                //txtSoLuong.Text = "";
-                //txtGiamGia.Text = "0";
-                //txtThanhTien.Text = "0";
+            try
+            {
+                List<LOAI> listLoai = db.LOAIs.ToList();
+                cmbLoai.DataSource = listLoai;
+                cmbLoai.DisplayMember = "TENLOAI";
+                cmbLoai.ValueMember = "MALOAI";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Load Combobox CN
+        public void LoadComboboxCN()
+        {
+            try
+            {
+                List<CHINHANH> listChiNhanh = db.CHINHANHs.ToList();
+                cmbChiNhanh.DataSource = listChiNhanh;
+                cmbChiNhanh.DisplayMember = "TENCHINHANH";
+                cmbChiNhanh.ValueMember = "MACHINHANH";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion 
+
+        #region Load Combobox NhanVien 
+
+        public void LoadComboboxNhanVien()
+        {
+            try
+            {
+                List<NHANVIEN> listNhanVien = db.NHANVIENs.ToList();
+                cmbMaNV.DataSource = listNhanVien;
+                cmbMaNV.DisplayMember = "MANV";
+                cmbMaNV.ValueMember = "MANV";
+                cmbTenNV.DataSource = listNhanVien;
+                cmbTenNV.DisplayMember = "HOTEN";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Load Combobox HANGHOA
+
+        public void LoadComboboxHangHoa(int maLoai)
+        {
+            try
+            {
+                List<HANGHOA> listHangHoa = db.HANGHOAs.Where(hh => hh.MALOAI == maLoai).ToList();
+                cmbMaHang.DataSource = listHangHoa;
+                cmbMaHang.ValueMember = "MAHH";
+                cmbMaHang.DisplayMember = "TENHH";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
@@ -182,27 +195,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 
         #endregion
 
-
-
-        #region btn Add Đơn Hàng
-
-        private void btnAddDH_Click(object sender, EventArgs e)
-        {
-            string maHD = txtMaDH.Text;
-            int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
-            string hoTen = cmbTenKhachHang.Text;
-            string diaChi = txtDiaChi.Text;
-            string soDienThoai = txtSoDienThoai.Text;
-            string ghiChu = txtGhiChu.Text;
-            int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
-            string tongTien = txtTongTien.Text;
-
-            InsertBill(maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV);
-        }
-        #endregion
-
-
-        #region Get Id Hóa Đơn
+        #region Hàm Get Id Hóa Đơn
         int GetIdBill()
         {
             int dem = 1;
@@ -218,49 +211,94 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
+        #region Selection Loai ra Hàng Hóa
+        private void cmbLoai_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int loai = int.Parse(cmbLoai.SelectedValue.ToString());
+            LoadComboboxHangHoa(loai);
+        }
+        #endregion
+
+        #region Selection MaHang ra thông tin hàng hóa
+        private void cmbMaHang_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int maHH = int.Parse(cmbMaHang.SelectedValue.ToString());
+            GetHangHoa(maHH);
+        }
+        #endregion
+
+        #region Hàm lấy thông tin hàng hóa
+        public void GetHangHoa(int maHH)
+        {
+            var hh = db.HANGHOAs.Where(h => h.MAHH == maHH).SingleOrDefault();
+            txtDonGia.Text = hh.DONGIA.ToString();
+            txtGiamGia.Text = hh.GIAMGIA.ToString();
+            txtTenHang.Text = hh.TENHH.ToString();
+        }
+        #endregion
+
+        #region Hàm check ID Hóa đơn
+        public int CheckIdHD(int idHD)
+        {
+            var hd = db.HOADONs.Where(h => h.MAHD == idHD).SingleOrDefault();
+            if (hd != null)
+                return hd.MAHD;
+            return -1;
+        }
+        #endregion
 
         #region Hàm Insert Bill
-        public void InsertBill(int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV)
+        public void InsertBill(int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV, DateTime ngayTao)
         {
             HOADON add = new HOADON();
-            add.MAHD = GetIdBill();
-            //add.MAKH = maKH;
-            add.MAKH = 1;
+            add.MACN = maCN;
+            add.MAHD = maHD;
+            add.MAKH = maKH;
             add.HOTEN = hoTen;
             add.DIACHI = diaChi;
             add.SDT = SDT;
             add.GHICHU = ghiChu;
-            //add.MANV = maNV;
-            add.MANV = 1;
+            add.MANV = maNV;
+            add.NGAYTAO = ngayTao;
             db.HOADONs.Add(add);
             db.SaveChanges();
         }
         #endregion
 
-
-        #region Hàm Update Bill
-        public void Update(int maHD,int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV)
+        #region Hàm Insert CTHD
+        public void InsertBillDetail(int maHoaDon, int maHangHoa, int donGia, int giamgia, int soLuong)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
-            HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
-            //update.MAHD = maHD;
-            //add.MAKH = maKH;
-            update.MAKH = 1;
-            update.HOTEN = hoTen;
-            update.DIACHI = diaChi;
-            update.SDT = SDT;
-            update.GHICHU = ghiChu;
-            //add.MANV = maNV;
-            update.MANV = 1;
+            CHITIETHD add = new CHITIETHD();
+            add.MAHD = maHoaDon;
+            add.MAHH = maHangHoa;
+            add.DONGIA = donGia;
+            add.GIAMGIA = giamgia;
+            add.SOLUONG = soLuong;
+            db.CHITIETHDs.Add(add);
             db.SaveChanges();
         }
         #endregion
 
+        #region Hàm Update Bill
+        public void Update(int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV)
+        {
+            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+            HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
+            update.MACN = maCN;
+            update.MAKH = maKH;
+            update.HOTEN = hoTen;
+            update.DIACHI = diaChi;
+            update.SDT = SDT;
+            update.GHICHU = ghiChu;
+            update.MANV = maNV;
+            db.SaveChanges();
+        }
+        #endregion
 
         #region Hàm Delete Bill
         public void Delete(int maHD)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
             var hoaDon = db.HOADONs.Where(hd => hd.MAHD == 1).SingleOrDefault();
 
             db.HOADONs.Remove(hoaDon);
@@ -268,15 +306,196 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
-        private void button3_Click(object sender, EventArgs e)
+        #region btn Add Đơn Hàng
+        private void btnAddDH_Click(object sender, EventArgs e)
         {
-            int i = 1;
-            Delete(i);
-        }
+            int maHD = GetIdBill();
+            int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
+            int maCN = int.Parse(cmbChiNhanh.SelectedValue.ToString());
+            string hoTen = cmbTenKhachHang.Text;
+            string diaChi = txtDiaChi.Text;
+            string soDienThoai = txtSoDienThoai.Text;
+            string ghiChu = txtGhiChu.Text;
+            DateTime ngayTao = dtNgayBan.Value;
+            int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
+            string tongTien = txtTongTien.Text;
+            
 
+            try
+            {
+                InsertBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao);
+                MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region button Thêm Món cho đơn hàng
+        private void btnThemMon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maHoaDon = int.Parse(txtMaHD.Text);
+                int check = CheckIdHD(maHoaDon);
+                int maCN = int.Parse(cmbChiNhanh.SelectedValue.ToString());
+                int maHangHoa = int.Parse(cmbMaHang.SelectedValue.ToString());
+                int soLuong = (int)nupSL.Value;
+                int giamGia = int.Parse(txtGiamGia.Text);
+                int donGia = int.Parse(txtDonGia.Text);
+                string test = cmbMaKhachHang.SelectedValue.ToString();
+                if (check == -1)
+                {
+                    int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
+                    string hoTen = cmbTenKhachHang.Text;
+                    string diaChi = txtDiaChi.Text;
+                    string soDienThoai = txtSoDienThoai.Text;
+                    string ghiChu = txtGhiChu.Text;
+                    int maNV = int.Parse(cmbMaNV.SelectedValue.ToString());
+                    string tongTien = txtTongTien.Text;
+                    DateTime ngayTao = dtNgayBan.Value;
+                    try
+                    {
+                        InsertBill(maHoaDon, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao);
+                        InsertBillDetail(maHoaDon, maHangHoa, donGia, giamGia, soLuong);
+                        GetDataGridViewCTDH(maHoaDon);
+                        MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Thêm vào Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    InsertBillDetail(maHoaDon, maHangHoa, donGia, giamGia, soLuong);
+                    GetDataGridViewCTDH(maHoaDon);
+                    MessageBox.Show("Thêm vào đơn hàng thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm Đơn Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region btn Thoat
         private void btnThoat_Click(object sender, EventArgs e)
         {
+            DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (mess == DialogResult.OK)
+            {
+                Close();
+            }
+        }
+        #endregion
+
+        private void dataGridDonHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridDonHang.Rows[e.RowIndex];
+                txtMaHD.Text = row.Cells[0].Value.ToString();
+               
+                cmbTenKhachHang.Text = row.Cells[1].Value.ToString();
+                txtDiaChi.Text = row.Cells[2].Value.ToString();
+                txtSoDienThoai.Text = row.Cells[3].Value.ToString();
+                txtGhiChu.Text = row.Cells[4].Value.ToString();
+                dtNgayBan.Value = Convert.ToDateTime(row.Cells[5].Value.ToString());
+
+                cmbMaNV.Text = row.Cells[6].Value.ToString();
+                cmbTenNV.Text = row.Cells[7].Value.ToString();
+                cmbChiNhanh.Text = row.Cells[8].Value.ToString();
+                GetDataGridViewCTDH(int.Parse(row.Cells[0].Value.ToString()));
+            }
 
         }
+
+        #region Load DataGridView
+        public void GetDataGridView()
+        {
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI, 
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH
+                               };
+
+            var ListEmployee = employeeData.ToList();
+            dataGridDonHang.DataSource = ListEmployee;
+            dataGridDonHang.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridDonHang.Columns[2].HeaderText = "Địa chỉ";
+            dataGridDonHang.Columns[3].HeaderText = "Điện Thoại";
+            dataGridDonHang.Columns[4].HeaderText = "Ghi chú";
+            dataGridDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridDonHang.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridDonHang.Columns[0].Width = 30;
+            dataGridDonHang.Columns[1].Width = 130;
+            dataGridDonHang.Columns[2].Width = 120;
+            dataGridDonHang.Columns[3].Width = 90;
+            dataGridDonHang.Columns[4].Width = 120;
+            dataGridDonHang.Columns[5].Width = 100;
+            dataGridDonHang.Columns[6].Width = 40;
+            dataGridDonHang.Columns[7].Width = 140;
+            dataGridDonHang.Columns[8].Width = 120;
+        }
+        #endregion
+
+        #region Load DataGridView
+        public void GetDataGridViewCTDH(int maHD)
+        {
+            var employeeData = from hd in db.HOADONs
+                               join ct in db.CHITIETHDs
+                               on hd.MAHD equals ct.MAHD
+                               join hh in db.HANGHOAs
+                               on ct.MAHH equals hh.MAHH
+                               where ct.MAHD == maHD
+                               select new
+                               {
+                                   ct.MAHD,
+                                   ct.MAHH,
+                                   hh.TENHH,
+                                   ct.SOLUONG,
+                                   ct.DONGIA,
+                                   TONGTIEN = ct.DONGIA * ct.SOLUONG
+                               };
+
+            var ListEmployee = employeeData.ToList();
+            dataGridBillDetail.DataSource = ListEmployee;
+            dataGridBillDetail.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridBillDetail.Columns[1].HeaderText = "Mã hàng hóa";
+            dataGridBillDetail.Columns[2].HeaderText = "Tên hàng hóa";
+            dataGridBillDetail.Columns[3].HeaderText = "Số Lượng ";
+            dataGridBillDetail.Columns[4].HeaderText = "Đơn Giá";
+            dataGridBillDetail.Columns[5].HeaderText = "Tổng Tiền";
+            dataGridBillDetail.Columns[0].Width = 60;
+            dataGridBillDetail.Columns[1].Width = 60;
+            dataGridBillDetail.Columns[2].Width = 160;
+            dataGridBillDetail.Columns[3].Width = 40;
+            dataGridBillDetail.Columns[4].Width = 80;
+            dataGridBillDetail.Columns[5].Width = 80;
+        }
+        #endregion
     }
 }

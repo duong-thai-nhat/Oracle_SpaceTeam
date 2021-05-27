@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\BUS_QLNhanVien.cs" />
     <Compile Include="BUS\BUS_TaoDonHang.cs" />
     <Compile Include="BUS\TaoDonHang_Services.cs" />
     <Compile Include="CHINHANH.cs">
@@ -177,6 +178,12 @@
     <Compile Include="UI\DanhMucQuanLy.Designer.cs">
       <DependentUpon>DanhMucQuanLy.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\QLNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLNhanVien.Designer.cs">
+      <DependentUpon>QLNhanVien.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -215,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DanhMucQuanLy.resx">
       <DependentUpon>DanhMucQuanLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLNhanVien.resx">
+      <DependentUpon>QLNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

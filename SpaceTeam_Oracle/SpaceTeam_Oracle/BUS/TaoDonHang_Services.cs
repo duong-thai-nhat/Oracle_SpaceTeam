@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace SpaceTeam_Oracle.SpaceTeam
 {
-    class TaoDonHang_Services
+    public class TaoDonHang_Services
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        SpaceTeam_Oracle db = new SpaceTeam_Oracle();
 
         #region GetIdClass
         int GetIdClass()
