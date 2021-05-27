@@ -558,8 +558,6 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                     try
                     {
                         InsertBill(maHoaDon, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao,tongTien);
-                        
-
                         InsertBillDetail(maHoaDon, maHangHoa, donGia, tienGiamGia, soLuong);
                         GetDataGridViewCTDH(maHoaDon);
                         MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -610,7 +608,23 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dataGridBillDetail.Rows[e.RowIndex];
-                cmbMaHang.Text = row.Cells[2].Value.ToString();
+                int maHH = int.Parse(row.Cells[1].Value.ToString());
+                var hangHoa = from ct in db.CHITIETHDs
+                            join hh in db.HANGHOAs
+                            on ct.MAHH equals hh.MAHH
+                            where ct.MAHH == maHH
+                              select new
+                            {
+                                  hh.MAHH,
+                                  hh.TENHH
+                            };
+
+                var listHangHoa = hangHoa.ToList();
+                cmbMaHang.DataSource = listHangHoa;
+                cmbMaHang.ValueMember = "MAHH";
+                cmbMaHang.DisplayMember = "TENHH";
+
+
                 txtTenHang.Text = row.Cells[2].Value.ToString();
                 var cc = Convert.ToDecimal(row.Cells[5].Value.ToString());
                 txtGiamGia.Text = cc.ToString();
