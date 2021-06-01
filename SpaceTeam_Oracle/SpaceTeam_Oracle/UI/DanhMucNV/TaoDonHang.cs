@@ -274,7 +274,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Load DataGridView Hóa Đơn
         public void GetDataGridView()
         {
-            var employeeData = from h in db.HOADONs
+            var employeeData = (from h in db.HOADONs
                                join c in db.CHINHANHs
                                on h.MACN equals c.MACHINHANH
                                join k in db.KHACHHANGs
@@ -285,14 +285,14 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                {
                                    h.MAHD,
                                    k.HOTEN,
-                                   k.DIACHI,
-                                   k.DIENTHOAI,
+                                   h.DIACHI,
+                                   h.SDT,
                                    h.GHICHU,
                                    h.NGAYTAO,
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH
-                               };
+                               }).OrderByDescending(i => i.MAHD);
 
             var ListEmployee = employeeData.ToList();
             dataGridDonHang.DataSource = ListEmployee;
@@ -320,7 +320,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Load DataGridView CT Hóa Đơn
         public void GetDataGridViewCTDH(int maHD)
         {
-            var employeeData = from hd in db.HOADONs
+            var employeeData = (from hd in db.HOADONs
                                join ct in db.CHITIETHDs
                                on hd.MAHD equals ct.MAHD
                                join hh in db.HANGHOAs
@@ -335,7 +335,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    ct.DONGIA,
                                    hh.GIAMGIA,
                                    TONGTIEN = ct.DONGIA * ct.SOLUONG
-                               };
+                               }).OrderBy(i => i.MAHH);
             var employt = employeeData.Sum(c => c.TONGTIEN);
             txtTongTien.Text = employt.ToString();
             var ListEmployee = employeeData.ToList();
@@ -363,11 +363,18 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             HOADON add = new HOADON();
             add.MACN = maCN;
             add.MAHD = maHD;
-            add.MAKH = maKH;
-            add.HOTEN = hoTen;
-            add.DIACHI = diaChi;
-            add.SDT = SDT;
-            add.GHICHU = ghiChu;
+            if(radioKhachVangLai.Checked == true)
+            {
+                add.MAKH = 1;
+            } 
+            else
+            {
+                add.MAKH = maKH;
+            }    
+            add.HOTEN = "Khach Vang Lai";
+            add.DIACHI = CheckValidation(diaChi);
+            add.SDT = CheckValidation(SDT);
+            add.GHICHU = CheckValidation(ghiChu);
             add.MANV = maNV;
             add.NGAYTAO = ngayTao;
             add.TONGTIENHANG = tongTien;
@@ -375,6 +382,15 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             db.SaveChanges();
         }
         #endregion
+
+
+        public string CheckValidation(string input)
+        {
+            if (input == "")
+                return "Không";
+            else
+                return input;
+        }
 
         #region Hàm Insert CTHD
         public void InsertBillDetail(int maHoaDon, int maHangHoa, int donGia, decimal giamgia, int soLuong)
@@ -517,6 +533,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             txtThanhTien.Text = " ";
             txtTenHang.Text = " ";
             txtTongTien.Text = " ";
+            if (radioKhachVangLai.Checked == true)
+            {
+                radioKhachVangLai.Checked = false;
+            }
         }
         #endregion
 
@@ -637,5 +657,6 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             txtThanhTien.Text = ((int.Parse(txtDonGia.Text) * nupSL.Value) - (int.Parse(txtDonGia.Text) * decimal.Parse(txtGiamGia.Text))).ToString();
         }
+
     }
 }
