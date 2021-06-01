@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioKhachVangLai = new System.Windows.Forms.RadioButton();
             this.txtMaHD = new System.Windows.Forms.TextBox();
             this.cmbTenNV = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -114,6 +115,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.radioKhachVangLai);
             this.panel1.Controls.Add(this.txtMaHD);
             this.panel1.Controls.Add(this.cmbTenNV);
             this.panel1.Controls.Add(this.label21);
@@ -137,6 +139,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(980, 197);
             this.panel1.TabIndex = 27;
+            // 
+            // radioKhachVangLai
+            // 
+            this.radioKhachVangLai.AutoSize = true;
+            this.radioKhachVangLai.Location = new System.Drawing.Point(426, 103);
+            this.radioKhachVangLai.Name = "radioKhachVangLai";
+            this.radioKhachVangLai.Size = new System.Drawing.Size(121, 21);
+            this.radioKhachVangLai.TabIndex = 43;
+            this.radioKhachVangLai.TabStop = true;
+            this.radioKhachVangLai.Text = "Khách Vãn Lai";
+            this.radioKhachVangLai.UseVisualStyleBackColor = true;
             // 
             // txtMaHD
             // 
@@ -693,5 +706,6 @@
         private System.Windows.Forms.DataGridView dataGridBillDetail;
         private System.Windows.Forms.Button btnRefesh;
         private System.Windows.Forms.Label lbTongTien;
+        private System.Windows.Forms.RadioButton radioKhachVangLai;
     }
 }

@@ -136,7 +136,7 @@ namespace SpaceTeam_Oracle.UI
         #region Load DataGridView
         public void GetDataGridView ()
         {
-            var employeeData = from nv in db.NHANVIENs
+            var employeeData = (from nv in db.NHANVIENs
                                join cn in db.CHINHANHs 
                                on nv.MACHINHANH equals cn.MACHINHANH
                                join cv in db.CHUCVUs
@@ -152,7 +152,7 @@ namespace SpaceTeam_Oracle.UI
                                    nv.TENDN, 
                                    cn.TENCHINHANH,
                                    cv.TENCHUCVU, 
-                               };
+                               }).OrderBy(i => i.MANV);
 
             var ListEmployee = employeeData.ToList();
             dataGridViewEmployee.DataSource = ListEmployee;
