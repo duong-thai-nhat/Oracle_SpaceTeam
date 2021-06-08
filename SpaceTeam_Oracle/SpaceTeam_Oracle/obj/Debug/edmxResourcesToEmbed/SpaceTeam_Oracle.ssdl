@@ -48,7 +48,7 @@
     <Property Name="MACN" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="MAKH" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="HOTEN" Type="nvarchar2" MaxLength="50" />
-    <Property Name="DIACHI" Type="nvarchar2" MaxLength="60" Nullable="false" />
+    <Property Name="DIACHI" Type="nvarchar2" MaxLength="60" />
     <Property Name="SDT" Type="varchar2" MaxLength="20" />
     <Property Name="GHICHU" Type="nvarchar2" MaxLength="50" />
     <Property Name="NGAYTAO" Type="date" Nullable="false" />

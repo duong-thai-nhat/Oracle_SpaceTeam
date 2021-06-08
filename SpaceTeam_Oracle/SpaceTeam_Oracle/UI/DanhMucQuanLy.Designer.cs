@@ -62,7 +62,6 @@
             this.btnQLDiemDanh.TabIndex = 14;
             this.btnQLDiemDanh.Text = "Quản Lý Điểm Danh";
             this.btnQLDiemDanh.UseVisualStyleBackColor = true;
-            this.btnQLDiemDanh.Click += new System.EventHandler(this.btnQLDiemDanh_Click);
             // 
             // btnDSHHDaBan
             // 
@@ -128,10 +127,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label1.Location = new System.Drawing.Point(281, 9);
+            this.label1.Location = new System.Drawing.Point(301, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 29);
+            this.label1.Size = new System.Drawing.Size(87, 25);
             this.label1.TabIndex = 8;
             this.label1.Text = "Quản Lý";
             // 
@@ -162,7 +161,7 @@
             // DanhMucQuanLy
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 406);
             this.Controls.Add(this.btnThoat);
@@ -178,6 +177,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DanhMucQuanLy";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh Mục Quản Lý";
             this.Load += new System.EventHandler(this.DanhMucQuanLy_Load);
             this.ResumeLayout(false);

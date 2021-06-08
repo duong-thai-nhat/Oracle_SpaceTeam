@@ -51,8 +51,8 @@
             // btnTaoDonHang
             // 
             this.btnTaoDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnTaoDonHang.Location = new System.Drawing.Point(78, 87);
-            this.btnTaoDonHang.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTaoDonHang.Location = new System.Drawing.Point(77, 87);
+            this.btnTaoDonHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTaoDonHang.Name = "btnTaoDonHang";
             this.btnTaoDonHang.Size = new System.Drawing.Size(212, 86);
             this.btnTaoDonHang.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             this.btnDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnDoanhThu.Location = new System.Drawing.Point(417, 87);
-            this.btnDoanhThu.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDoanhThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDoanhThu.Name = "btnDoanhThu";
             this.btnDoanhThu.Size = new System.Drawing.Size(212, 86);
             this.btnDoanhThu.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             this.btnTTCaNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnTTCaNhan.Location = new System.Drawing.Point(740, 87);
-            this.btnTTCaNhan.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTTCaNhan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTTCaNhan.Name = "btnTTCaNhan";
             this.btnTTCaNhan.Size = new System.Drawing.Size(212, 86);
             this.btnTTCaNhan.TabIndex = 3;
@@ -87,8 +87,8 @@
             // btnDSDonHang
             // 
             this.btnDSDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDSDonHang.Location = new System.Drawing.Point(78, 200);
-            this.btnDSDonHang.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDSDonHang.Location = new System.Drawing.Point(77, 199);
+            this.btnDSDonHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDSDonHang.Name = "btnDSDonHang";
             this.btnDSDonHang.Size = new System.Drawing.Size(212, 86);
             this.btnDSDonHang.TabIndex = 4;
@@ -99,10 +99,10 @@
             // btnDSHHDaBan
             // 
             this.btnDSHHDaBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDSHHDaBan.Location = new System.Drawing.Point(417, 200);
-            this.btnDSHHDaBan.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDSHHDaBan.Location = new System.Drawing.Point(400, 199);
+            this.btnDSHHDaBan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDSHHDaBan.Name = "btnDSHHDaBan";
-            this.btnDSHHDaBan.Size = new System.Drawing.Size(212, 86);
+            this.btnDSHHDaBan.Size = new System.Drawing.Size(256, 86);
             this.btnDSHHDaBan.TabIndex = 5;
             this.btnDSHHDaBan.Text = "Danh Sách Hàng Hóa Đã Bán";
             this.btnDSHHDaBan.UseVisualStyleBackColor = true;
@@ -111,8 +111,8 @@
             // btnThoát
             // 
             this.btnThoát.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnThoát.Location = new System.Drawing.Point(740, 200);
-            this.btnThoát.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThoát.Location = new System.Drawing.Point(740, 199);
+            this.btnThoát.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnThoát.Name = "btnThoát";
             this.btnThoát.Size = new System.Drawing.Size(212, 86);
             this.btnThoát.TabIndex = 6;
@@ -124,7 +124,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 378);
+            this.ClientSize = new System.Drawing.Size(1011, 351);
             this.Controls.Add(this.btnThoát);
             this.Controls.Add(this.btnDSHHDaBan);
             this.Controls.Add(this.btnDSDonHang);
@@ -132,9 +132,11 @@
             this.Controls.Add(this.btnDoanhThu);
             this.Controls.Add(this.btnTaoDonHang);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DanhMucNV";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh mục Nhân Viên";
+            this.Load += new System.EventHandler(this.DanhMucNV_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

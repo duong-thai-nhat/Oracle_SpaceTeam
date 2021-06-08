@@ -10,7 +10,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhanVien : Form
     {
-        SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+        SpaceTeam_Context db = new SpaceTeam_Context();
         public QLNhanVien()
         {
             InitializeComponent();
@@ -34,11 +34,11 @@ namespace SpaceTeam_Oracle.UI
                 cmbChiNhanh.DisplayMember = "TENCHINHANH";
                 cmbChiNhanh.ValueMember = "MACHINHANH";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         #endregion
 
@@ -107,7 +107,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Update Nhân Viên
         public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
         {
-            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+            SpaceTeam_Context db = new SpaceTeam_Context();
             NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -125,9 +125,9 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Delete Bill
         public void Delete(int maNV)
         {
-            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+            SpaceTeam_Context db = new SpaceTeam_Context();
             var nhanVien = db.NHANVIENs.Where(nv => nv.MANV == maNV).SingleOrDefault();
-
+            //db.Entry(nhanVien).State = System.Data.Entity.EntityState.Deleted;
             db.NHANVIENs.Remove(nhanVien);
             db.SaveChanges();
         }
@@ -137,22 +137,22 @@ namespace SpaceTeam_Oracle.UI
         public void GetDataGridView ()
         {
             var employeeData = (from nv in db.NHANVIENs
-                               join cn in db.CHINHANHs 
-                               on nv.MACHINHANH equals cn.MACHINHANH
-                               join cv in db.CHUCVUs
-                               on nv.MACHUCVU equals cv.MACHUCVU
-                               select new
-                               {
-                                   nv.MANV,
-                                   nv.HOTEN,
-                                   nv.GIOITINH,
-                                   nv.NGAYSINH,
-                                   nv.SDT,
-                                   nv.DIACHI,
-                                   nv.TENDN, 
-                                   cn.TENCHINHANH,
-                                   cv.TENCHUCVU, 
-                               }).OrderBy(i => i.MANV);
+                                join cn in db.CHINHANHs
+                                on nv.MACHINHANH equals cn.MACHINHANH
+                                join cv in db.CHUCVUs
+                                on nv.MACHUCVU equals cv.MACHUCVU
+                                select new
+                                {
+                                    nv.MANV,
+                                    nv.HOTEN,
+                                    nv.GIOITINH,
+                                    nv.NGAYSINH,
+                                    nv.SDT,
+                                    nv.DIACHI,
+                                    nv.TENDN,
+                                    cn.TENCHINHANH,
+                                    cv.TENCHUCVU,
+                                }).OrderBy(i => i.MANV);
 
             var ListEmployee = employeeData.ToList();
             dataGridViewEmployee.DataSource = ListEmployee;
@@ -236,7 +236,7 @@ namespace SpaceTeam_Oracle.UI
             {
                 MessageBox.Show("Thêm Nhân Viên Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         #endregion
 

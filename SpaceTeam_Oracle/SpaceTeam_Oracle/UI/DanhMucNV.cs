@@ -54,5 +54,10 @@ namespace GUI.SpaceTeam
                 Close();
             }
         }
+
+        private void DanhMucNV_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

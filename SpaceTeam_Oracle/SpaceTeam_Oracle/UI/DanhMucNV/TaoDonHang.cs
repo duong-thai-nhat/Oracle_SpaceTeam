@@ -4,12 +4,13 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data;
 using System.Collections.Generic;
+using SpaceTeam_Oracle.UI;
 
 namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class TaoDonHang : Form
     {
-        SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+        SpaceTeam_Context db = new SpaceTeam_Context();
 
         public TaoDonHang()
         {
@@ -259,7 +260,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 cmbTenKhachHang.Text = row.Cells[1].Value.ToString();
                 txtDiaChi.Text = row.Cells[2].Value.ToString();
                 txtSoDienThoai.Text = row.Cells[3].Value.ToString();
-                txtGhiChu.Text = row.Cells[4].Value.ToString();
+                //txtGhiChu.Text = row.Cells[4].Value.ToString();
                 dtNgayBan.Value = Convert.ToDateTime(row.Cells[5].Value.ToString());
 
                 cmbMaNV.Text = row.Cells[6].Value.ToString();
@@ -275,24 +276,24 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         public void GetDataGridView()
         {
             var employeeData = (from h in db.HOADONs
-                               join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
-                               join k in db.KHACHHANGs
-                               on h.MAKH equals k.MAKH
-                               join nv in db.NHANVIENs
-                               on h.MANV equals nv.MANV
-                               select new
-                               {
-                                   h.MAHD,
-                                   k.HOTEN,
-                                   h.DIACHI,
-                                   h.SDT,
-                                   h.GHICHU,
-                                   h.NGAYTAO,
-                                   nv.MANV,
-                                   TENNV = nv.HOTEN,
-                                   c.TENCHINHANH
-                               }).OrderByDescending(i => i.MAHD);
+                                join c in db.CHINHANHs
+                                on h.MACN equals c.MACHINHANH
+                                join k in db.KHACHHANGs
+                                on h.MAKH equals k.MAKH
+                                join nv in db.NHANVIENs
+                                on h.MANV equals nv.MANV
+                                select new
+                                {
+                                    h.MAHD,
+                                    k.HOTEN,
+                                    h.DIACHI,
+                                    h.SDT,
+                                    h.GHICHU,
+                                    h.NGAYTAO,
+                                    nv.MANV,
+                                    TENNV = nv.HOTEN,
+                                    c.TENCHINHANH
+                                }).OrderByDescending(i => i.MAHD);
 
             var ListEmployee = employeeData.ToList();
             dataGridDonHang.DataSource = ListEmployee;
@@ -321,21 +322,21 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         public void GetDataGridViewCTDH(int maHD)
         {
             var employeeData = (from hd in db.HOADONs
-                               join ct in db.CHITIETHDs
-                               on hd.MAHD equals ct.MAHD
-                               join hh in db.HANGHOAs
-                               on ct.MAHH equals hh.MAHH
-                               where ct.MAHD == maHD
-                               select new
-                               {
-                                   ct.MAHD,
-                                   ct.MAHH,
-                                   hh.TENHH,
-                                   ct.SOLUONG,
-                                   ct.DONGIA,
-                                   hh.GIAMGIA,
-                                   TONGTIEN = ct.DONGIA * ct.SOLUONG
-                               }).OrderBy(i => i.MAHH);
+                                join ct in db.CHITIETHDs
+                                on hd.MAHD equals ct.MAHD
+                                join hh in db.HANGHOAs
+                                on ct.MAHH equals hh.MAHH
+                                where ct.MAHD == maHD
+                                select new
+                                {
+                                    ct.MAHD,
+                                    ct.MAHH,
+                                    hh.TENHH,
+                                    ct.SOLUONG,
+                                    ct.DONGIA,
+                                    hh.GIAMGIA,
+                                    TONGTIEN = ct.DONGIA * ct.SOLUONG
+                                }).OrderBy(i => i.MAHH);
             var employt = employeeData.Sum(c => c.TONGTIEN);
             txtTongTien.Text = employt.ToString();
             var ListEmployee = employeeData.ToList();
@@ -363,14 +364,14 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             HOADON add = new HOADON();
             add.MACN = maCN;
             add.MAHD = maHD;
-            if(radioKhachVangLai.Checked == true)
+            if (radioKhachVangLai.Checked == true)
             {
                 add.MAKH = 1;
-            } 
+            }
             else
             {
                 add.MAKH = maKH;
-            }    
+            }
             add.HOTEN = "Khach Vang Lai";
             add.DIACHI = CheckValidation(diaChi);
             add.SDT = CheckValidation(SDT);
@@ -383,7 +384,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
-
+        #region check validation
         public string CheckValidation(string input)
         {
             if (input == "")
@@ -391,6 +392,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             else
                 return input;
         }
+        #endregion
 
         #region Hàm Insert CTHD
         public void InsertBillDetail(int maHoaDon, int maHangHoa, int donGia, decimal giamgia, int soLuong)
@@ -409,7 +411,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Hàm Update Bill
         public void UpdateBill (int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV, int tongTien)
         {
-            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+            //SpaceTeam_Oracle_03 db = new SpaceTeam_Oracle_03();
             HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
             update.MACN = maCN;
             update.MAKH = maKH;
@@ -492,7 +494,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 
             try
             {
-                UpdateBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV,tongTien);
+                UpdateBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, tongTien);
                 MessageBox.Show("Sửa Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
                 GetDataGridViewCTDH(maHD);
@@ -507,7 +509,6 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region button Huy
         private void btnHuy_Click(object sender, EventArgs e)
         {
-
             int maHD = int.Parse(txtMaHD.Text);
             try
             {
@@ -543,7 +544,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Update Tổng Tiền
         public void UpdateTongTien(int maHD, int tongTien)
         {
-            SpaceTeam_Oracle db = new SpaceTeam_Oracle();
+            //SpaceTeam_Oracle_03 db = new SpaceTeam_Oracle_03();
             HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
             update.TONGTIENHANG = tongTien;
             db.SaveChanges();
@@ -565,7 +566,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 
                 int tongTien = 0;
                 if (txtTongTien.Text == "")
-                tongTien = 0;
+                    tongTien = 0;
                 int maKH = int.Parse(cmbMaKhachHang.SelectedValue.ToString());
                 string hoTen = cmbTenKhachHang.Text;
                 string diaChi = txtDiaChi.Text;
@@ -577,7 +578,8 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 {
                     try
                     {
-                        InsertBill(maHoaDon, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao,tongTien);
+
+                        InsertBill(maHoaDon, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao, tongTien);
                         InsertBillDetail(maHoaDon, maHangHoa, donGia, tienGiamGia, soLuong);
                         GetDataGridViewCTDH(maHoaDon);
                         MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -606,7 +608,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                         UpdateTongTien(maHoaDon, tongT);
                         MessageBox.Show("Thêm vào đơn hàng thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                   
+
                 }
             }
             catch (Exception ex)
@@ -619,7 +621,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         public void UpdateBillDetail(int maHD, int maHH, int quatity)
         {
             CHITIETHD update = db.CHITIETHDs.SingleOrDefault(hd => hd.MAHD == maHD && hd.MAHH == maHH);
-            update.SOLUONG = update.SOLUONG  + quatity;
+            update.SOLUONG = update.SOLUONG + quatity;
             db.SaveChanges();
         }
 
@@ -630,14 +632,14 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 DataGridViewRow row = this.dataGridBillDetail.Rows[e.RowIndex];
                 int maHH = int.Parse(row.Cells[1].Value.ToString());
                 var hangHoa = from ct in db.CHITIETHDs
-                            join hh in db.HANGHOAs
-                            on ct.MAHH equals hh.MAHH
-                            where ct.MAHH == maHH
+                              join hh in db.HANGHOAs
+                              on ct.MAHH equals hh.MAHH
+                              where ct.MAHH == maHH
                               select new
-                            {
+                              {
                                   hh.MAHH,
                                   hh.TENHH
-                            };
+                              };
 
                 var listHangHoa = hangHoa.ToList();
                 cmbMaHang.DataSource = listHangHoa;
@@ -648,7 +650,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 txtTenHang.Text = row.Cells[2].Value.ToString();
                 var cc = Convert.ToDecimal(row.Cells[5].Value.ToString());
                 txtGiamGia.Text = cc.ToString();
-                txtDonGia.Text =row.Cells[4].Value.ToString();
+                txtDonGia.Text = row.Cells[4].Value.ToString();
                 nupSL.Value = int.Parse(row.Cells[3].Value.ToString());
             }
         }
@@ -657,6 +659,5 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             txtThanhTien.Text = ((int.Parse(txtDonGia.Text) * nupSL.Value) - (int.Parse(txtDonGia.Text) * decimal.Parse(txtGiamGia.Text))).ToString();
         }
-
     }
 }

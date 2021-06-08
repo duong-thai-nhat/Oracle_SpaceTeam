@@ -56,7 +56,7 @@
     <Property Name="MACN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="MAKH" Type="Int32" Nullable="false" />
     <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DIACHI" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DIACHI" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="GHICHU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NGAYTAO" Type="DateTime" Nullable="false" />
@@ -225,7 +225,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SpaceTeam_Oracle" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SpaceTeam_Oracle_03" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CHINHANHs" EntityType="Self.CHINHANH" />
     <EntitySet Name="CHITIETHDs" EntityType="Self.CHITIETHD" />
     <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />

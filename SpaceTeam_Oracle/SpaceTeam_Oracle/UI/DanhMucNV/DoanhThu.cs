@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaceTeam_Oracle.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,49 +8,679 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class DoanhThu : Form
     {
+        SpaceTeam_Context db = new SpaceTeam_Context();
         public DoanhThu()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        string tongtienNgayBan;
+        string tongtienCN;
+        string tongtienNV;
+        string tongtienTheoNam;
+        string tongtienTheoThang;
         private void DoanhThu_Load(object sender, EventArgs e)
         {
-
+            LoadComboboxCN();
+            LoadComboboxNhanVien();
+            GetDataGridViewThang();
+            GetDataGridViewNam();
+            GetDataGridView();
+            cmbChiNhanh.Text = "";
+            cmbTenNhanVien.Text = "";
+            txtTongTienNV.Text = "0";
+            txtTongTienCN.Text = "0";
+            txtTongTien.Text = "0";
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        #region Load Combobox CN
+        public void LoadComboboxCN()
         {
+            try
+            {
+                List<CHINHANH> listChiNhanh = db.CHINHANHs.ToList();
+                cmbChiNhanh.DataSource = listChiNhanh;
+                cmbChiNhanh.DisplayMember = "TENCHINHANH";
+                cmbChiNhanh.ValueMember = "MACHINHANH";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion 
+        #region Load Combobox NhanVien 
+
+        public void LoadComboboxNhanVien()
+        {
+            try
+            {
+                List<NHANVIEN> listNhanVien = db.NHANVIENs.ToList();
+                cmbTenNhanVien.DataSource = listNhanVien;
+                cmbTenNhanVien.ValueMember = "MANV";
+                cmbTenNhanVien.DisplayMember = "HOTEN";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+        #region Load DataGridView Danh Sach Đơn Hàng
+        public void GetDataGridView()
+        {
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+            
+            var ListEmployee = employeeData.ToList();
+            dataGridViewTheoNgay.DataSource = ListEmployee;
+            dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoNgay.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoNgay.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoNgay.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoNgay.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoNgay.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoNgay.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoNgay.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoNgay.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoNgay.Columns[0].Width = 50;
+            dataGridViewTheoNgay.Columns[1].Width = 130;
+            dataGridViewTheoNgay.Columns[2].Width = 120;
+            dataGridViewTheoNgay.Columns[3].Width = 90;
+            dataGridViewTheoNgay.Columns[4].Width = 120;
+            dataGridViewTheoNgay.Columns[5].Width = 100;
+            dataGridViewTheoNgay.Columns[6].Width = 40;
+            dataGridViewTheoNgay.Columns[7].Width = 140;
+            dataGridViewTheoNgay.Columns[8].Width = 120;
+        }
+        #endregion
+        #region Load DataGridView Danh Sach Đơn Hàng Theo Thang
+        public void GetDataGridViewThang()
+        {
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+
+            var ListEmployee = employeeData.ToList();
+            dataGridViewTheoTuan.DataSource = ListEmployee;
+            dataGridViewTheoTuan.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoTuan.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoTuan.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoTuan.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoTuan.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoTuan.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoTuan.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoTuan.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoTuan.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoTuan.Columns[0].Width = 50;
+            dataGridViewTheoTuan.Columns[1].Width = 130;
+            dataGridViewTheoTuan.Columns[2].Width = 120;
+            dataGridViewTheoTuan.Columns[3].Width = 90;
+            dataGridViewTheoTuan.Columns[4].Width = 120;
+            dataGridViewTheoTuan.Columns[5].Width = 100;
+            dataGridViewTheoTuan.Columns[6].Width = 40;
+            dataGridViewTheoTuan.Columns[7].Width = 140;
+            dataGridViewTheoTuan.Columns[8].Width = 120;
+        }
+        #endregion
+        #region Load DataGridView Danh Sach Đơn Hàng Theo Nam
+        public void GetDataGridViewNam()
+        {
+            var TKNamData = from h in db.HOADONs
+                            join c in db.CHINHANHs
+                            on h.MACN equals c.MACHINHANH
+                            join k in db.KHACHHANGs
+                            on h.MAKH equals k.MAKH
+                            join nv in db.NHANVIENs
+                            on h.MANV equals nv.MANV
+                            select new
+                            {
+                                h.MAHD,
+                                k.HOTEN,
+                                k.DIACHI,
+                                k.DIENTHOAI,
+                                h.GHICHU,
+                                h.NGAYTAO,
+                                nv.MANV,
+                                TENNV = nv.HOTEN,
+                                c.TENCHINHANH,
+                                h.TONGTHUCTHU
+                            };
+            var ListTimKiemNam = TKNamData.ToList();
+            dataGridViewTheoThang.DataSource = ListTimKiemNam;
+            dataGridViewTheoThang.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoThang.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoThang.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoThang.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoThang.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoThang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoThang.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoThang.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoThang.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoThang.Columns[0].Width = 30;
+            dataGridViewTheoThang.Columns[1].Width = 130;
+            dataGridViewTheoThang.Columns[2].Width = 120;
+            dataGridViewTheoThang.Columns[3].Width = 90;
+            dataGridViewTheoThang.Columns[4].Width = 120;
+            dataGridViewTheoThang.Columns[5].Width = 100;
+            dataGridViewTheoThang.Columns[6].Width = 40;
+            dataGridViewTheoThang.Columns[7].Width = 140;
+            dataGridViewTheoThang.Columns[8].Width = 120;
 
         }
+        #endregion
+
+        #region TK cmb Chi Nhanh
+        void TKcmbCN()
+        {
+            DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
+            DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               where c.TENCHINHANH.Equals(cmbChiNhanh.Text)
+                               && TKNgayBanTuNgay <= h.NGAYTAO
+                               && h.NGAYTAO <= TKNgayBanDenNgay
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+            
+
+            //#region
+            //if (tongtienNgayBan == "")
+            //{
+            //    txtTongTien.Text = "0";
+            //}
+            //else
+            //{
+            //    txtTongTien.Text = tongtienNgayBan;
+            //}
+            //#endregion
+            var ListEmployee = employeeData.ToList();
+            dataGridViewTheoNgay.DataSource = ListEmployee;
+            dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoNgay.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoNgay.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoNgay.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoNgay.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoNgay.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoNgay.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoNgay.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoNgay.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoNgay.Columns[0].Width = 30;
+            dataGridViewTheoNgay.Columns[1].Width = 130;
+            dataGridViewTheoNgay.Columns[2].Width = 120;
+            dataGridViewTheoNgay.Columns[3].Width = 90;
+            dataGridViewTheoNgay.Columns[4].Width = 120;
+            dataGridViewTheoNgay.Columns[5].Width = 100;
+            dataGridViewTheoNgay.Columns[6].Width = 40;
+            dataGridViewTheoNgay.Columns[7].Width = 140;
+            dataGridViewTheoNgay.Columns[8].Width = 120;
+            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienCN = employt.ToString();
+            var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienNgayBan = employt.ToString();
+        }
+        #endregion
+        #region TK cmb Nhan Vien
+        void TKcmbNV()
+        {
+            DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
+            DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               where nv.HOTEN == cmbTenNhanVien.Text
+                               && TKNgayBanTuNgay <= h.NGAYTAO
+                               && h.NGAYTAO <= TKNgayBanDenNgay
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+            
+            var ListEmployee = employeeData.ToList();
+            dataGridViewTheoNgay.DataSource = ListEmployee;
+            dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoNgay.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoNgay.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoNgay.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoNgay.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoNgay.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoNgay.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoNgay.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoNgay.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoNgay.Columns[0].Width = 30;
+            dataGridViewTheoNgay.Columns[1].Width = 130;
+            dataGridViewTheoNgay.Columns[2].Width = 120;
+            dataGridViewTheoNgay.Columns[3].Width = 90;
+            dataGridViewTheoNgay.Columns[4].Width = 120;
+            dataGridViewTheoNgay.Columns[5].Width = 100;
+            dataGridViewTheoNgay.Columns[6].Width = 40;
+            dataGridViewTheoNgay.Columns[7].Width = 140;
+            dataGridViewTheoNgay.Columns[8].Width = 120;
+            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienNV = employt.ToString();
+            var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienNgayBan = employt.ToString();
+        }
+        #endregion
+        #region TK cmb Chi Nhanh vs NhanVien
+        void TKcmbCN_cmbNV()
+        {
+            DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
+            DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               where c.TENCHINHANH.Equals(cmbChiNhanh.Text)
+                               && nv.HOTEN.Equals(cmbTenNhanVien.Text)
+                               && TKNgayBanTuNgay <= h.NGAYTAO
+                               && h.NGAYTAO <= TKNgayBanDenNgay
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienNV = employt.ToString();
+            var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienNgayBan = employt.ToString();
+            var employt2 = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienCN = employt.ToString();
+            var ListEmployee = employeeData.ToList();
+            dataGridViewTheoNgay.DataSource = ListEmployee;
+            dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoNgay.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoNgay.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoNgay.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoNgay.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoNgay.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoNgay.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoNgay.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoNgay.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoNgay.Columns[0].Width = 30;
+            dataGridViewTheoNgay.Columns[1].Width = 130;
+            dataGridViewTheoNgay.Columns[2].Width = 120;
+            dataGridViewTheoNgay.Columns[3].Width = 90;
+            dataGridViewTheoNgay.Columns[4].Width = 120;
+            dataGridViewTheoNgay.Columns[5].Width = 100;
+            dataGridViewTheoNgay.Columns[6].Width = 40;
+            dataGridViewTheoNgay.Columns[7].Width = 140;
+            dataGridViewTheoNgay.Columns[8].Width = 120;
+            
+        }
+        #endregion
+        #region TK cmb Chi Nhanh vs NhanVien Null
+        void TKcmbCN_cmbNV_null()
+        {
+            DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
+            DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               where TKNgayBanTuNgay <= h.NGAYTAO
+                               && h.NGAYTAO <= TKNgayBanDenNgay
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+            var ListEmployee = employeeData.ToList();
+            dataGridViewTheoNgay.DataSource = ListEmployee;
+            dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoNgay.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoNgay.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoNgay.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoNgay.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoNgay.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoNgay.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoNgay.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoNgay.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoNgay.Columns[0].Width = 30;
+            dataGridViewTheoNgay.Columns[1].Width = 130;
+            dataGridViewTheoNgay.Columns[2].Width = 120;
+            dataGridViewTheoNgay.Columns[3].Width = 90;
+            dataGridViewTheoNgay.Columns[4].Width = 120;
+            dataGridViewTheoNgay.Columns[5].Width = 100;
+            dataGridViewTheoNgay.Columns[6].Width = 40;
+            dataGridViewTheoNgay.Columns[7].Width = 140;
+            dataGridViewTheoNgay.Columns[8].Width = 120;
+
+        }
+        #endregion
+        #region button Tim Kiem Theo NB
+        public void btnTimKiemNB_Click()
+        {
+            DateTime TKNgayBanTheoNgay = dateTimePickerTheoNgay.Value;
+            var employeeData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               where h.NGAYTAO.Day == TKNgayBanTheoNgay.Day
+                               && h.NGAYTAO.Month == TKNgayBanTheoNgay.Month
+                               && h.NGAYTAO.Year == TKNgayBanTheoNgay.Year
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            tongtienNgayBan = employt.ToString();
+            var ListEmployee = employeeData.ToList();
+            dataGridViewTheoNgay.DataSource = ListEmployee;
+            dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoNgay.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoNgay.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoNgay.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoNgay.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoNgay.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoNgay.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoNgay.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoNgay.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoNgay.Columns[0].Width = 50;
+            dataGridViewTheoNgay.Columns[1].Width = 130;
+            dataGridViewTheoNgay.Columns[2].Width = 120;
+            dataGridViewTheoNgay.Columns[3].Width = 90;
+            dataGridViewTheoNgay.Columns[4].Width = 120;
+            dataGridViewTheoNgay.Columns[5].Width = 100;
+            dataGridViewTheoNgay.Columns[6].Width = 40;
+            dataGridViewTheoNgay.Columns[7].Width = 140;
+            dataGridViewTheoNgay.Columns[8].Width = 120;
+
+        }
+        #endregion
+
+        private void btnTK_Click(object sender, EventArgs e)
+        {
+            if (cmbChiNhanh.Text == "")
+            {
+                TKcmbNV();
+                txtTongTienNV.Text = tongtienNV;
+                txtTongTienCN.Text = "0";
+            }
+            if (cmbTenNhanVien.Text == "")
+            {
+                TKcmbCN();
+                txtTongTienCN.Text = tongtienCN;
+                txtTongTienNV.Text = "0";
+            }
+            if (cmbChiNhanh.Text != "" && cmbTenNhanVien.Text != "")
+            {
+                TKcmbCN_cmbNV();
+                txtTongTienCN.Text = tongtienCN;
+                txtTongTienNV.Text = tongtienNV;
+
+            }
+            if(cmbChiNhanh.Text == "" && cmbTenNhanVien.Text == "")
+            {
+                TKcmbCN_cmbNV_null();
+                txtTongTienNV.Text = "0";
+                txtTongTienCN.Text = "0";
+            }
+
+        }
+
+        private void btnTaiLai_Click(object sender, EventArgs e)
+        {
+            GetDataGridView();
+            cmbChiNhanh.Text = "";
+            cmbTenNhanVien.Text = "";
+            txtTongTien.Text = "";
+            txtTongTienCN.Text = "";
+            txtTongTienNV.Text = "";
+        }
+
+        private void btnXem_Click(object sender, EventArgs e)
+        {
+            btnTimKiemNB_Click();
+            txtTongTien.Text = tongtienNgayBan;
+        }
+
+        private void TienTeNB(object sender, EventArgs e)
+        {
+            txtTongTien.Text = string.Format("{0:0,0}", decimal.Parse(txtTongTien.Text));
+            txtTongTien.SelectionStart = txtTongTien.Text.Length;
+        }
+
+        private void txtTongTienCN_TextChanged(object sender, EventArgs e)
+        {
+            txtTongTienCN.Text = string.Format("{0:0,0}", decimal.Parse(txtTongTienCN.Text));
+            txtTongTienCN.SelectionStart = txtTongTienCN.Text.Length;
+        }
+
+        private void txtTongTienNV_TextChanged(object sender, EventArgs e)
+        {
+            txtTongTienNV.Text = string.Format("{0:0,0}", decimal.Parse(txtTongTienNV.Text));
+            txtTongTienNV.SelectionStart = txtTongTienNV.Text.Length;
+        }
+        #region Xem Theo Thang
+        public void XemTheoThang()
+        {
+            var TKThangData = from h in db.HOADONs
+                               join c in db.CHINHANHs
+                               on h.MACN equals c.MACHINHANH
+                               join k in db.KHACHHANGs
+                               on h.MAKH equals k.MAKH
+                               join nv in db.NHANVIENs
+                               on h.MANV equals nv.MANV
+                               where h.NGAYTAO.Month.Equals((int)numericThang.Value)
+                               && h.NGAYTAO.Year.Equals((int)numericNam.Value)
+                               select new
+                               {
+                                   h.MAHD,
+                                   k.HOTEN,
+                                   k.DIACHI,
+                                   k.DIENTHOAI,
+                                   h.GHICHU,
+                                   h.NGAYTAO,
+                                   nv.MANV,
+                                   TENNV = nv.HOTEN,
+                                   c.TENCHINHANH,
+                                   h.TONGTHUCTHU
+                               };
+            var employt = TKThangData.Sum(h => h.TONGTHUCTHU);
+            tongtienTheoThang = employt.ToString();
+            var ListTimKiemThang = TKThangData.ToList();
+            dataGridViewTheoTuan.DataSource = ListTimKiemThang;
+            dataGridViewTheoTuan.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoTuan.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoTuan.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoTuan.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoTuan.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoTuan.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoTuan.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoTuan.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoTuan.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoTuan.Columns[0].Width = 30;
+            dataGridViewTheoTuan.Columns[1].Width = 130;
+            dataGridViewTheoTuan.Columns[2].Width = 120;
+            dataGridViewTheoTuan.Columns[3].Width = 90;
+            dataGridViewTheoTuan.Columns[4].Width = 120;
+            dataGridViewTheoTuan.Columns[5].Width = 100;
+            dataGridViewTheoTuan.Columns[6].Width = 40;
+            dataGridViewTheoTuan.Columns[7].Width = 140;
+            dataGridViewTheoTuan.Columns[8].Width = 120;
+
+        }
+        #endregion
+
+        #region Xem Theo Nam
+        public void XemTheoNam()
+        {
+            var TKNamData = from h in db.HOADONs
+                             join c in db.CHINHANHs
+                             on h.MACN equals c.MACHINHANH
+                             join k in db.KHACHHANGs
+                             on h.MAKH equals k.MAKH
+                             join nv in db.NHANVIENs
+                             on h.MANV equals nv.MANV
+                             where h.NGAYTAO.Year.Equals((int)numericNam1.Value)
+                             select new
+                             {
+                                 h.MAHD,
+                                 k.HOTEN,
+                                 k.DIACHI,
+                                 k.DIENTHOAI,
+                                 h.GHICHU,
+                                 h.NGAYTAO,
+                                 nv.MANV,
+                                 TENNV = nv.HOTEN,
+                                 c.TENCHINHANH,
+                                 h.TONGTHUCTHU
+                             };
+            var employt = TKNamData.Sum(h => h.TONGTHUCTHU);
+            tongtienTheoNam = employt.ToString();
+            var ListTimKiemNam = TKNamData.ToList();
+            dataGridViewTheoThang.DataSource = ListTimKiemNam;
+            dataGridViewTheoThang.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewTheoThang.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewTheoThang.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewTheoThang.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewTheoThang.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewTheoThang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewTheoThang.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewTheoThang.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewTheoThang.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewTheoThang.Columns[0].Width = 30;
+            dataGridViewTheoThang.Columns[1].Width = 130;
+            dataGridViewTheoThang.Columns[2].Width = 120;
+            dataGridViewTheoThang.Columns[3].Width = 90;
+            dataGridViewTheoThang.Columns[4].Width = 120;
+            dataGridViewTheoThang.Columns[5].Width = 100;
+            dataGridViewTheoThang.Columns[6].Width = 40;
+            dataGridViewTheoThang.Columns[7].Width = 140;
+            dataGridViewTheoThang.Columns[8].Width = 120;
+
+        }
+        #endregion
+
+        #region button Xem Thang
+        private void btnXemThang_Click(object sender, EventArgs e)
+        {
+            XemTheoThang();
+            txtTongTienThang.Text = tongtienTheoThang;
+        }
+        #endregion
+
+        #region button Tai Lai Thang
+        private void btnTaiLaiThang_Click(object sender, EventArgs e)
+        {
+            GetDataGridViewThang();
+        }
+        #endregion
+
+        private void btnXemNam_Click(object sender, EventArgs e)
+        {
+            XemTheoNam();
+            txtTongTienNam.Text = tongtienTheoNam;
+        }
+
+        private void btnTaiLaiNam_Click(object sender, EventArgs e)
+        {
+            GetDataGridViewNam();
+        }
+
     }
 }

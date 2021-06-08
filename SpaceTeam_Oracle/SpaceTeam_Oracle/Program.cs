@@ -1,8 +1,12 @@
-﻿using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+﻿using GUI.SpaceTeam;
+using SpaceTeam_Oracle;
+using SpaceTeam_Oracle.SpaceTeam;
+using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+using SpaceTeam_Oracle.UI;
 using System;
 using System.Windows.Forms;
 
-namespace GUI
+namespace SpaceTeam_Oracle
 {
     static class Program
     {

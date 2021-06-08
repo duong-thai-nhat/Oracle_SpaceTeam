@@ -54,6 +54,7 @@
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,58 +66,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUS\BUS_QLNhanVien.cs" />
-    <Compile Include="BUS\BUS_TaoDonHang.cs" />
-    <Compile Include="BUS\TaoDonHang_Services.cs" />
-    <Compile Include="CHINHANH.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CHITIETHD.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CHUCVU.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HANGHOA.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HOADON.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="KHACHHANG.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LOAI.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NHACUNGCAP.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NHANVIEN.cs">
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceTeam_Oracle.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpaceTeam_Oracle.Context.tt</DependentUpon>
+    <Compile Include="UI\CHINHANH.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SpaceTeam_Oracle.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpaceTeam_Oracle.tt</DependentUpon>
+    <Compile Include="UI\CHITIETHD.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SpaceTeam_Oracle.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
+    <Compile Include="UI\CHUCVU.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
     </Compile>
     <Compile Include="UI\DangNhap.cs">
       <SubType>Form</SubType>
@@ -124,6 +83,43 @@
     <Compile Include="UI\DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\HANGHOA.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HOADON.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\KHACHHANG.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LOAI.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NHACUNGCAP.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NHANVIEN.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\QLNhaCungCap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLNhaCungCap.Designer.cs">
+      <DependentUpon>QLNhaCungCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\QLChiNhanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLChiNhanh.Designer.cs">
+      <DependentUpon>QLChiNhanh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\QLChucVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLChucVu.Designer.cs">
+      <DependentUpon>QLChucVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="UI\DanhMucAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,12 +137,6 @@
     </Compile>
     <Compile Include="UI\DanhMucNV\DanhSachHangHoaDaBan.Designer.cs">
       <DependentUpon>DanhSachHangHoaDaBan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DanhMucNV\DiemDanh.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\DanhMucNV\DiemDanh.Designer.cs">
-      <DependentUpon>DiemDanh.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\DanhMucNV\DoanhThu.cs">
       <SubType>Form</SubType>
@@ -178,11 +168,38 @@
     <Compile Include="UI\DanhMucQuanLy.Designer.cs">
       <DependentUpon>DanhMucQuanLy.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\NhapKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NhapKho.Designer.cs">
+      <DependentUpon>NhapKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\QLKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\QLKhachHang.Designer.cs">
+      <DependentUpon>QLKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\QLNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\QLNhanVien.Designer.cs">
       <DependentUpon>QLNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SpaceTeam_Context.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Context.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SpaceTeam_Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SpaceTeam_Context.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -196,6 +213,12 @@
     <EmbeddedResource Include="UI\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLChiNhanh.resx">
+      <DependentUpon>QLChiNhanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLChucVu.resx">
+      <DependentUpon>QLChucVu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\DanhMucAdmin.resx">
       <DependentUpon>DanhMucAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,9 +231,6 @@
     <EmbeddedResource Include="UI\DanhMucNV\DanhSachHangHoaDaBan.resx">
       <DependentUpon>DanhSachHangHoaDaBan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\DanhMucNV\DiemDanh.resx">
-      <DependentUpon>DiemDanh.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\DanhMucNV\DoanhThu.resx">
       <DependentUpon>DoanhThu.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +242,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DanhMucQuanLy.resx">
       <DependentUpon>DanhMucQuanLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NhapKho.resx">
+      <DependentUpon>NhapKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLKhachHang.resx">
+      <DependentUpon>QLKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\QLNhaCungCap.resx">
+      <DependentUpon>QLNhaCungCap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\QLNhanVien.resx">
       <DependentUpon>QLNhanVien.cs</DependentUpon>
@@ -236,35 +265,31 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="SpaceTeam_Oracle.edmx">
+    <EntityDeploy Include="UI\SpaceTeam_Context.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SpaceTeam_Oracle.Designer.cs</LastGenOutput>
+      <LastGenOutput>SpaceTeam_Context.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SpaceTeam_Oracle.edmx.diagram">
-      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
+    <None Include="UI\SpaceTeam_Context.edmx.diagram">
+      <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\DanhMucAdmin\" />
-    <Folder Include="UI\DanhMucQuanLy\" />
+    <Content Include="UI\SpaceTeam_Context.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
+      <LastGenOutput>SpaceTeam_Context.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="UI\SpaceTeam_Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
+      <LastGenOutput>SpaceTeam_Context.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SpaceTeam_Oracle.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
-      <LastGenOutput>SpaceTeam_Oracle.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="SpaceTeam_Oracle.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SpaceTeam_Oracle.edmx</DependentUpon>
-      <LastGenOutput>SpaceTeam_Oracle.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

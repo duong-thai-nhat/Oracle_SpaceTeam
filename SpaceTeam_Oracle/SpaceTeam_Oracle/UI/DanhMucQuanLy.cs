@@ -1,4 +1,5 @@
 ﻿using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+using SpaceTeam_Oracle.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,9 +21,9 @@ namespace SpaceTeam_Oracle.SpaceTeam
 
         private void DanhMucQuanLy_Load(object sender, EventArgs e)
         {
-            using (DanhMucQuanLy dmQL = new DanhMucQuanLy())
-                if (dmQL.ShowDialog() == DialogResult.OK)
-                    Application.Run(new DanhMucQuanLy());
+            //using (DanhMucQuanLy dmQL = new DanhMucQuanLy())
+            //    if (dmQL.ShowDialog() == DialogResult.OK)
+            //        Application.Run(new DanhMucQuanLy());
         }
 
         private void btnDoanhThu_Click(object sender, EventArgs e)
@@ -41,7 +42,9 @@ namespace SpaceTeam_Oracle.SpaceTeam
 
         private void btnQLKhoHang_Click(object sender, EventArgs e)
         {
-            //chưa có
+            using (NhapKho nK = new NhapKho())
+            if (nK.ShowDialog() == DialogResult.OK)
+            Application.Run(new NhapKho());
         }
 
         private void btnDSHHDaBan_Click(object sender, EventArgs e)
@@ -53,7 +56,9 @@ namespace SpaceTeam_Oracle.SpaceTeam
 
         private void btnQLNhanVien_Click(object sender, EventArgs e)
         {
-            
+            using (QLNhanVien qLNV = new QLNhanVien())
+                if (qLNV.ShowDialog() == DialogResult.OK)
+                    Application.Run(new QLNhanVien());
         }
 
         private void btnQLDSDonHang_Click(object sender, EventArgs e)
@@ -61,13 +66,6 @@ namespace SpaceTeam_Oracle.SpaceTeam
             using (DanhSachDonHang dsDH= new DanhSachDonHang())
                 if (dsDH.ShowDialog() == DialogResult.OK)
                     Application.Run(new DanhSachDonHang());
-        }
-
-        private void btnQLDiemDanh_Click(object sender, EventArgs e)
-        {
-            using (DiemDanh dsDD = new DiemDanh())
-                if (dsDD.ShowDialog() == DialogResult.OK)
-                    Application.Run(new DiemDanh());
         }
 
         private void btnPhanCong_Click(object sender, EventArgs e)
