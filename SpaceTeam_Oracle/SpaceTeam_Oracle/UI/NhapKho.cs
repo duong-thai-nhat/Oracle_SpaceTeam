@@ -1,19 +1,15 @@
-﻿using SpaceTeam_Oracle.UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SpaceTeam_Oracle
 {
     public partial class NhapKho : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        private Context db = new Context();
+
         public NhapKho()
         {
             InitializeComponent();
@@ -25,14 +21,16 @@ namespace SpaceTeam_Oracle
             LoadComboboxNCC();
             GetDataGridView();
         }
+
         #region Load Combobox Ten Loai
+
         public void LoadComboboxLoai()
         {
             try
             {
                 List<LOAI> listLoai = db.LOAIs.ToList();
                 cmbMaLoai.DataSource = listLoai;
-                cmbMaLoai.DisplayMember = "MALOAI";
+                cmbMaLoai.DisplayMember = "TENLOAI";
                 cmbMaLoai.ValueMember = "MALOAI";
             }
             catch (Exception ex)
@@ -40,8 +38,11 @@ namespace SpaceTeam_Oracle
                 MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion Load Combobox Ten Loai
+
         #region Load Combobox Nha Cung Cap
+
         public void LoadComboboxNCC()
         {
             try
@@ -56,59 +57,11 @@ namespace SpaceTeam_Oracle
                 MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
-        #region Hàm Insert HH
-        public void InsertHH(int maHH, string tenHH,int maLoai,int soLuong, int donGia,int giamGia, string moTa, string maNCC )
-        {
-            HANGHOA add = new HANGHOA();
-            add.MAHH = maHH;
-            add.TENHH = tenHH;
-            add.MALOAI = maLoai;
-            add.SOLUONG = soLuong;
-            add.DONGIA = donGia;
-            add.GIAMGIA = giamGia;
-            add.MOTA = moTa;
-            add.MANCC = maNCC;
-            db.HANGHOAs.Add(add);
-            db.SaveChanges();
-        }
-        #endregion
-        #region Hàm Insert HH1
-        public void UpdateHH1(string tenHH,int soLuong)
-        {
-            SpaceTeam_Context db = new SpaceTeam_Context();
-            HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.TENHH == tenHH);
-            update.TENHH = tenHH;
-            update.SOLUONG = update.SOLUONG + soLuong;
-            db.SaveChanges();
-        }
-        #endregion
-        #region Hàm Update HH
-        public void UpdateHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, int giamGia, string moTa, string maNCC)
-        {
-            SpaceTeam_Context db = new SpaceTeam_Context();
-            HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.MAHH == maHH);
-            update.MAHH = maHH;
-            update.TENHH = tenHH;
-            update.MALOAI = maLoai;
-            update.SOLUONG = soLuong;
-            update.DONGIA = donGia;
-            update.GIAMGIA = giamGia;
-            update.MOTA = moTa;
-            update.MANCC = maNCC;
-            db.SaveChanges();
-        }
-        #endregion
-        #region Hàm Delete HH
-        public void DeleteHH(int maHH)
-        {
-            var hangHoa = db.HANGHOAs.Where(hh => hh.MAHH == maHH).SingleOrDefault();
-            db.HANGHOAs.Remove(hangHoa);
-            db.SaveChanges();
-        }
-        #endregion
-        #region Hàm Get Id HH
-        int GetIdHH()
+
+        #endregion Load Combobox Nha Cung Cap
+
+        #region Hàm Get Id 
+        public int GetIdHH()
         {
             int dem = 1;
             while (true)
@@ -122,10 +75,74 @@ namespace SpaceTeam_Oracle
             }
         }
         #endregion
+
+        #region Hàm Insert HH
+
+        public void InsertHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, string maNCC)
+        {
+            HANGHOA add = new HANGHOA();
+            add.MAHH = GetIdHH();
+            add.TENHH = tenHH;
+            add.MALOAI = maLoai;
+            add.SOLUONG = soLuong;
+            add.DONGIA = donGia;
+            add.GIAMGIA = giamGia;
+            add.MOTA = moTa;
+            add.MANCC = maNCC;
+            db.HANGHOAs.Add(add);
+            db.SaveChanges();
+        }
+
+        #endregion Hàm Insert HH
+
+        #region Hàm Insert HH1
+
+        public void UpdateHH1(string tenHH, int soLuong)
+        {
+            Context db = new Context();
+            HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.TENHH == tenHH);
+            update.TENHH = tenHH;
+            update.SOLUONG = update.SOLUONG + soLuong;
+            db.SaveChanges();
+        }
+
+        #endregion Hàm Insert HH1
+
+        #region Hàm Update HH
+
+        public void UpdateHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, string maNCC)
+        {
+            Context db = new Context();
+            HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.MAHH == maHH);
+            update.MAHH = maHH;
+            update.TENHH = tenHH;
+            update.MALOAI = maLoai;
+            update.SOLUONG = soLuong;
+            update.DONGIA = donGia;
+            update.GIAMGIA = giamGia;
+            update.MOTA = moTa;
+            update.MANCC = maNCC;
+            db.SaveChanges();
+        }
+
+        #endregion Hàm Update HH
+
+        #region Hàm Delete HH
+
+        public void DeleteHH(int maHH)
+        {
+            var hangHoa = db.HANGHOAs.Where(hh => hh.MAHH == maHH).SingleOrDefault();
+            db.HANGHOAs.Remove(hangHoa);
+            db.SaveChanges();
+        }
+
+        #endregion Hàm Delete HH
+
         #region Load DataGridView
+
         public void GetDataGridView()
         {
-            var employeeData = from h in db.HANGHOAs
+            var employeeData = (from h in db.HANGHOAs
                                join l in db.LOAIs
                                on h.MALOAI equals l.MALOAI
                                join ncc in db.NHACUNGCAPs
@@ -134,13 +151,13 @@ namespace SpaceTeam_Oracle
                                {
                                    h.MAHH,
                                    h.TENHH,
-                                   l.MALOAI,
+                                   l.TENLOAI,
                                    h.SOLUONG,
                                    h.DONGIA,
                                    h.GIAMGIA,
                                    h.MOTA,
                                    ncc.MANCC
-                               };
+                               }).OrderBy(i => i.MAHH);
 
             var ListEmployee = employeeData.ToList();
             dataGridViewDSHHNhap.DataSource = ListEmployee;
@@ -153,17 +170,20 @@ namespace SpaceTeam_Oracle
             dataGridViewDSHHNhap.Columns[6].HeaderText = "Mô Tả";
             dataGridViewDSHHNhap.Columns[7].HeaderText = "Mã Nhà Cung Cấp";
 
-            dataGridViewDSHHNhap.Columns[0].Width = 70;
-            dataGridViewDSHHNhap.Columns[1].Width = 150;
-            dataGridViewDSHHNhap.Columns[2].Width = 70;
+            dataGridViewDSHHNhap.Columns[0].Width = 100;
+            dataGridViewDSHHNhap.Columns[1].Width = 250;
+            dataGridViewDSHHNhap.Columns[2].Width = 100;
             dataGridViewDSHHNhap.Columns[3].Width = 70;
             dataGridViewDSHHNhap.Columns[4].Width = 150;
             dataGridViewDSHHNhap.Columns[5].Width = 70;
-            dataGridViewDSHHNhap.Columns[6].Width = 600;
-            dataGridViewDSHHNhap.Columns[7].Width = 70;
+            dataGridViewDSHHNhap.Columns[6].Width = 300;
+            dataGridViewDSHHNhap.Columns[7].Width = 100;
         }
-        #endregion
+
+        #endregion Load DataGridView
+
         #region Cell Click
+
         private void dataGridViewDSNhap_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -179,8 +199,11 @@ namespace SpaceTeam_Oracle
                 cmbMaNCC.Text = row.Cells[7].Value.ToString();
             }
         }
-        #endregion
+
+        #endregion Cell Click
+
         #region button Add HH
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int maHH = GetIdHH();
@@ -188,7 +211,7 @@ namespace SpaceTeam_Oracle
             int maLoai = int.Parse(cmbMaLoai.SelectedValue.ToString());
             int soLuong = (int)numUDSoLuong.Value;
             int donGia = int.Parse(txtDonGia.Text);
-            int giamGia = int.Parse(txtGiamGia.Text);
+            decimal giamGia = decimal.Parse(txtGiamGia.Text);
             string moTa = txtMoTa.Text;
             string maNCC = cmbMaNCC.SelectedValue.ToString();
 
@@ -198,8 +221,8 @@ namespace SpaceTeam_Oracle
                 int dem1 = int.Parse(dem);
                 if (dem1 == 1)
                 {
-                    UpdateHH1(tenHH,soLuong);
-                    MessageBox.Show("Tên Hàng Hóa đã tồn tại.\nHệ Thống sẽ Cập Nhật số lượng cho Hàng Hóa này", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateHH1(tenHH, soLuong);
+                    MessageBox.Show("Đã thêm "+ soLuong + " sản phẩm vào hàng hóa này!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GetDataGridView();
                 }
                 if (dem1 == 0)
@@ -208,15 +231,17 @@ namespace SpaceTeam_Oracle
                     MessageBox.Show("Thêm Hàng Hóa Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GetDataGridView();
                 }
-                //InsertHH(maHH, tenHH, maLoai, soLuong, donGia, giamGia, moTa, maNCC);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Thêm Hàng Hóa Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion button Add HH
+
         #region btn Delete HH
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int maHH = int.Parse(txtMaHH.Text);
@@ -231,8 +256,11 @@ namespace SpaceTeam_Oracle
                 MessageBox.Show("Xóa Hàng Hóa Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion btn Delete HH
+
         #region btn Update HH
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             int maHH = int.Parse(txtMaHH.Text);
@@ -240,7 +268,7 @@ namespace SpaceTeam_Oracle
             int maLoai = int.Parse(cmbMaLoai.SelectedValue.ToString());
             int soLuong = (int)numUDSoLuong.Value;
             int donGia = int.Parse(txtDonGia.Text);
-            int giamGia = int.Parse(txtGiamGia.Text);
+            decimal giamGia = decimal.Parse(txtGiamGia.Text);
             string moTa = txtMoTa.Text;
             string maNCC = cmbMaNCC.SelectedValue.ToString();
             try
@@ -254,8 +282,11 @@ namespace SpaceTeam_Oracle
                 MessageBox.Show("Sửa Hàng Hóa Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion btn Update HH
+
         #region button Refresh HH
+
         private void btnRefesh_Click(object sender, EventArgs e)
         {
             txtMaHH.Text = " ";
@@ -266,10 +297,12 @@ namespace SpaceTeam_Oracle
             txtGiamGia.Text = " ";
             txtMoTa.Text = " ";
             cmbMaNCC.Text = " ";
-
         }
-        #endregion
+
+        #endregion button Refresh HH
+
         #region button Exit HH
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -278,11 +311,7 @@ namespace SpaceTeam_Oracle
                 Close();
             }
         }
-        #endregion
 
-        private void dataGridViewDSHHNhap_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        #endregion button Exit HH
     }
 }

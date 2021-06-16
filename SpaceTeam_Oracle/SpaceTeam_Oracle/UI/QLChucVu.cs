@@ -13,7 +13,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class QLChucVu : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        Context db = new Context();
         public QLChucVu()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace SpaceTeam_Oracle
         #region Hàm Update CV
         public void UpdateCV(string maCV, string tenCV)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            Context db = new Context();
             CHUCVU update = db.CHUCVUs.SingleOrDefault(cv => cv.MACHUCVU == maCV);
             update.MACHUCVU = maCV;
             update.TENCHUCVU = tenCV;

@@ -7,23 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SpaceTeam_Oracle.UI
+namespace SpaceTeam_Oracle
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CHUCVU
+    public partial class HANGHOA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CHUCVU()
+        public HANGHOA()
         {
-            this.NHANVIENs = new HashSet<NHANVIEN>();
+            this.CHITIETHDs = new HashSet<CHITIETHD>();
         }
     
-        public string MACHUCVU { get; set; }
-        public string TENCHUCVU { get; set; }
+        public int MAHH { get; set; }
+        public string TENHH { get; set; }
+        public decimal MALOAI { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
+        public Nullable<decimal> DONGIA { get; set; }
+        public Nullable<decimal> GIAMGIA { get; set; }
+        public string MOTA { get; set; }
+        public string MANCC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NHANVIEN> NHANVIENs { get; set; }
+        public virtual ICollection<CHITIETHD> CHITIETHDs { get; set; }
+        public virtual LOAI LOAI { get; set; }
+        public virtual NHACUNGCAP NHACUNGCAP { get; set; }
     }
 }

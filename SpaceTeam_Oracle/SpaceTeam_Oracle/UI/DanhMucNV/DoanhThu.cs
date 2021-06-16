@@ -1,30 +1,26 @@
-﻿using SpaceTeam_Oracle.UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class DoanhThu : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        private Context db = new Context();
+
         public DoanhThu()
         {
             InitializeComponent();
         }
 
-        string tongtienNgayBan;
-        string tongtienCN;
-        string tongtienNV;
-        string tongtienTheoNam;
-        string tongtienTheoThang;
+        private string tongtienNgayBan;
+        private string tongtienCN;
+        private string tongtienNV;
+        private string tongtienTheoNam;
+        private string tongtienTheoThang;
+
         private void DoanhThu_Load(object sender, EventArgs e)
         {
             LoadComboboxCN();
@@ -38,7 +34,9 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             txtTongTienCN.Text = "0";
             txtTongTien.Text = "0";
         }
+
         #region Load Combobox CN
+
         public void LoadComboboxCN()
         {
             try
@@ -53,8 +51,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion 
-        #region Load Combobox NhanVien 
+
+        #endregion Load Combobox CN
+
+        #region Load Combobox NhanVien
 
         public void LoadComboboxNhanVien()
         {
@@ -70,8 +70,11 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 MessageBox.Show("Lỗi  " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion Load Combobox NhanVien
+
         #region Load DataGridView Danh Sach Đơn Hàng
+
         public void GetDataGridView()
         {
             var employeeData = from h in db.HOADONs
@@ -94,7 +97,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    c.TENCHINHANH,
                                    h.TONGTHUCTHU
                                };
-            
+
             var ListEmployee = employeeData.ToList();
             dataGridViewTheoNgay.DataSource = ListEmployee;
             dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
@@ -116,8 +119,11 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoNgay.Columns[7].Width = 140;
             dataGridViewTheoNgay.Columns[8].Width = 120;
         }
-        #endregion
+
+        #endregion Load DataGridView Danh Sach Đơn Hàng
+
         #region Load DataGridView Danh Sach Đơn Hàng Theo Thang
+
         public void GetDataGridViewThang()
         {
             var employeeData = from h in db.HOADONs
@@ -162,8 +168,11 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoTuan.Columns[7].Width = 140;
             dataGridViewTheoTuan.Columns[8].Width = 120;
         }
-        #endregion
+
+        #endregion Load DataGridView Danh Sach Đơn Hàng Theo Thang
+
         #region Load DataGridView Danh Sach Đơn Hàng Theo Nam
+
         public void GetDataGridViewNam()
         {
             var TKNamData = from h in db.HOADONs
@@ -206,12 +215,13 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoThang.Columns[6].Width = 40;
             dataGridViewTheoThang.Columns[7].Width = 140;
             dataGridViewTheoThang.Columns[8].Width = 120;
-
         }
-        #endregion
+
+        #endregion Load DataGridView Danh Sach Đơn Hàng Theo Nam
 
         #region TK cmb Chi Nhanh
-        void TKcmbCN()
+
+        private void TKcmbCN()
         {
             DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
@@ -238,18 +248,6 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    c.TENCHINHANH,
                                    h.TONGTHUCTHU
                                };
-            
-
-            //#region
-            //if (tongtienNgayBan == "")
-            //{
-            //    txtTongTien.Text = "0";
-            //}
-            //else
-            //{
-            //    txtTongTien.Text = tongtienNgayBan;
-            //}
-            //#endregion
             var ListEmployee = employeeData.ToList();
             dataGridViewTheoNgay.DataSource = ListEmployee;
             dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
@@ -275,9 +273,12 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
             tongtienNgayBan = employt.ToString();
         }
-        #endregion
+
+        #endregion TK cmb Chi Nhanh
+
         #region TK cmb Nhan Vien
-        void TKcmbNV()
+
+        private void TKcmbNV()
         {
             DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
@@ -304,7 +305,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    c.TENCHINHANH,
                                    h.TONGTHUCTHU
                                };
-            
+
             var ListEmployee = employeeData.ToList();
             dataGridViewTheoNgay.DataSource = ListEmployee;
             dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
@@ -330,9 +331,12 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
             tongtienNgayBan = employt.ToString();
         }
-        #endregion
+
+        #endregion TK cmb Nhan Vien
+
         #region TK cmb Chi Nhanh vs NhanVien
-        void TKcmbCN_cmbNV()
+
+        private void TKcmbCN_cmbNV()
         {
             DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
@@ -386,11 +390,12 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoNgay.Columns[6].Width = 40;
             dataGridViewTheoNgay.Columns[7].Width = 140;
             dataGridViewTheoNgay.Columns[8].Width = 120;
-            
         }
-        #endregion
+
+        #endregion TK cmb Chi Nhanh vs NhanVien
+
         #region TK cmb Chi Nhanh vs NhanVien Null
-        void TKcmbCN_cmbNV_null()
+        private void TKcmbCN_cmbNV_null()
         {
             DateTime TKNgayBanTuNgay = dateTimeTuNgay.Value;
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
@@ -436,9 +441,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoNgay.Columns[6].Width = 40;
             dataGridViewTheoNgay.Columns[7].Width = 140;
             dataGridViewTheoNgay.Columns[8].Width = 120;
-
         }
-        #endregion
+
+        #endregion TK cmb Chi Nhanh vs NhanVien Null
+
         #region button Tim Kiem Theo NB
         public void btnTimKiemNB_Click()
         {
@@ -488,9 +494,9 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoNgay.Columns[6].Width = 40;
             dataGridViewTheoNgay.Columns[7].Width = 140;
             dataGridViewTheoNgay.Columns[8].Width = 120;
-
         }
-        #endregion
+
+        #endregion button Tim Kiem Theo NB
 
         private void btnTK_Click(object sender, EventArgs e)
         {
@@ -511,15 +517,13 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 TKcmbCN_cmbNV();
                 txtTongTienCN.Text = tongtienCN;
                 txtTongTienNV.Text = tongtienNV;
-
             }
-            if(cmbChiNhanh.Text == "" && cmbTenNhanVien.Text == "")
+            if (cmbChiNhanh.Text == "" && cmbTenNhanVien.Text == "")
             {
                 TKcmbCN_cmbNV_null();
                 txtTongTienNV.Text = "0";
                 txtTongTienCN.Text = "0";
             }
-
         }
 
         private void btnTaiLai_Click(object sender, EventArgs e)
@@ -555,31 +559,33 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             txtTongTienNV.Text = string.Format("{0:0,0}", decimal.Parse(txtTongTienNV.Text));
             txtTongTienNV.SelectionStart = txtTongTienNV.Text.Length;
         }
+
         #region Xem Theo Thang
+
         public void XemTheoThang()
         {
             var TKThangData = from h in db.HOADONs
-                               join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
-                               join k in db.KHACHHANGs
-                               on h.MAKH equals k.MAKH
-                               join nv in db.NHANVIENs
-                               on h.MANV equals nv.MANV
-                               where h.NGAYTAO.Month.Equals((int)numericThang.Value)
-                               && h.NGAYTAO.Year.Equals((int)numericNam.Value)
-                               select new
-                               {
-                                   h.MAHD,
-                                   k.HOTEN,
-                                   k.DIACHI,
-                                   k.DIENTHOAI,
-                                   h.GHICHU,
-                                   h.NGAYTAO,
-                                   nv.MANV,
-                                   TENNV = nv.HOTEN,
-                                   c.TENCHINHANH,
-                                   h.TONGTHUCTHU
-                               };
+                              join c in db.CHINHANHs
+                              on h.MACN equals c.MACHINHANH
+                              join k in db.KHACHHANGs
+                              on h.MAKH equals k.MAKH
+                              join nv in db.NHANVIENs
+                              on h.MANV equals nv.MANV
+                              where h.NGAYTAO.Month.Equals((int)numericThang.Value)
+                              && h.NGAYTAO.Year.Equals((int)numericNam.Value)
+                              select new
+                              {
+                                  h.MAHD,
+                                  k.HOTEN,
+                                  k.DIACHI,
+                                  k.DIENTHOAI,
+                                  h.GHICHU,
+                                  h.NGAYTAO,
+                                  nv.MANV,
+                                  TENNV = nv.HOTEN,
+                                  c.TENCHINHANH,
+                                  h.TONGTHUCTHU
+                              };
             var employt = TKThangData.Sum(h => h.TONGTHUCTHU);
             tongtienTheoThang = employt.ToString();
             var ListTimKiemThang = TKThangData.ToList();
@@ -602,34 +608,35 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoTuan.Columns[6].Width = 40;
             dataGridViewTheoTuan.Columns[7].Width = 140;
             dataGridViewTheoTuan.Columns[8].Width = 120;
-
         }
-        #endregion
+
+        #endregion Xem Theo Thang
 
         #region Xem Theo Nam
+
         public void XemTheoNam()
         {
             var TKNamData = from h in db.HOADONs
-                             join c in db.CHINHANHs
-                             on h.MACN equals c.MACHINHANH
-                             join k in db.KHACHHANGs
-                             on h.MAKH equals k.MAKH
-                             join nv in db.NHANVIENs
-                             on h.MANV equals nv.MANV
-                             where h.NGAYTAO.Year.Equals((int)numericNam1.Value)
-                             select new
-                             {
-                                 h.MAHD,
-                                 k.HOTEN,
-                                 k.DIACHI,
-                                 k.DIENTHOAI,
-                                 h.GHICHU,
-                                 h.NGAYTAO,
-                                 nv.MANV,
-                                 TENNV = nv.HOTEN,
-                                 c.TENCHINHANH,
-                                 h.TONGTHUCTHU
-                             };
+                            join c in db.CHINHANHs
+                            on h.MACN equals c.MACHINHANH
+                            join k in db.KHACHHANGs
+                            on h.MAKH equals k.MAKH
+                            join nv in db.NHANVIENs
+                            on h.MANV equals nv.MANV
+                            where h.NGAYTAO.Year.Equals((int)numericNam1.Value)
+                            select new
+                            {
+                                h.MAHD,
+                                k.HOTEN,
+                                k.DIACHI,
+                                k.DIENTHOAI,
+                                h.GHICHU,
+                                h.NGAYTAO,
+                                nv.MANV,
+                                TENNV = nv.HOTEN,
+                                c.TENCHINHANH,
+                                h.TONGTHUCTHU
+                            };
             var employt = TKNamData.Sum(h => h.TONGTHUCTHU);
             tongtienTheoNam = employt.ToString();
             var ListTimKiemNam = TKNamData.ToList();
@@ -652,24 +659,28 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoThang.Columns[6].Width = 40;
             dataGridViewTheoThang.Columns[7].Width = 140;
             dataGridViewTheoThang.Columns[8].Width = 120;
-
         }
-        #endregion
+
+        #endregion Xem Theo Nam
 
         #region button Xem Thang
+
         private void btnXemThang_Click(object sender, EventArgs e)
         {
             XemTheoThang();
             txtTongTienThang.Text = tongtienTheoThang;
         }
-        #endregion
+
+        #endregion button Xem Thang
 
         #region button Tai Lai Thang
+
         private void btnTaiLaiThang_Click(object sender, EventArgs e)
         {
             GetDataGridViewThang();
         }
-        #endregion
+
+        #endregion button Tai Lai Thang
 
         private void btnXemNam_Click(object sender, EventArgs e)
         {
@@ -681,6 +692,5 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             GetDataGridViewNam();
         }
-
     }
 }

@@ -7,35 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SpaceTeam_Oracle.UI
+namespace SpaceTeam_Oracle
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class HOADON
+    public partial class KHACHHANG
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HOADON()
+        public KHACHHANG()
         {
-            this.CHITIETHDs = new HashSet<CHITIETHD>();
+            this.HOADONs = new HashSet<HOADON>();
         }
     
-        public int MAHD { get; set; }
-        public decimal MANV { get; set; }
-        public decimal MACN { get; set; }
-        public Nullable<int> MAKH { get; set; }
+        public int MAKH { get; set; }
         public string HOTEN { get; set; }
         public string DIACHI { get; set; }
-        public string SDT { get; set; }
-        public string GHICHU { get; set; }
-        public System.DateTime NGAYTAO { get; set; }
-        public Nullable<decimal> TONGTIENHANG { get; set; }
-        public Nullable<decimal> TONGTHUCTHU { get; set; }
+        public string DIENTHOAI { get; set; }
+        public string EMAIL { get; set; }
+        public bool GIOITINH { get; set; }
+        public Nullable<System.DateTime> NGAYSINH { get; set; }
     
-        public virtual CHINHANH CHINHANH { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETHD> CHITIETHDs { get; set; }
-        public virtual KHACHHANG KHACHHANG { get; set; }
-        public virtual NHANVIEN NHANVIEN { get; set; }
+        public virtual ICollection<HOADON> HOADONs { get; set; }
     }
 }
