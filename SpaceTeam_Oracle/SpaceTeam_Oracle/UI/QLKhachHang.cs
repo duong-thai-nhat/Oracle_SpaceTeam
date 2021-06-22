@@ -12,7 +12,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLKhachHang : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        Context db = new Context();
         public QLKhachHang()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Update Khách Hàng
         public void UpdateKH(int maKH, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi,string email)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            Context db = new Context();
             KHACHHANG update = db.KHACHHANGs.SingleOrDefault(kh => kh.MAKH == maKH);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -71,7 +71,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Delete KH
         public void DeleteKH(int maKH)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            Context db = new Context();
             var khachHang = db.KHACHHANGs.Where(kh => kh.MAKH == maKH).SingleOrDefault();
 
             db.KHACHHANGs.Remove(khachHang);

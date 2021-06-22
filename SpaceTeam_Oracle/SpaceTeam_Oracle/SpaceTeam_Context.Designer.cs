@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Nguyen Quoc Cuong\Desktop\Oracle_SpaceTeam-Nhat2\Oracle_SpaceTeam-Nhat2\SpaceTeam_Oracle\SpaceTeam_Oracle\UI\SpaceTeam_Context.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Nguyen Quoc Cuong\Desktop\New folder\Oracle_SpaceTeam\SpaceTeam_Oracle\SpaceTeam_Oracle\SpaceTeam_Context.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

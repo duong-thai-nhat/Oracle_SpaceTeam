@@ -179,7 +179,7 @@ CREATE TABLE HANGHOA (
   MaHH NUMBER(10) NOT NULL,
   TenHH NVARCHAR2(60) NOT NULL,
   MaLoai NUMBER NOT NULL,
-  SoLuong NUMBER,
+  SoLuong NUMBER(10),
   DonGia FLOAT ,
   GiamGia FLOAT ,
   MoTa NVARCHAR2(1000),
@@ -405,10 +405,10 @@ CREATE TABLE KHACHHANG (
 
 
 
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (1,  N'Nguyẽn Thanh Sang', N'Bình Dương', N'0971890712', N'sanglun2254@gmail.com' , 1, NULL);
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (1,  N'Khách Vãng Lai', N'Không', N'Không', N'Không' , 1, NULL);
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (2,  N'Minh Cao', N'TPHCM', N'0971890712', N'minhcd@gmail.com',  1, NULL);
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (3,  N'Nguyễn Thanh Sang', N'Q11', N'0971890712', N'sanglun2254_1@gmail.com',  1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (4,  N'Nguyễn Ngọc Hiền', N'Gò Vấp', N'', N'pinkwater98@gmail.com', 0, NULL);
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (4,  N'Nguyễn Ngọc Hiền', N'Gò Vấp', N'0377077630', N'pinkwater98@gmail.com', 0, NULL);
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (5,  N'Hồ  Quỳnh Nga', N'280 ADV', N'0904877306', N'wanriky2998@gmail.com',   0, NULL);
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (6,  N'Lê Thị Hiền', N'Bình Thạnh', N'0904877306', N'hiennt@gmail.com',   0, NULL);
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (7,  N'Lê Thanh Sang', N'Thủ Đức', N'0904877306', N'sanglt8@gmail.com',   1, NULL);

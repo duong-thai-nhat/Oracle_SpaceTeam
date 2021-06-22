@@ -12,7 +12,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhaCungCap : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        Context db = new Context();
         public QLNhaCungCap()
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Update NCC
         public void UpdateNCC(string maNCC, string tenNCC)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            Context db = new Context();
             NHACUNGCAP update = db.NHACUNGCAPs.SingleOrDefault(ncc => ncc.MANCC == maNCC);
             update.MANCC = maNCC;
             update.TENCONGTY = tenNCC;

@@ -66,40 +66,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CHINHANH.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CHITIETHD.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CHUCVU.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HANGHOA.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HOADON.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KHACHHANG.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOAI.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHACUNGCAP.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHANVIEN.cs">
+      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\CHINHANH.cs">
+    <Compile Include="SpaceTeam_Context.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Context.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceTeam_Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="UI\CHITIETHD.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\CHUCVU.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
+    <Compile Include="SpaceTeam_Context.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
     </Compile>
     <Compile Include="UI\DangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\HANGHOA.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\HOADON.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\KHACHHANG.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\LOAI.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\NHACUNGCAP.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\NHANVIEN.cs">
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
     </Compile>
     <Compile Include="UI\QLNhaCungCap.cs">
       <SubType>Form</SubType>
@@ -186,21 +201,6 @@
     <Compile Include="UI\QLNhanVien.Designer.cs">
       <DependentUpon>QLNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\SpaceTeam_Context.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpaceTeam_Context.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\SpaceTeam_Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpaceTeam_Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\SpaceTeam_Context.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -265,11 +265,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="UI\SpaceTeam_Context.edmx">
+    <EntityDeploy Include="SpaceTeam_Context.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SpaceTeam_Context.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="UI\SpaceTeam_Context.edmx.diagram">
+    <None Include="SpaceTeam_Context.edmx.diagram">
       <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
     </None>
   </ItemGroup>
@@ -277,19 +277,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UI\SpaceTeam_Context.Context.tt">
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SpaceTeam_Context.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
       <LastGenOutput>SpaceTeam_Context.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="UI\SpaceTeam_Context.tt">
+    <Content Include="SpaceTeam_Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SpaceTeam_Context.edmx</DependentUpon>
       <LastGenOutput>SpaceTeam_Context.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

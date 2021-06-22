@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SpaceTeam_Oracle.UI
+namespace SpaceTeam_Oracle
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SpaceTeam_Context : DbContext
+    public partial class Context : DbContext
     {
-        public SpaceTeam_Context()
-            : base("name=SpaceTeam_Context")
+        public Context()
+            : base("name=Context")
         {
         }
     

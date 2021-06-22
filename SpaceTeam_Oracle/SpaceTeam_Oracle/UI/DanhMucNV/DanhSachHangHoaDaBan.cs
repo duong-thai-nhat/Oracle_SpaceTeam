@@ -13,7 +13,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class DanhSachHangHoaDaBan : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        Context db = new Context();
         public DanhSachHangHoaDaBan()
         {
             InitializeComponent();

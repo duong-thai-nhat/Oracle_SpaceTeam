@@ -7,27 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SpaceTeam_Oracle.UI
+namespace SpaceTeam_Oracle
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class KHACHHANG
+    public partial class NHANVIEN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KHACHHANG()
+        public NHANVIEN()
         {
             this.HOADONs = new HashSet<HOADON>();
         }
     
-        public int MAKH { get; set; }
+        public decimal MANV { get; set; }
         public string HOTEN { get; set; }
-        public string DIACHI { get; set; }
-        public string DIENTHOAI { get; set; }
-        public string EMAIL { get; set; }
         public bool GIOITINH { get; set; }
         public Nullable<System.DateTime> NGAYSINH { get; set; }
+        public string SDT { get; set; }
+        public string DIACHI { get; set; }
+        public string TENDN { get; set; }
+        public byte[] MATKHAU { get; set; }
+        public decimal MACHINHANH { get; set; }
+        public string MACHUCVU { get; set; }
     
+        public virtual CHINHANH CHINHANH { get; set; }
+        public virtual CHUCVU CHUCVU { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
     }

@@ -10,7 +10,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhanVien : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        Context db = new Context();
         public QLNhanVien()
         {
             InitializeComponent();
@@ -107,7 +107,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Update Nhân Viên
         public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            Context db = new Context();
             NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -125,7 +125,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Delete Bill
         public void Delete(int maNV)
         {
-            SpaceTeam_Context db = new SpaceTeam_Context();
+            Context db = new Context();
             var nhanVien = db.NHANVIENs.Where(nv => nv.MANV == maNV).SingleOrDefault();
             //db.Entry(nhanVien).State = System.Data.Entity.EntityState.Deleted;
             db.NHANVIENs.Remove(nhanVien);

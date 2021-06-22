@@ -13,7 +13,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class QLChiNhanh : Form
     {
-        SpaceTeam_Context db = new SpaceTeam_Context();
+        Context db = new Context();
         public QLChiNhanh()
         {
             InitializeComponent();

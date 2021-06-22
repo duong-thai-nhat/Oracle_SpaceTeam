@@ -38,7 +38,7 @@
           <Property Name="MAHH" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="TENHH" Type="nvarchar2" MaxLength="60" Nullable="false" />
           <Property Name="MALOAI" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="SOLUONG" Type="number" Precision="38" Scale="0" />
+          <Property Name="SOLUONG" Type="number" Precision="10" Scale="0" />
           <Property Name="DONGIA" Type="float" Precision="126" Scale="0" />
           <Property Name="GIAMGIA" Type="float" Precision="126" Scale="0" />
           <Property Name="MOTA" Type="nvarchar2" MaxLength="1000" />
@@ -302,7 +302,7 @@
           <Property Name="MAHH" Type="Int32" Nullable="false" />
           <Property Name="TENHH" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MALOAI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="SOLUONG" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SOLUONG" Type="Int32" />
           <Property Name="DONGIA" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="GIAMGIA" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="MOTA" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
@@ -489,7 +489,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SpaceTeam_Context" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Context" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHINHANHs" EntityType="Self.CHINHANH" />
           <EntitySet Name="CHITIETHDs" EntityType="Self.CHITIETHD" />
           <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />
@@ -541,7 +541,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SpaceTeam_Context">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Context">
           <EntitySetMapping Name="CHINHANHs">
             <EntityTypeMapping TypeName="Model.CHINHANH">
               <MappingFragment StoreEntitySet="CHINHANH">
