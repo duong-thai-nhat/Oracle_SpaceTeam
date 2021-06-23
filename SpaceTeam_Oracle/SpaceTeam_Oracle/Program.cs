@@ -1,8 +1,4 @@
-﻿using GUI.SpaceTeam;
-using SpaceTeam_Oracle;
-using SpaceTeam_Oracle.SpaceTeam;
-using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
-using SpaceTeam_Oracle.UI;
+﻿using SpaceTeam_Oracle.UI;
 using System;
 using System.Windows.Forms;
 
@@ -18,7 +14,7 @@ namespace SpaceTeam_Oracle
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TaoDonHang());
+            Application.Run(new DanhMucAdmin("nqcuong20"));
         }
     }
 }

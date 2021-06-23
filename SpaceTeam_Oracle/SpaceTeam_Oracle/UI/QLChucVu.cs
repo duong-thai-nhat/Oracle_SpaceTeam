@@ -1,19 +1,13 @@
-﻿using SpaceTeam_Oracle.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SpaceTeam_Oracle
 {
     public partial class QLChucVu : Form
     {
-        Context db = new Context();
+        ContextCUONG db = new ContextCUONG();
         public QLChucVu()
         {
             InitializeComponent();
@@ -23,20 +17,42 @@ namespace SpaceTeam_Oracle
         {
             GetDataGridView();
         }
-        #region Hàm Insert CV
-        public void InsertCV(string maCV, string tenCV)
+        #region Hàm Get IdCV
+        int GetIdCV()
         {
-            CHUCVU add = new CHUCVU();
-            add.MACHUCVU = maCV;
-            add.TENCHUCVU = tenCV;
-            db.CHUCVUs.Add(add);
-            db.SaveChanges();
+            int dem = 1;
+
+            while (true)
+            {
+                var c = db.CHUCVUs.Where(w => w.MACHUCVU == dem).SingleOrDefault();
+                if (c == null)
+                {
+                    return dem;
+                }
+                dem++;
+            }
+        }
+        #endregion
+        #region Hàm Insert CV
+        public string InsertCV(int maCV, string tenCV)
+        {
+            int dem = db.CHUCVUs.Count(w => w.TENCHUCVU == tenCV);
+            if (dem == 0)
+            {
+                CHUCVU add = new CHUCVU();
+                add.MACHUCVU = maCV;
+                add.TENCHUCVU = tenCV;
+                db.CHUCVUs.Add(add);
+                db.SaveChanges();
+                return "1";
+            }
+
+            return "2";
         }
         #endregion
         #region Hàm Update CV
-        public void UpdateCV(string maCV, string tenCV)
+        public void UpdateCV(int maCV, string tenCV)
         {
-            Context db = new Context();
             CHUCVU update = db.CHUCVUs.SingleOrDefault(cv => cv.MACHUCVU == maCV);
             update.MACHUCVU = maCV;
             update.TENCHUCVU = tenCV;
@@ -44,9 +60,9 @@ namespace SpaceTeam_Oracle
         }
         #endregion
         #region Hàm Delete CV
-        public void DeleteCV(string maCV)
+        public void DeleteCV(int maCV)
         {
-            var chucVu = db.CHUCVUs.Where(cv => cv.MACHUCVU== maCV).SingleOrDefault();
+            var chucVu = db.CHUCVUs.Where(cv => cv.MACHUCVU== Convert.ToDecimal(maCV)).SingleOrDefault();
             db.CHUCVUs.Remove(chucVu);
             db.SaveChanges();
         }
@@ -74,51 +90,49 @@ namespace SpaceTeam_Oracle
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string maCV = txtMaCV.Text;
+            int maCV = GetIdCV();
             string tenCV = txtTenCV.Text;
-
-            try
+            string temp = InsertCV(maCV, tenCV);
+            if (temp == "1")
             {
-                InsertCV(maCV, tenCV);
-
-                MessageBox.Show("Thêm Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm Chức Vụ Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Thêm Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(" Chức Vụ Đã Tồn Tại ", "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string maCV = txtMaCV.Text;
+            int maCV = int.Parse(txtMaCV.Text);
             try
             {
                 DeleteCV(maCV);
-                MessageBox.Show("Xóa Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xóa Chức Vụ Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Xóa Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Xóa Chức vụ Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            string maCV = txtMaCV.Text;
+            int maCV = int.Parse(txtMaCV.Text);
             string tenCV = txtTenCV.Text;
 
             try
             {
                 UpdateCV(maCV, tenCV);
-                MessageBox.Show("Sửa Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Sửa Chức vụ Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sửa Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sửa Chức vụ Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

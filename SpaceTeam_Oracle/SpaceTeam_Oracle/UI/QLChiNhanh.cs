@@ -1,19 +1,14 @@
-﻿using SpaceTeam_Oracle.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SpaceTeam_Oracle
 {
     public partial class QLChiNhanh : Form
     {
-        Context db = new Context();
+        private ContextCUONG db = new ContextCUONG();
+
         public QLChiNhanh()
         {
             InitializeComponent();
@@ -23,17 +18,30 @@ namespace SpaceTeam_Oracle
         {
             GetDataGridView();
         }
+
         #region Hàm Insert CN
-        public void InsertCN(int maCN, string tenCN)
+
+        public string InsertCN(int maCN, string tenCN)
         {
-            CHINHANH add = new CHINHANH();
-            add.MACHINHANH = maCN;
-            add.TENCHINHANH = tenCN;
-            db.CHINHANHs.Add(add);
-            db.SaveChanges();
+            int dem = db.CHINHANHs.Count(w => w.TENCHINHANH == tenCN);
+            if (dem == 0)
+            {
+                CHINHANH add = new CHINHANH();
+                add.MACHINHANH = maCN;
+                add.TENCHINHANH = tenCN;
+
+                db.CHINHANHs.Add(add);
+                db.SaveChanges();
+                return "1";
+            }
+
+            return "2";
         }
-        #endregion
+
+        #endregion Hàm Insert CN
+
         #region Hàm Update CN
+
         public void UpdateCN(int maCN, string tenCN)
         {
             CHINHANH update = db.CHINHANHs.SingleOrDefault(cn => cn.MACHINHANH == maCN);
@@ -41,18 +49,23 @@ namespace SpaceTeam_Oracle
             update.TENCHINHANH = tenCN;
             db.SaveChanges();
         }
-        #endregion
+
+        #endregion Hàm Update CN
+
         #region Hàm Delete CN
+
         public void DeleteCN(int maCN)
         {
             var chiNhanh = db.CHINHANHs.Where(cn => cn.MACHINHANH == maCN).SingleOrDefault();
             db.CHINHANHs.Remove(chiNhanh);
             db.SaveChanges();
         }
-        #endregion
+
+        #endregion Hàm Delete CN
 
         #region Hàm Get Id CN
-        int GetIdCN()
+
+        private int GetIdCN()
         {
             int dem = 1;
             while (true)
@@ -65,9 +78,11 @@ namespace SpaceTeam_Oracle
                 dem++;
             }
         }
-        #endregion
+
+        #endregion Hàm Get Id CN
 
         #region Load DataGridView
+
         public void GetDataGridView()
         {
             var employeeData = from cn in db.CHINHANHs
@@ -84,9 +99,11 @@ namespace SpaceTeam_Oracle
             dataGridViewDSCN.Columns[0].Width = 200;
             dataGridViewDSCN.Columns[1].Width = 600;
         }
-        #endregion
+
+        #endregion Load DataGridView
 
         #region Cell CLick
+
         private void dataGridViewDSCN_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -96,29 +113,31 @@ namespace SpaceTeam_Oracle
                 txtTenCN.Text = row.Cells[1].Value.ToString();
             }
         }
-        #endregion
+
+        #endregion Cell CLick
 
         #region btn Add Chi Nhanh
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int maCN = GetIdCN();
-            string tenCN = txtTenCN.Text;
-
-            try
+            int maNCC = GetIdCN();
+            string tenNCC = txtTenCN.Text;
+            string temp = InsertCN(maNCC, tenNCC);
+            if (temp == "1")
             {
-                InsertCN(maCN,tenCN);
-                txtMaCN.Text = maCN.ToString();
                 MessageBox.Show("Thêm Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Thêm Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tên Chi Nhánh đã tồn tại ", "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion btn Add Chi Nhanh
 
         #region button Xoa
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int maCN = int.Parse(txtMaCN.Text);
@@ -133,9 +152,11 @@ namespace SpaceTeam_Oracle
                 MessageBox.Show("Xóa Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion button Xoa
 
         #region button Sua
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             int maCN = int.Parse(txtMaCN.Text);
@@ -153,18 +174,20 @@ namespace SpaceTeam_Oracle
             }
         }
 
-
-        #endregion
+        #endregion button Sua
 
         #region button Refresh
+
         private void btnRefesh_Click(object sender, EventArgs e)
         {
             txtMaCN.Text = " ";
             txtTenCN.Text = " ";
         }
-        #endregion
+
+        #endregion button Refresh
 
         #region Thoat
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -173,6 +196,7 @@ namespace SpaceTeam_Oracle
                 Close();
             }
         }
-        #endregion
+
+        #endregion Thoat
     }
 }

@@ -13,10 +13,10 @@ namespace SpaceTeam_Oracle
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Context : DbContext
+    public partial class NhomContextContainer : DbContext
     {
-        public Context()
-            : base("name=Context")
+        public NhomContextContainer()
+            : base("name=NhomContextContainer")
         {
         }
     
@@ -25,14 +25,5 @@ namespace SpaceTeam_Oracle
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CHINHANH> CHINHANHs { get; set; }
-        public virtual DbSet<CHITIETHD> CHITIETHDs { get; set; }
-        public virtual DbSet<CHUCVU> CHUCVUs { get; set; }
-        public virtual DbSet<HANGHOA> HANGHOAs { get; set; }
-        public virtual DbSet<HOADON> HOADONs { get; set; }
-        public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
-        public virtual DbSet<LOAI> LOAIs { get; set; }
-        public virtual DbSet<NHACUNGCAP> NHACUNGCAPs { get; set; }
-        public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
     }
 }

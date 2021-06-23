@@ -8,7 +8,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class NhapKho : Form
     {
-        private Context db = new Context();
+        private ContextCUONG db = new ContextCUONG();
 
         public NhapKho()
         {
@@ -78,7 +78,7 @@ namespace SpaceTeam_Oracle
 
         #region Hàm Insert HH
 
-        public void InsertHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, string maNCC)
+        public void InsertHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, int maNCC)
         {
             HANGHOA add = new HANGHOA();
             add.MAHH = GetIdHH();
@@ -99,7 +99,7 @@ namespace SpaceTeam_Oracle
 
         public void UpdateHH1(string tenHH, int soLuong)
         {
-            Context db = new Context();
+            ContextCUONG db = new ContextCUONG();
             HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.TENHH == tenHH);
             update.TENHH = tenHH;
             update.SOLUONG = update.SOLUONG + soLuong;
@@ -110,9 +110,9 @@ namespace SpaceTeam_Oracle
 
         #region Hàm Update HH
 
-        public void UpdateHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, string maNCC)
+        public void UpdateHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, int maNCC)
         {
-            Context db = new Context();
+            ContextCUONG db = new ContextCUONG();
             HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.MAHH == maHH);
             update.MAHH = maHH;
             update.TENHH = tenHH;
@@ -213,7 +213,7 @@ namespace SpaceTeam_Oracle
             int donGia = int.Parse(txtDonGia.Text);
             decimal giamGia = decimal.Parse(txtGiamGia.Text);
             string moTa = txtMoTa.Text;
-            string maNCC = cmbMaNCC.SelectedValue.ToString();
+            int maNCC = int.Parse(cmbMaNCC.SelectedValue.ToString());
 
             try
             {
@@ -270,7 +270,7 @@ namespace SpaceTeam_Oracle
             int donGia = int.Parse(txtDonGia.Text);
             decimal giamGia = decimal.Parse(txtGiamGia.Text);
             string moTa = txtMoTa.Text;
-            string maNCC = cmbMaNCC.SelectedValue.ToString();
+            int maNCC = int.Parse(cmbMaNCC.SelectedValue.ToString());
             try
             {
                 UpdateHH(maHH, tenHH, maLoai, soLuong, donGia, giamGia, moTa, maNCC);

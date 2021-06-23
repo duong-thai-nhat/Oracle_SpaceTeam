@@ -8,7 +8,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class DoanhThu : Form
     {
-        private Context db = new Context();
+        private ContextCUONG db = new ContextCUONG();
 
         public DoanhThu()
         {
@@ -79,11 +79,16 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
                                on h.MANV equals nv.MANV
+                               //join ct in db.CHITIETHDs
+                               //on h.MAHD equals ct.MAHD
+                               //join hh in db.HANGHOAs
+                               //on ct.MAHH equals hh.MAHH
+                               //where h.MAHD == ct.MAHD
                                select new
                                {
                                    h.MAHD,
@@ -95,7 +100,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH,
-                                   h.TONGTHUCTHU
+                                   //TONGTHUCTHU = ct.SOLUONG * hh.DONGIA
                                };
 
             var ListEmployee = employeeData.ToList();
@@ -128,7 +133,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -144,7 +149,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH,
-                                   h.TONGTHUCTHU
+                                   //TONGTHUCTHU
                                };
 
             var ListEmployee = employeeData.ToList();
@@ -177,7 +182,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var TKNamData = from h in db.HOADONs
                             join c in db.CHINHANHs
-                            on h.MACN equals c.MACHINHANH
+                            on h.MACHINHANH equals c.MACHINHANH
                             join k in db.KHACHHANGs
                             on h.MAKH equals k.MAKH
                             join nv in db.NHANVIENs
@@ -193,7 +198,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                 nv.MANV,
                                 TENNV = nv.HOTEN,
                                 c.TENCHINHANH,
-                                h.TONGTHUCTHU
+                                //TONGTHUCTHU
                             };
             var ListTimKiemNam = TKNamData.ToList();
             dataGridViewTheoThang.DataSource = ListTimKiemNam;
@@ -227,7 +232,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -246,7 +251,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH,
-                                   h.TONGTHUCTHU
+                                   //h.TONGTHUCTHU
                                };
             var ListEmployee = employeeData.ToList();
             dataGridViewTheoNgay.DataSource = ListEmployee;
@@ -268,10 +273,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoNgay.Columns[6].Width = 40;
             dataGridViewTheoNgay.Columns[7].Width = 140;
             dataGridViewTheoNgay.Columns[8].Width = 120;
-            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienCN = employt.ToString();
-            var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienNgayBan = employt.ToString();
+            //var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienCN = employt.ToString();
+            //var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienNgayBan = employt.ToString();
         }
 
         #endregion TK cmb Chi Nhanh
@@ -284,7 +289,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -303,7 +308,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH,
-                                   h.TONGTHUCTHU
+                                   //h.TONGTHUCTHU
                                };
 
             var ListEmployee = employeeData.ToList();
@@ -326,10 +331,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewTheoNgay.Columns[6].Width = 40;
             dataGridViewTheoNgay.Columns[7].Width = 140;
             dataGridViewTheoNgay.Columns[8].Width = 120;
-            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienNV = employt.ToString();
-            var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienNgayBan = employt.ToString();
+            //var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienNV = employt.ToString();
+            //var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienNgayBan = employt.ToString();
         }
 
         #endregion TK cmb Nhan Vien
@@ -342,7 +347,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -362,14 +367,14 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH,
-                                   h.TONGTHUCTHU
+                                   //TONGTHUCTHU
                                };
-            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienNV = employt.ToString();
-            var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienNgayBan = employt.ToString();
-            var employt2 = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienCN = employt.ToString();
+            //var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienNV = employt.ToString();
+            //var employt1 = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienNgayBan = employt.ToString();
+            //var employt2 = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienCN = employt.ToString();
             var ListEmployee = employeeData.ToList();
             dataGridViewTheoNgay.DataSource = ListEmployee;
             dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
@@ -401,7 +406,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             DateTime TKNgayBanDenNgay = dateTimeDenNgay.Value;
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -419,7 +424,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH,
-                                   h.TONGTHUCTHU
+                                   //TONGTHUCTHU
                                };
             var ListEmployee = employeeData.ToList();
             dataGridViewTheoNgay.DataSource = ListEmployee;
@@ -451,7 +456,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             DateTime TKNgayBanTheoNgay = dateTimePickerTheoNgay.Value;
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -470,10 +475,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                    nv.MANV,
                                    TENNV = nv.HOTEN,
                                    c.TENCHINHANH,
-                                   h.TONGTHUCTHU
+                                   //TONGTHUCTHU
                                };
-            var employt = employeeData.Sum(h => h.TONGTHUCTHU);
-            tongtienNgayBan = employt.ToString();
+            //var employt = employeeData.Sum(h => h.TONGTHUCTHU);
+            //tongtienNgayBan = employt.ToString();
             var ListEmployee = employeeData.ToList();
             dataGridViewTheoNgay.DataSource = ListEmployee;
             dataGridViewTheoNgay.Columns[0].HeaderText = "Mã hóa đơn";
@@ -566,7 +571,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var TKThangData = from h in db.HOADONs
                               join c in db.CHINHANHs
-                              on h.MACN equals c.MACHINHANH
+                              on h.MACHINHANH equals c.MACHINHANH
                               join k in db.KHACHHANGs
                               on h.MAKH equals k.MAKH
                               join nv in db.NHANVIENs
@@ -584,10 +589,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                   nv.MANV,
                                   TENNV = nv.HOTEN,
                                   c.TENCHINHANH,
-                                  h.TONGTHUCTHU
+                                  //TONGTHUCTHU
                               };
-            var employt = TKThangData.Sum(h => h.TONGTHUCTHU);
-            tongtienTheoThang = employt.ToString();
+            //var employt = TKThangData.Sum(h => h.TONGTHUCTHU);
+            //tongtienTheoThang = employt.ToString();
             var ListTimKiemThang = TKThangData.ToList();
             dataGridViewTheoTuan.DataSource = ListTimKiemThang;
             dataGridViewTheoTuan.Columns[0].HeaderText = "Mã hóa đơn";
@@ -618,7 +623,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var TKNamData = from h in db.HOADONs
                             join c in db.CHINHANHs
-                            on h.MACN equals c.MACHINHANH
+                            on h.MACHINHANH equals c.MACHINHANH
                             join k in db.KHACHHANGs
                             on h.MAKH equals k.MAKH
                             join nv in db.NHANVIENs
@@ -635,10 +640,10 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                 nv.MANV,
                                 TENNV = nv.HOTEN,
                                 c.TENCHINHANH,
-                                h.TONGTHUCTHU
+                                //TONGTHUCTHU
                             };
-            var employt = TKNamData.Sum(h => h.TONGTHUCTHU);
-            tongtienTheoNam = employt.ToString();
+            //var employt = TKNamData.Sum(h => h.TONGTHUCTHU);
+            //tongtienTheoNam = employt.ToString();
             var ListTimKiemNam = TKNamData.ToList();
             dataGridViewTheoThang.DataSource = ListTimKiemNam;
             dataGridViewTheoThang.Columns[0].HeaderText = "Mã hóa đơn";

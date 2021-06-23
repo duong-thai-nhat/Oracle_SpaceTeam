@@ -22,12 +22,12 @@ namespace SpaceTeam_Oracle
     
         public int MAHH { get; set; }
         public string TENHH { get; set; }
-        public decimal MALOAI { get; set; }
+        public int MALOAI { get; set; }
         public Nullable<int> SOLUONG { get; set; }
         public Nullable<decimal> DONGIA { get; set; }
         public Nullable<decimal> GIAMGIA { get; set; }
         public string MOTA { get; set; }
-        public string MANCC { get; set; }
+        public int MANCC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETHD> CHITIETHDs { get; set; }

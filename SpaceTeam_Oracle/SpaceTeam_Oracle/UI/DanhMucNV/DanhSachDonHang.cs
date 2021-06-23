@@ -13,7 +13,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class DanhSachDonHang : Form
     {
-        Context db = new Context();
+        ContextCUONG db = new ContextCUONG();
         public DanhSachDonHang()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -127,7 +127,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -172,7 +172,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -217,7 +217,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var employeeData = from h in db.HOADONs
                                join c in db.CHINHANHs
-                               on h.MACN equals c.MACHINHANH
+                               on h.MACHINHANH equals c.MACHINHANH
                                join k in db.KHACHHANGs
                                on h.MAKH equals k.MAKH
                                join nv in db.NHANVIENs
@@ -266,5 +266,54 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             cmbTenNV.Text = "";
         }
         #endregion
+        #region Load DataGridView CT Hóa Đơn
+        private void GetdataGridView1(int maHD)
+        {
+            var employeeData = (from hd in db.HOADONs
+                                join ct in db.CHITIETHDs
+                                on hd.MAHD equals ct.MAHD
+                                join hh in db.HANGHOAs
+                                on ct.MAHH equals hh.MAHH
+                                where ct.MAHD == maHD
+                                select new
+                                {
+                                    ct.MAHD,
+                                    ct.MAHH,
+                                    hh.TENHH,
+                                    ct.SOLUONG,
+                                    hh.DONGIA,
+                                    hh.GIAMGIA,
+                                    TONGTIEN = hh.DONGIA * ct.SOLUONG
+                                }).OrderBy(i => i.MAHH);
+            var employt = employeeData.Sum(c => c.TONGTIEN);
+            //txtTongTien.Text = employt.ToString();
+            var ListEmployee = employeeData.ToList();
+            dataGridView1.DataSource = ListEmployee;
+            dataGridView1.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridView1.Columns[1].HeaderText = "Mã hàng hóa";
+            dataGridView1.Columns[2].HeaderText = "Tên hàng hóa";
+            dataGridView1.Columns[3].HeaderText = "Số Lượng ";
+            dataGridView1.Columns[4].HeaderText = "Đơn Giá";
+            dataGridView1.Columns[5].HeaderText = "Giảm Giá";
+            dataGridView1.Columns[6].HeaderText = "Thành Tiền";
+            dataGridView1.Columns[0].Width = 60;
+            dataGridView1.Columns[1].Width = 60;
+            dataGridView1.Columns[2].Width = 200;
+            dataGridView1.Columns[3].Width = 40;
+            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[5].Width = 80;
+            dataGridView1.Columns[6].Width = 100;
+        }
+        #endregion
+
+
+        private void dataGridViewDonHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridViewDonHang.Rows[e.RowIndex];
+                GetdataGridView1(int.Parse(row.Cells[0].Value.ToString()));
+            }
+        }
     }
 }

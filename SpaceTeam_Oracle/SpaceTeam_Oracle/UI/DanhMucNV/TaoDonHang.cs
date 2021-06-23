@@ -10,7 +10,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class TaoDonHang : Form
     {
-        Context db = new Context();
+        ContextCUONG db = new ContextCUONG();
 
         public TaoDonHang()
         {
@@ -277,7 +277,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             var employeeData = (from h in db.HOADONs
                                 join c in db.CHINHANHs
-                                on h.MACN equals c.MACHINHANH
+                                on h.MACHINHANH equals c.MACHINHANH
                                 join k in db.KHACHHANGs
                                 on h.MAKH equals k.MAKH
                                 join nv in db.NHANVIENs
@@ -333,9 +333,9 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                                     ct.MAHH,
                                     hh.TENHH,
                                     ct.SOLUONG,
-                                    ct.DONGIA,
+                                    hh.DONGIA,
                                     hh.GIAMGIA,
-                                    TONGTIEN = ct.DONGIA * ct.SOLUONG
+                                    TONGTIEN = hh.DONGIA * ct.SOLUONG
                                 }).OrderBy(i => i.MAHH);
             var employt = employeeData.Sum(c => c.TONGTIEN);
             txtTongTien.Text = employt.ToString();
@@ -362,7 +362,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         public void InsertBill(int maHD, int maCN, int maKH, string hoTen, string diaChi, string SDT, string ghiChu, int maNV, DateTime ngayTao, int tongTien)
         {
             HOADON add = new HOADON();
-            add.MACN = maCN;
+            add.MACHINHANH = maCN;
             add.MAHD = maHD;
             if (radioKhachVangLai.Checked == true)
             {
@@ -378,7 +378,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             add.GHICHU = CheckValidation(ghiChu);
             add.MANV = maNV;
             add.NGAYTAO = ngayTao;
-            add.TONGTIENHANG = tongTien;
+            //add.TONGTIENHANG = tongTien;
             db.HOADONs.Add(add);
             db.SaveChanges();
         }
@@ -400,8 +400,8 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             CHITIETHD add = new CHITIETHD();
             add.MAHD = maHoaDon;
             add.MAHH = maHangHoa;
-            add.DONGIA = donGia;
-            add.GIAMGIA = giamgia;
+            //add.DONGIA = donGia;
+            //add.GIAMGIA = giamgia;
             add.SOLUONG = soLuong;
             db.CHITIETHDs.Add(add);
             db.SaveChanges();
@@ -413,14 +413,14 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             //SpaceTeam_Oracle_03 db = new SpaceTeam_Oracle_03();
             HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
-            update.MACN = maCN;
+            update.MACHINHANH = maCN;
             update.MAKH = maKH;
             update.HOTEN = hoTen;
             update.DIACHI = diaChi;
             update.SDT = SDT;
             update.GHICHU = ghiChu;
             update.MANV = maNV;
-            update.TONGTIENHANG = tongTien;
+            //update.TONGTIENHANG = tongTien;
             db.SaveChanges();
         }
         #endregion
@@ -546,7 +546,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             //SpaceTeam_Oracle_03 db = new SpaceTeam_Oracle_03();
             HOADON update = db.HOADONs.SingleOrDefault(hd => hd.MAHD == maHD);
-            update.TONGTIENHANG = tongTien;
+            //update.TONGTIENHANG = tongTien;
             db.SaveChanges();
         }
         #endregion
@@ -562,7 +562,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             int soLuong;
             var resultObject = db.HANGHOAs.First(hh => hh.MAHH == maHH);
-            soLuong = resultObject.SOLUONG.GetValueOrDefault();
+            soLuong = (int)(resultObject.SOLUONG.GetValueOrDefault());
             return soLuong;
         }
 

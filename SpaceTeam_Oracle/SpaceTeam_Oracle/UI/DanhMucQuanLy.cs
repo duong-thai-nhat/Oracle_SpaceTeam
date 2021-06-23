@@ -14,16 +14,18 @@ namespace SpaceTeam_Oracle.SpaceTeam
 {
     public partial class DanhMucQuanLy : Form
     {
-        public DanhMucQuanLy()
+        private string TenDN { get; set; }
+        public DanhMucQuanLy(string tenDN)
         {
             InitializeComponent();
+            TenDN = tenDN;
         }
 
-        private void DanhMucQuanLy_Load(object sender, EventArgs e)
+        private void btnQLNhanVien_Click(object sender, EventArgs e)
         {
-            //using (DanhMucQuanLy dmQL = new DanhMucQuanLy())
-            //    if (dmQL.ShowDialog() == DialogResult.OK)
-            //        Application.Run(new DanhMucQuanLy());
+            using (QLNhanVien qLNV = new QLNhanVien())
+                if (qLNV.ShowDialog() == DialogResult.OK)
+                    Application.Run(new QLNhanVien());
         }
 
         private void btnDoanhThu_Click(object sender, EventArgs e)
@@ -35,16 +37,16 @@ namespace SpaceTeam_Oracle.SpaceTeam
 
         private void btnTTCaNhan_Click(object sender, EventArgs e)
         {
-            using (ThongTinCaNhan ttCN = new ThongTinCaNhan())
+            using (ThongTinCaNhan ttCN = new ThongTinCaNhan(TenDN))
                 if (ttCN.ShowDialog() == DialogResult.OK)
-                    Application.Run(new ThongTinCaNhan());
+                    Application.Run(new ThongTinCaNhan(TenDN));
         }
 
         private void btnQLKhoHang_Click(object sender, EventArgs e)
         {
             using (NhapKho nK = new NhapKho())
-            if (nK.ShowDialog() == DialogResult.OK)
-            Application.Run(new NhapKho());
+                if (nK.ShowDialog() == DialogResult.OK)
+                    Application.Run(new NhapKho());
         }
 
         private void btnDSHHDaBan_Click(object sender, EventArgs e)
@@ -54,23 +56,32 @@ namespace SpaceTeam_Oracle.SpaceTeam
                     Application.Run(new DanhSachHangHoaDaBan());
         }
 
-        private void btnQLNhanVien_Click(object sender, EventArgs e)
-        {
-            using (QLNhanVien qLNV = new QLNhanVien())
-                if (qLNV.ShowDialog() == DialogResult.OK)
-                    Application.Run(new QLNhanVien());
-        }
-
         private void btnQLDSDonHang_Click(object sender, EventArgs e)
         {
-            using (DanhSachDonHang dsDH= new DanhSachDonHang())
+            using (DanhSachDonHang dsDH = new DanhSachDonHang())
                 if (dsDH.ShowDialog() == DialogResult.OK)
                     Application.Run(new DanhSachDonHang());
         }
 
-        private void btnPhanCong_Click(object sender, EventArgs e)
+        private void btnQLDSChucVu_Click(object sender, EventArgs e)
         {
-            //chưa có
+            using (QLChucVu dsDH = new QLChucVu())
+                if (dsDH.ShowDialog() == DialogResult.OK)
+                    Application.Run(new QLChucVu());
+        }
+
+        private void btnQLDSKhachHang_Click(object sender, EventArgs e)
+        {
+            using (QLKhachHang dsDH = new QLKhachHang())
+                if (dsDH.ShowDialog() == DialogResult.OK)
+                    Application.Run(new QLKhachHang());
+        }
+
+        private void btnQLDSNhaCungCap_Click(object sender, EventArgs e)
+        {
+            using (QLNhaCungCap dsDH = new QLNhaCungCap())
+                if (dsDH.ShowDialog() == DialogResult.OK)
+                    Application.Run(new QLNhaCungCap());
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

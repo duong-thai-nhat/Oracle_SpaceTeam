@@ -20,7 +20,7 @@ namespace SpaceTeam_Oracle
             this.HANGHOAs = new HashSet<HANGHOA>();
         }
     
-        public string MANCC { get; set; }
+        public int MANCC { get; set; }
         public string TENCONGTY { get; set; }
         public string EMAIL { get; set; }
         public string DIENTHOAI { get; set; }

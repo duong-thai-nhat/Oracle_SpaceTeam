@@ -15,7 +15,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class DangNhap : Form
     {
-        Context db = new Context();
+        ContextCUONG db = new ContextCUONG();
         public DangNhap()
         {
             InitializeComponent();
@@ -44,7 +44,7 @@ namespace SpaceTeam_Oracle.UI
         #region button DangNhap
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            Context db = new Context();
+            ContextCUONG db = new ContextCUONG();
             if (txtDangNhap.Text != string.Empty && txtMatKhau.Text != string.Empty)
             {
                 var user = db.NHANVIENs.FirstOrDefault(nv => nv.TENDN.Equals(txtDangNhap.Text));
@@ -52,29 +52,45 @@ namespace SpaceTeam_Oracle.UI
                 {
                     string password = txtMatKhau.Text.Trim();
                     byte[] matKhauHash = GetHashSHA1(password);
-                    if (user.MATKHAU.ToString() == matKhauHash.ToString())
+                    if (Encoding.Default.GetString(user.MATKHAU) == Encoding.Default.GetString(matKhauHash))
                     {
-                        if (user.MACHUCVU == "CV01") 
+                        MessageBox.Show("Đăng nhập thành công!", "Have a great day! :)", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (user.MACHUCVU == Convert.ToDecimal(1))
                         {
-                            MessageBox.Show(" Mật khẩu đúng ", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            using (DanhMucAdmin Admin = new DanhMucAdmin())
-                            if (Admin.ShowDialog() == DialogResult.OK)
-                            Application.Run(new DanhMucAdmin());
-                            
+                            using (DanhMucAdmin dmAdmin = new DanhMucAdmin(txtDangNhap.Text))
+                                if (dmAdmin.ShowDialog() == DialogResult.OK)
+                                {
+                                    this.Hide();
+                                    Application.Run(new DanhMucAdmin(txtDangNhap.Text));
+                                    this.Show();
+                                }
+                            return;
                         }
-                        if (user.MACHUCVU == "CV02")
+                        if (user.MACHUCVU == Convert.ToDecimal(2))
                         {
-                            MessageBox.Show(" Mật khẩu đúng ", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            using (DanhMucNV nV = new DanhMucNV())
-                                if (nV.ShowDialog() == DialogResult.OK)
-                                    Application.Run(new DanhMucNV());
+                            using (DanhMucNV dmNV = new DanhMucNV(txtDangNhap.Text))
+                                if (dmNV.ShowDialog() == DialogResult.OK)
+                                {
+                                    this.Hide();
+                                    Application.Run(new DanhMucNV(txtDangNhap.Text));
+                                    this.Show();
+                                }
+                            return;
+                            //MessageBox.Show(" Mật khẩu đúng ", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //using (DanhMucNV nV = new DanhMucNV())
+                            //    if (nV.ShowDialog() == DialogResult.OK)
+                            //        Application.Run(new DanhMucNV());
                         }
-                        if (user.MACHUCVU == "CV20")
+                        if (user.MACHUCVU == Convert.ToDecimal(20))
                         {
-                            MessageBox.Show(" Mật khẩu đúng ", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            using (DanhMucQuanLy qL = new DanhMucQuanLy())
-                                if (qL.ShowDialog() == DialogResult.OK)
-                                    Application.Run(new DanhMucQuanLy());
+                            using (DanhMucQuanLy dmQL = new DanhMucQuanLy(txtDangNhap.Text))
+                                if (dmQL.ShowDialog() == DialogResult.OK)
+                                {
+                                    this.Hide();
+                                    Application.Run(new DanhMucQuanLy(txtDangNhap.Text));
+                                    this.Show();
+                                }
+                            return;
                         }
 
                     }
@@ -92,62 +108,6 @@ namespace SpaceTeam_Oracle.UI
             {
                 MessageBox.Show(" Lỗi kết nối ", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            //if (string.IsNullOrEmpty(txtDangNhap.Text))
-            //{
-            //    MessageBox.Show("Please enter your username.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    txtDangNhap.Focus();
-            //    return;
-            //}
-            //try
-            //{
-            //    using (SpaceTeam_Oracle_01 test = new SpaceTeam_Oracle_01())
-            //    {
-            //        string password = txtMatKhau.Text.Trim();
-            //        byte[] matKhauHash = GetHashSHA1(password);
-            //        //using linq to query data
-            //        var query = from o in test.NHANVIENs
-            //                    where o.TENDN == txtDangNhap.Text && o.MANV.Equals(txtMatKhau.Text)
-            //                    select o;
-            //        //check if user exists
-            //        if (query != null)
-            //        {
-            //            MessageBox.Show("You have been successfully logged in.", "Message", MessageBoxButtons.OK,MessageBoxIcon.Information);
-            //            //if ((from o in test.NHANVIENs
-            //            //    where o.TENDN == txtDangNhap.Text && o.MANV.Equals(txtMatKhau.Text) && o.MACHUCVU == "CV01"
-            //            //    select o) != null)
-            //            //{
-            //            //    using (DanhMucAdmin Admin = new DanhMucAdmin())
-            //            //        if (Admin.ShowDialog() == DialogResult.OK)
-            //            //            Application.Run(new DanhMucAdmin());
-            //            //}
-            //            //if ((from o in test.NHANVIENs
-            //            //      where o.TENDN == txtDangNhap.Text && o.MANV.Equals(txtMatKhau.Text) && o.MACHUCVU == "CV20"
-            //            //      select o) != null)
-            //            //{
-            //            //    using (DanhMucNV nV = new DanhMucNV())
-            //            //        if (nV.ShowDialog() == DialogResult.OK)
-            //            //            Application.Run(new DanhMucNV());
-            //            //}
-            //            //if ((from o in test.NHANVIENs
-            //            //     where o.TENDN == txtDangNhap.Text && o.MANV.Equals(txtMatKhau.Text) && o.MACHUCVU == "CV02"
-            //            //     select o) != null)
-            //            //{
-            //            //    using (DanhMucQuanLy qL = new DanhMucQuanLy())
-            //            //        if (qL.ShowDialog() == DialogResult.OK)
-            //            //            Application.Run(new DanhMucQuanLy());
-            //            //}
-            //            //Add your code process login here
-            //        }
-            //else
-            //        {
-            //            MessageBox.Show("Your username or password is incorrect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
         #endregion
         #region Thoat
@@ -161,16 +121,6 @@ namespace SpaceTeam_Oracle.UI
         }
         #endregion
 
-        private void txtDangNhap_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtMatKhau_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtDangNhap_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)//Enter key
@@ -181,6 +131,11 @@ namespace SpaceTeam_Oracle.UI
         {
             if (e.KeyChar == (char)13)
                 btnDangNhap.PerformClick();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

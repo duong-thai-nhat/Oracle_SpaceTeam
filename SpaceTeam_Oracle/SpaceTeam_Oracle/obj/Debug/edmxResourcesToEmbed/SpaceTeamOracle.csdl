@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Context" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="CHINHANH">
     <Key>
       <PropertyRef Name="MACHINHANH" />
@@ -15,7 +15,7 @@
       <PropertyRef Name="MAHH" />
     </Key>
     <Property Name="MAHD" Type="Int32" Nullable="false" />
-    <Property Name="MAHH" Type="Int32" Nullable="false" />
+    <Property Name="MAHH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="DONGIA" Type="Decimal" Precision="10" Scale="1" />
     <Property Name="GIAMGIA" Type="Decimal" Precision="10" Scale="1" />
     <Property Name="SOLUONG" Type="Int32" />
@@ -27,7 +27,7 @@
     <Key>
       <PropertyRef Name="MACHUCVU" />
     </Key>
-    <Property Name="MACHUCVU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MACHUCVU" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="TENCHUCVU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="NHANVIENs" Relationship="Self.FK_NV_CV" FromRole="CHUCVU" ToRole="NHANVIEN" />
   </EntityType>
@@ -35,14 +35,14 @@
     <Key>
       <PropertyRef Name="MAHH" />
     </Key>
-    <Property Name="MAHH" Type="Int32" Nullable="false" />
+    <Property Name="MAHH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="TENHH" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="MALOAI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="SOLUONG" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="DONGIA" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="GIAMGIA" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="MOTA" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="MANCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MANCC" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <NavigationProperty Name="CHITIETHDs" Relationship="Self.FK_CTHD_HH" FromRole="HANGHOA" ToRole="CHITIETHD" />
     <NavigationProperty Name="LOAI" Relationship="Self.FK_HH_LOAI" FromRole="HANGHOA" ToRole="LOAI" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_HH_NCC" FromRole="HANGHOA" ToRole="NHACUNGCAP" />
@@ -71,12 +71,12 @@
     <Key>
       <PropertyRef Name="MAKH" />
     </Key>
-    <Property Name="MAKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MAKH" Type="Int32" Nullable="false" />
     <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DIACHI" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="DIENTHOAI" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
     <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="GIOITINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GIOITINH" Type="Boolean" Nullable="false" />
     <Property Name="NGAYSINH" Type="DateTime" />
     <NavigationProperty Name="HOADONs" Relationship="Self.FK_HD_KH" FromRole="KHACHHANG" ToRole="HOADON" />
   </EntityType>
@@ -92,7 +92,7 @@
     <Key>
       <PropertyRef Name="MANCC" />
     </Key>
-    <Property Name="MANCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MANCC" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="TENCONGTY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DIENTHOAI" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
@@ -111,8 +111,10 @@
     <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="TENDN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MATKHAU" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+    <Property Name="LUONG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="MACHINHANH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="MACHUCVU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MACHUCVU" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <NavigationProperty Name="CHINHANH" Relationship="Self.FK_NV_CN" FromRole="NHANVIEN" ToRole="CHINHANH" />
     <NavigationProperty Name="CHUCVU" Relationship="Self.FK_NV_CV" FromRole="NHANVIEN" ToRole="CHUCVU" />
     <NavigationProperty Name="HOADONs" Relationship="Self.FK_HD_NV" FromRole="NHANVIEN" ToRole="HOADON" />
@@ -225,7 +227,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SpaceTeamOracle1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="spaceTeamoracle" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CHINHANHs" EntityType="Self.CHINHANH" />
     <EntitySet Name="CHITIETHDs" EntityType="Self.CHITIETHD" />
     <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />

@@ -21,8 +21,8 @@ namespace SpaceTeam_Oracle
         }
     
         public int MAHD { get; set; }
-        public decimal MANV { get; set; }
-        public decimal MACN { get; set; }
+        public int MANV { get; set; }
+        public int MACHINHANH { get; set; }
         public Nullable<int> MAKH { get; set; }
         public string HOTEN { get; set; }
         public string DIACHI { get; set; }
