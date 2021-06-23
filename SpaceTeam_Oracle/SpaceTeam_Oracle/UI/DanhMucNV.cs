@@ -1,4 +1,5 @@
 ﻿using SpaceTeam_Oracle.SpaceTeam.DanhMucNV;
+using SpaceTeam_Oracle.UI;
 using System;
 using System.Windows.Forms;
 
@@ -6,9 +7,16 @@ namespace GUI.SpaceTeam
 {
     public partial class DanhMucNV : Form
     {
-        public DanhMucNV()
+        private string TenDN { get; set; }
+        public DanhMucNV(string tenDN)
         {
             InitializeComponent();
+            TenDN = tenDN;
+        }
+
+        private void DanhMucNV_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnTaoDonHang_Click(object sender, EventArgs e)
@@ -27,9 +35,9 @@ namespace GUI.SpaceTeam
 
         private void btnTTCaNhan_Click(object sender, EventArgs e)
         {
-            using (ThongTinCaNhan lophoc = new ThongTinCaNhan())
+            using (ThongTinCaNhan lophoc = new ThongTinCaNhan(TenDN))
                 if (lophoc.ShowDialog() == DialogResult.OK)
-                    Application.Run(new ThongTinCaNhan());
+                    Application.Run(new ThongTinCaNhan(TenDN));
         }
 
         private void btnDSDonHang_Click(object sender, EventArgs e)
@@ -46,6 +54,13 @@ namespace GUI.SpaceTeam
                     Application.Run(new DanhSachHangHoaDaBan());
         }
 
+        private void btnQLKhachHang_Click(object sender, EventArgs e)
+        {
+            using (QLKhachHang lophoc = new QLKhachHang())
+                if (lophoc.ShowDialog() == DialogResult.OK)
+                    Application.Run(new QLKhachHang());
+        }
+
         private void btnThoát_Click(object sender, EventArgs e)
         {
             DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -53,11 +68,6 @@ namespace GUI.SpaceTeam
             {
                 Close();
             }
-        }
-
-        private void DanhMucNV_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhaCungCap : Form
     {
-        Context db = new Context();
+        private ContextCUONG db = new ContextCUONG();
+
         public QLNhaCungCap()
         {
             InitializeComponent();
@@ -22,43 +18,79 @@ namespace SpaceTeam_Oracle.UI
         {
             GetDataGridView();
         }
-        #region Hàm Insert NCC
-        public void InsertNCC(string maNCC, string tenNCC)
+
+        #region Hàm Get IdNCC
+
+        private int GetIdNCC()
         {
-            NHACUNGCAP add = new NHACUNGCAP();
-            add.MANCC = maNCC;
-            add.TENCONGTY = tenNCC;
-            db.NHACUNGCAPs.Add(add);
-            db.SaveChanges();
+            int dem = 1;
+
+            while (true)
+            {
+                var c = db.NHACUNGCAPs.Where(w => w.MANCC == dem).SingleOrDefault();
+                if (c == null)
+                {
+                    return dem;
+                }
+                dem++;
+            }
         }
-        #endregion
-        #region Hàm Update NCC
-        public void UpdateNCC(string maNCC, string tenNCC)
+
+        #endregion Hàm Get IdNCC
+
+        #region Hàm Insert NCC
+
+        public string InsertNCC(int maNCC, string tenNCC)
         {
-            Context db = new Context();
-            NHACUNGCAP update = db.NHACUNGCAPs.SingleOrDefault(ncc => ncc.MANCC == maNCC);
+            int dem = db.NHACUNGCAPs.Count(w => w.TENCONGTY == tenNCC);
+            if (dem == 0)
+            {
+                NHACUNGCAP add = new NHACUNGCAP();
+                add.MANCC = maNCC;
+                add.TENCONGTY = tenNCC;
+                db.NHACUNGCAPs.Add(add);
+                db.SaveChanges();
+                return "1";
+            }
+            return "2";
+        }
+
+        #endregion Hàm Insert NCC
+
+        #region Hàm Update NCC
+
+        public void UpdateNCC(int maNCC, string tenNCC)
+        {
+            ContextCUONG db = new ContextCUONG();
+            NHACUNGCAP update = db.NHACUNGCAPs.SingleOrDefault(ncc => ncc.MANCC == Convert.ToDecimal(maNCC));
             update.MANCC = maNCC;
             update.TENCONGTY = tenNCC;
             db.SaveChanges();
         }
-        #endregion
+
+        #endregion Hàm Update NCC
+
         #region Hàm Delete NCC
-        public void DeleteNCC(string maNCC)
+
+        public void DeleteNCC(int maNCC)
         {
             var nhaCungCap = db.NHACUNGCAPs.Where(ncc => ncc.MANCC == maNCC).SingleOrDefault();
             db.NHACUNGCAPs.Remove(nhaCungCap);
             db.SaveChanges();
         }
-        #endregion
+
+        #endregion Hàm Delete NCC
+
         #region Load DataGridView
+
         public void GetDataGridView()
         {
             var NCCdata = from ncc in db.NHACUNGCAPs
-                               select new
-                               {
-                                   ncc.MANCC,
-                                   ncc.TENCONGTY
-                               };
+                          select new
+                          {
+                              ncc.MANCC,
+                              ncc.TENCONGTY
+                          };
 
             var ListEmployee = NCCdata.ToList();
             dataGridViewDSNCC.DataSource = ListEmployee;
@@ -67,8 +99,11 @@ namespace SpaceTeam_Oracle.UI
             dataGridViewDSNCC.Columns[0].Width = 200;
             dataGridViewDSNCC.Columns[1].Width = 600;
         }
-        #endregion
+
+        #endregion Load DataGridView
+
         #region Cell CLick
+
         private void dataGridViewDSCN_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -78,31 +113,34 @@ namespace SpaceTeam_Oracle.UI
                 txtTenNCC.Text = row.Cells[1].Value.ToString();
             }
         }
-        #endregion
+
+        #endregion Cell CLick
+
         #region button Add NCC
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string maNCC = txtMaNCC.Text;
+            int maNCC = GetIdNCC();
             string tenNCC = txtTenNCC.Text;
-
-            try
+            string temp = InsertNCC(maNCC, tenNCC);
+            if (temp == "1")
             {
-                InsertNCC(maNCC, tenNCC);
-
-                MessageBox.Show("Thêm Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm Nhà Cung Cấp Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Thêm Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tên Nhà Cung Cấp đã tồn tại ", "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion button Add NCC
 
         #region button Delete NCC
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string maNCC = txtMaNCC.Text;
+            int maNCC = int.Parse(txtMaNCC.Text);
             try
             {
                 DeleteNCC(maNCC);
@@ -114,13 +152,14 @@ namespace SpaceTeam_Oracle.UI
                 MessageBox.Show("Xóa Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion button Delete NCC
 
         #region button Update NCC
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            string maNCC = txtMaNCC.Text;
+            int maNCC = int.Parse(txtMaNCC.Text);
             string tenNCC = txtTenNCC.Text;
 
             try
@@ -135,18 +174,22 @@ namespace SpaceTeam_Oracle.UI
                 MessageBox.Show("Sửa Chi Nhánh Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        #endregion button Update NCC
 
         #region button Update NCC
+
         private void btnRefesh_Click(object sender, EventArgs e)
         {
             txtMaNCC.Text = " ";
             txtTenNCC.Text = " ";
             GetDataGridView();
         }
-        #endregion
+
+        #endregion button Update NCC
 
         #region button Exit NCC
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -155,7 +198,7 @@ namespace SpaceTeam_Oracle.UI
                 Close();
             }
         }
-        #endregion
 
+        #endregion button Exit NCC
     }
 }

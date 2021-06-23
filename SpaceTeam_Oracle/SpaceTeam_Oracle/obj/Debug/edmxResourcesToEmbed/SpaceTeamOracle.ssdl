@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Context.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="CHINHANH">
     <Key>
       <PropertyRef Name="MACHINHANH" />
@@ -13,7 +13,7 @@
       <PropertyRef Name="MAHH" />
     </Key>
     <Property Name="MAHD" Type="number" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="MAHH" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="MAHH" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="DONGIA" Type="number" Precision="10" Scale="1" />
     <Property Name="GIAMGIA" Type="number" Precision="10" Scale="1" />
     <Property Name="SOLUONG" Type="number" Precision="10" Scale="0" />
@@ -23,21 +23,21 @@
     <Key>
       <PropertyRef Name="MACHUCVU" />
     </Key>
-    <Property Name="MACHUCVU" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MACHUCVU" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="TENCHUCVU" Type="nvarchar2" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="HANGHOA">
     <Key>
       <PropertyRef Name="MAHH" />
     </Key>
-    <Property Name="MAHH" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="MAHH" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="TENHH" Type="nvarchar2" MaxLength="60" Nullable="false" />
     <Property Name="MALOAI" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="SOLUONG" Type="number" Precision="38" Scale="0" />
     <Property Name="DONGIA" Type="float" Precision="126" Scale="0" />
     <Property Name="GIAMGIA" Type="float" Precision="126" Scale="0" />
     <Property Name="MOTA" Type="nvarchar2" MaxLength="1000" />
-    <Property Name="MANCC" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MANCC" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="HOADON">
     <Key>
@@ -59,12 +59,12 @@
     <Key>
       <PropertyRef Name="MAKH" />
     </Key>
-    <Property Name="MAKH" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MAKH" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="HOTEN" Type="nvarchar2" MaxLength="50" />
     <Property Name="DIACHI" Type="nvarchar2" MaxLength="60" />
     <Property Name="DIENTHOAI" Type="varchar2" MaxLength="24" />
     <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
-    <Property Name="GIOITINH" Type="nvarchar2" MaxLength="50" />
+    <Property Name="GIOITINH" Type="number" Precision="1" Scale="0" Nullable="false" />
     <Property Name="NGAYSINH" Type="date" />
   </EntityType>
   <EntityType Name="LOAI">
@@ -78,7 +78,7 @@
     <Key>
       <PropertyRef Name="MANCC" />
     </Key>
-    <Property Name="MANCC" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MANCC" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="TENCONGTY" Type="nvarchar2" MaxLength="50" />
     <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
     <Property Name="DIENTHOAI" Type="varchar2" MaxLength="24" />
@@ -96,8 +96,10 @@
     <Property Name="DIACHI" Type="nvarchar2" MaxLength="100" />
     <Property Name="TENDN" Type="varchar2" MaxLength="20" Nullable="false" />
     <Property Name="MATKHAU" Type="long raw" />
+    <Property Name="LUONG" Type="clob" />
+    <Property Name="EMAIL" Type="varchar2" MaxLength="100" />
     <Property Name="MACHINHANH" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="MACHUCVU" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MACHUCVU" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <Association Name="FK_CTHD_HD">
     <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
@@ -207,16 +209,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ModelStoreContainer">
-    <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="SPACETEAM_3" store:Type="Tables" />
+  <EntityContainer Name="ContextStoreContainer">
+    <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="SPACETEAMORACLE" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="SPACETEAMORACLE" store:Type="Tables" />
     <AssociationSet Name="FK_CTHD_HD" Association="Self.FK_CTHD_HD">
       <End Role="HOADON" EntitySet="HOADON" />
       <End Role="CHITIETHD" EntitySet="CHITIETHD" />

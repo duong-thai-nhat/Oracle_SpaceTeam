@@ -12,7 +12,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLKhachHang : Form
     {
-        Context db = new Context();
+        ContextCUONG db = new ContextCUONG();
         public QLKhachHang()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Update Khách Hàng
         public void UpdateKH(int maKH, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi,string email)
         {
-            Context db = new Context();
+            ContextCUONG db = new ContextCUONG();
             KHACHHANG update = db.KHACHHANGs.SingleOrDefault(kh => kh.MAKH == maKH);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -71,7 +71,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Delete KH
         public void DeleteKH(int maKH)
         {
-            Context db = new Context();
+            ContextCUONG db = new ContextCUONG();
             var khachHang = db.KHACHHANGs.Where(kh => kh.MAKH == maKH).SingleOrDefault();
 
             db.KHACHHANGs.Remove(khachHang);
@@ -158,12 +158,12 @@ namespace SpaceTeam_Oracle.UI
             {
                 InsertKH(maKH, hoTen, gioiTinh, dateBD, sDT, diaChi, email);
 
-                MessageBox.Show("Thêm Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm Khách Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Thêm Nhân Viên Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Thêm Khách Hàng Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -175,12 +175,12 @@ namespace SpaceTeam_Oracle.UI
             {
                 DeleteKH(maKH);
 
-                MessageBox.Show("Xóa Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xóa Khách Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Xóa Nhân Viên Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Xóa Khách Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -207,12 +207,12 @@ namespace SpaceTeam_Oracle.UI
             {
                 UpdateKH(maKH, hoTen, gioiTinh, dateBD, sDT, diaChi, email);
 
-                MessageBox.Show("Update Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Update Khách Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Update Nhân Viên Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Update Khách Hàng Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

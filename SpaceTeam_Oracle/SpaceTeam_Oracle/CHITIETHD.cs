@@ -19,7 +19,6 @@ namespace SpaceTeam_Oracle
         public Nullable<decimal> DONGIA { get; set; }
         public Nullable<decimal> GIAMGIA { get; set; }
         public Nullable<int> SOLUONG { get; set; }
-        public string KICHCO { get; set; }
     
         public virtual HOADON HOADON { get; set; }
         public virtual HANGHOA HANGHOA { get; set; }

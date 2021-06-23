@@ -20,7 +20,7 @@ namespace SpaceTeam_Oracle
             this.NHANVIENs = new HashSet<NHANVIEN>();
         }
     
-        public string MACHUCVU { get; set; }
+        public int MACHUCVU { get; set; }
         public string TENCHUCVU { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

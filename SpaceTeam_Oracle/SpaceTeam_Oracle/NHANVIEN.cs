@@ -20,7 +20,7 @@ namespace SpaceTeam_Oracle
             this.HOADONs = new HashSet<HOADON>();
         }
     
-        public decimal MANV { get; set; }
+        public int MANV { get; set; }
         public string HOTEN { get; set; }
         public bool GIOITINH { get; set; }
         public Nullable<System.DateTime> NGAYSINH { get; set; }
@@ -28,8 +28,10 @@ namespace SpaceTeam_Oracle
         public string DIACHI { get; set; }
         public string TENDN { get; set; }
         public byte[] MATKHAU { get; set; }
-        public decimal MACHINHANH { get; set; }
-        public string MACHUCVU { get; set; }
+        public string LUONG { get; set; }
+        public string EMAIL { get; set; }
+        public int MACHINHANH { get; set; }
+        public int MACHUCVU { get; set; }
     
         public virtual CHINHANH CHINHANH { get; set; }
         public virtual CHUCVU CHUCVU { get; set; }

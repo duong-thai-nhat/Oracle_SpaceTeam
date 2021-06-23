@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,10 +15,12 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class ThongTinCaNhan : Form
     {
-        Context db = new Context();
-        public ThongTinCaNhan()
+        ContextCUONG db = new ContextCUONG();
+        private string TenDN { get; set; }
+        public ThongTinCaNhan(string tenNV)
         {
             InitializeComponent();
+            TenDN = tenNV;
         }
 
         private void ThongTinCaNhan_Load(object sender, EventArgs e)
@@ -26,7 +29,6 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             LoadComboboxChucVu();
             GetDataGridView();
         }
-
         #region Load Combobox Chi Nhanh
 
         public void LoadComboboxChiNhanh()
@@ -80,7 +82,109 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             }
         }
         #endregion
+        #region Mã Hóa AES 256
+        public string EncryptString(string plainText, byte[] key, byte[] iv)
+        {
+            // Instantiate a new Aes object to perform string symmetric encryption
+            Aes encryptor = Aes.Create();
 
+            encryptor.Mode = CipherMode.CBC;
+            //encryptor.KeySize = 256;
+            //encryptor.BlockSize = 128;
+            //encryptor.Padding = PaddingMode.Zeros;
+
+            // Set key and IV
+            encryptor.Key = key;
+            encryptor.IV = iv;
+
+            // Instantiate a new MemoryStream object to contain the encrypted bytes
+            MemoryStream memoryStream = new MemoryStream();
+
+            // Instantiate a new encryptor from our Aes object
+            ICryptoTransform aesEncryptor = encryptor.CreateEncryptor();
+
+            // Instantiate a new CryptoStream object to process the data and write it to the 
+            // memory stream
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, aesEncryptor, CryptoStreamMode.Write);
+
+            // Convert the plainText string into a byte array
+            byte[] plainBytes = Encoding.ASCII.GetBytes(plainText);
+
+            // Encrypt the input plaintext string
+            cryptoStream.Write(plainBytes, 0, plainBytes.Length);
+
+            // Complete the encryption process
+            cryptoStream.FlushFinalBlock();
+
+            // Convert the encrypted data from a MemoryStream to a byte array
+            byte[] cipherBytes = memoryStream.ToArray();
+
+            // Close both the MemoryStream and the CryptoStream
+            memoryStream.Close();
+            cryptoStream.Close();
+
+            // Convert the encrypted byte array to a base64 encoded string
+            string cipherText = Convert.ToBase64String(cipherBytes, 0, cipherBytes.Length);
+
+            // Return the encrypted data as a string
+            return cipherText;
+        }
+        #endregion
+        #region Giải Mã AES
+        public string DecryptString(string cipherText, byte[] key, byte[] iv)
+        {
+            // Instantiate a new Aes object to perform string symmetric encryption
+            Aes encryptor = Aes.Create();
+
+            encryptor.Mode = CipherMode.CBC;
+            //encryptor.KeySize = 256;
+            //encryptor.BlockSize = 128;
+            //encryptor.Padding = PaddingMode.Zeros;
+
+            // Set key and IV
+            encryptor.Key = key;
+            encryptor.IV = iv;
+
+            // Instantiate a new MemoryStream object to contain the encrypted bytes
+            MemoryStream memoryStream = new MemoryStream();
+
+            // Instantiate a new encryptor from our Aes object
+            ICryptoTransform aesDecryptor = encryptor.CreateDecryptor();
+            // Instantiate a new CryptoStream object to process the data and write it to the 
+            // memory stream
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, aesDecryptor, CryptoStreamMode.Write);
+
+            // Will contain decrypted plaintext
+            string plainText = String.Empty;
+
+            try
+            {
+                // Convert the ciphertext string into a byte array
+                byte[] cipherBytes = Convert.FromBase64String(cipherText);
+
+                // Decrypt the input ciphertext string
+                cryptoStream.Write(cipherBytes, 0, cipherBytes.Length);
+
+                // Complete the decryption process
+                cryptoStream.FlushFinalBlock();
+
+                // Convert the decrypted data from a MemoryStream to a byte array
+                byte[] plainBytes = memoryStream.ToArray();
+
+                // Convert the decrypted byte array to string
+                plainText = Encoding.ASCII.GetString(plainBytes, 0, plainBytes.Length);
+            }
+            finally
+            {
+                // Close both the MemoryStream and the CryptoStream
+                memoryStream.Close();
+                cryptoStream.Close();
+            }
+
+            // Return the decrypted data as a string
+            return plainText;
+        }
+        #endregion
         #region Hàm mã hóa SHA1
         public static byte[] GetHashSHA1(string inputString)
         {
@@ -90,7 +194,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #endregion
 
         #region Hàm Insert NhanVien
-        public void InsertNV(string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
+        public void InsertNV(string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string luong, string tenDN, byte[] matKhau, string Email, int maChiNhanh, int maChucVu)
         {
             NHANVIEN add = new NHANVIEN();
             add.MANV = GetIdNV();
@@ -100,26 +204,29 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             add.SDT = SDT;
             add.DIACHI = diaChi;
             add.TENDN = tenDN;
+            add.LUONG = luong;
             add.MATKHAU = matKhau;
             add.MACHINHANH = maChiNhanh;
-            add.MACHUCVU = maChucVu;
+            add.MACHUCVU =maChucVu;
             db.NHANVIENs.Add(add);
             db.SaveChanges();
         }
         #endregion
 
         #region Hàm Update Nhân Viên
-        public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, int maChiNhanh, string maChucVu)
+        public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string luong, string tenDN, byte[] matKhau, string eMail, int maChiNhanh, int maChucVu)
         {
-            Context db = new Context();
+            ContextCUONG db = new ContextCUONG();
             NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
             update.NGAYSINH = ngaySinh;
             update.SDT = SDT;
+            update.LUONG = luong;
             update.DIACHI = diaChi;
             update.TENDN = tenDN;
             update.MATKHAU = matKhau;
+            update.EMAIL = eMail;
             update.MACHINHANH = maChiNhanh;
             update.MACHUCVU = maChucVu;
             db.SaveChanges();
@@ -129,46 +236,44 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Hàm Delete Bill
         public void Delete(int maNV)
         {
-            Context db = new Context();
+            ContextCUONG db = new ContextCUONG();
             var nhanVien = db.NHANVIENs.Where(nv => nv.MANV == maNV).SingleOrDefault();
 
             db.NHANVIENs.Remove(nhanVien);
             db.SaveChanges();
         }
         #endregion
-
         #region Load DataGridView
         public void GetDataGridView()
         {
-            var employeeData = from nv in db.NHANVIENs
-                               join cn in db.CHINHANHs
-                               on nv.MACHINHANH equals cn.MACHINHANH
-                               join cv in db.CHUCVUs
-                               on nv.MACHUCVU equals cv.MACHUCVU
-                               select new
-                               {
-                                   nv.MANV,
-                                   nv.HOTEN,
-                                   nv.GIOITINH,
-                                   nv.NGAYSINH,
-                                   nv.SDT,
-                                   nv.DIACHI,
-                                   nv.TENDN,
-                                   cn.TENCHINHANH,
-                                   cv.TENCHUCVU,
-                               };
-
+            var employeeData = (from kh in db.KHACHHANGs
+                                join hd in db.HOADONs
+                                on kh.MAKH equals hd.MAKH
+                                join nv in db.NHANVIENs
+                                on hd.MANV equals nv.MANV
+                                where nv.TENDN == TenDN
+                                select new
+                                {
+                                    kh.MAKH,
+                                    kh.HOTEN,
+                                    kh.DIACHI,
+                                    kh.DIENTHOAI,
+                                    kh.EMAIL,
+                                    kh.GIOITINH,
+                                    kh.NGAYSINH,
+                                    tenNV = nv.HOTEN
+                                }).Distinct();
             var ListEmployee = employeeData.ToList();
             dataGridViewDSND.DataSource = ListEmployee;
-            dataGridViewDSND.Columns[0].HeaderText = "Mã nhân viên";
-            dataGridViewDSND.Columns[1].HeaderText = "Họ tên nhân viên";
-            dataGridViewDSND.Columns[2].HeaderText = "Giới Tính";
-            dataGridViewDSND.Columns[3].HeaderText = "Ngày sinh";
-            dataGridViewDSND.Columns[4].HeaderText = "Số điện thoại";
-            dataGridViewDSND.Columns[5].HeaderText = "Địa chỉ";
-            dataGridViewDSND.Columns[6].HeaderText = "Tên đăng nhập";
-            dataGridViewDSND.Columns[7].HeaderText = "Tên chi nhánh";
-            dataGridViewDSND.Columns[8].HeaderText = "Chức vụ";
+            dataGridViewDSND.Columns[0].HeaderText = "Mã Khách Hàng";
+            dataGridViewDSND.Columns[1].HeaderText = "Họ Tên Khách Hàng";
+            dataGridViewDSND.Columns[2].HeaderText = "Địa Chỉ";
+            dataGridViewDSND.Columns[3].HeaderText = "Số Điện Thoại";
+            dataGridViewDSND.Columns[4].HeaderText = "Email";
+            dataGridViewDSND.Columns[5].HeaderText = "Giới Tính";
+            dataGridViewDSND.Columns[6].HeaderText = "Ngày Sinh";
+            dataGridViewDSND.Columns[7].HeaderText = "Họ Tên Nhân Viên";
+            //dataGridViewDSND.Columns[8].HeaderText = "Chức vụ";
             dataGridViewDSND.Columns[0].Width = 100;
             dataGridViewDSND.Columns[1].Width = 130;
             dataGridViewDSND.Columns[2].Width = 80;
@@ -177,37 +282,67 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dataGridViewDSND.Columns[5].Width = 190;
             dataGridViewDSND.Columns[6].Width = 140;
             dataGridViewDSND.Columns[7].Width = 120;
-            dataGridViewDSND.Columns[8].Width = 160;
+            //dataGridViewDSND.Columns[8].Width = 160;
         }
         #endregion
-        #region Cell CLick
-        private void dataGridViewDSCV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void btnLoadDL_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = this.dataGridViewDSND.Rows[e.RowIndex];
-                txtMaNV.Text = row.Cells[0].Value.ToString();
-                txtHoTen.Text = row.Cells[1].Value.ToString();
-                if (row.Cells[2].Value.ToString() == "True")
-                    radioMen.Checked = true;
-                if (row.Cells[2].Value.ToString() == "False")
-                    radioFemale.Checked = true;
-                dtpkBD.Value = Convert.ToDateTime(row.Cells[3].Value);
-                txtSDT.Text = row.Cells[4].Value.ToString();
-                txtDiaChi.Text = row.Cells[5].Value.ToString();
-                txtTenDN.Text = row.Cells[6].Value.ToString();
-                cmbChiNhanh.Text = row.Cells[7].Value.ToString();
-                cmbChucVu.Text = row.Cells[8].Value.ToString();
-            }
+            decimal maNV = db.NHANVIENs.Where(nv => nv.TENDN.Equals(TenDN)).Select(nv => nv.MANV).FirstOrDefault();
+            var nhanVien = db.NHANVIENs.Where(nv => nv.MANV.Equals(maNV));
+            txtMaNV.Text = Convert.ToString(nhanVien.Select(nv => nv.MANV).FirstOrDefault());
+            txtHoTen.Text = nhanVien.Select(nv => nv.HOTEN).FirstOrDefault();
+            bool gioiTinh = nhanVien.Select(nv => nv.GIOITINH).FirstOrDefault();
+            if (gioiTinh == true)
+                radioMen.Checked = true;
+            if (gioiTinh == false)
+                radioFemale.Checked = true;
+            txtEmail.Text = nhanVien.Select(nv => nv.EMAIL).FirstOrDefault();
+            #region Giải Mã Lương
+            string luong = nhanVien.Select(nv => nv.LUONG).FirstOrDefault();
+            string password = "spaceTeam";
+
+            // Create sha256 hash
+            SHA256 mySHA256 = SHA256Managed.Create();
+            byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(password));
+
+            // Create secret IV
+            byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+            txtLuong.Text = this.DecryptString(luong, key, iv);
+
+            #endregion
+            txtMatKhau.Text = Encoding.Default.GetString(nhanVien.Select(nv => nv.MATKHAU).FirstOrDefault());
+            dtpkBD.Value = Convert.ToDateTime(nhanVien.Select(nv => nv.NGAYSINH).SingleOrDefault());
+            txtSDT.Text = nhanVien.Select(nv => nv.SDT).FirstOrDefault();
+            txtDiaChi.Text = nhanVien.Select(nv => nv.DIACHI).FirstOrDefault();
+            txtTenDN.Text = TenDN;
+            int maCN = Convert.ToInt32(nhanVien.Select(nv => nv.MACHINHANH).FirstOrDefault());
+            cmbChiNhanh.Text = db.CHINHANHs.Where(cn => cn.MACHINHANH.Equals(maCN)).Select(cn => cn.TENCHINHANH).FirstOrDefault().ToString();
+            var maCV = nhanVien.Select(nv => nv.MACHUCVU).FirstOrDefault();
+            cmbChucVu.Text = db.CHUCVUs.Where(cv => cv.MACHUCVU.Equals(maCV)).Select(nv => nv.TENCHUCVU).FirstOrDefault().ToString();
+            txtLuong.Enabled = false;
+            txtTenDN.Enabled = false;
+            txtMaNV.Enabled = false;
         }
-        #endregion
-        #region button Add 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        private void btnSua_Click(object sender, EventArgs e)
         {
+            int maNV = int.Parse(txtMaNV.Text);
             DateTime dateBD = dtpkBD.Value;
 
             string matKhau = txtMatKhau.Text.Trim();
-            byte[] matKhauHash = GetHashSHA1(matKhau);
+            byte[] matKhauHash;
+            var user = db.NHANVIENs.FirstOrDefault(nv => nv.TENDN.Equals(TenDN));
+            if (Encoding.Default.GetString(user.MATKHAU) == txtMatKhau.Text)
+            {
+                matKhauHash = user.MATKHAU;
+            }
+            else
+            {
+                matKhauHash = GetHashSHA1(matKhau);
+            }
+            //matKhauHash = GetHashSHA1(matKhau);
             string hoTen = txtHoTen.Text;
 
             bool gioiTinh = true;
@@ -219,73 +354,31 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             {
                 gioiTinh = false;
             }
+            string eMail = txtEmail.Text;
+            #region Mã Hóa Lương
+            string password = "spaceTeam";
+
+            // Create sha256 hash
+            SHA256 mySHA256 = SHA256Managed.Create();
+            byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(password));
+
+            // Create secret IV
+            byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+            string luong = this.EncryptString(txtLuong.Text, key, iv);
+            #endregion
             string sDT = txtSDT.Text;
             string diaChi = txtDiaChi.Text;
             string tenDN = txtTenDN.Text;
             int chiNhanh = int.Parse(cmbChiNhanh.SelectedValue.ToString());
-            string chucVu = cmbChucVu.SelectedValue.ToString();
+            int chucVu = int.Parse(cmbChucVu.SelectedValue.ToString());
 
             try
             {
-                InsertNV(hoTen, gioiTinh, dateBD, sDT, diaChi, tenDN, matKhauHash, chiNhanh, chucVu);
-
-                MessageBox.Show("Thêm Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Thêm Nhân Viên Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        #endregion
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            int maNV = int.Parse(txtMaNV.Text);
-            try
-            {
-                Delete(maNV);
-
-                MessageBox.Show("Xóa Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Xóa Nhân Viên Không Thành Công " + ex.Message, "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            int maNV = int.Parse(txtMaNV.Text);
-            DateTime dateBD = dtpkBD.Value;
-
-            string matKhau = txtMatKhau.Text.Trim();
-            byte[] matKhauHash = GetHashSHA1(matKhau);
-            string hoTen = txtHoTen.Text;
-
-            bool gioiTinh = true;
-            if (radioMen.Checked == true)
-            {
-                gioiTinh = true;
-            }
-            if (radioFemale.Checked == true)
-            {
-                gioiTinh = false;
-            }
-
-            string sDT = txtSDT.Text;
-            string diaChi = txtDiaChi.Text;
-            string tenDN = txtTenDN.Text;
-            int chiNhanh = int.Parse(cmbChiNhanh.SelectedValue.ToString());
-            string chucVu = cmbChucVu.SelectedValue.ToString();
-
-            try
-            {
-                UpdateNhanVien(maNV, hoTen, gioiTinh, dateBD, sDT, diaChi, tenDN, matKhauHash, chiNhanh, chucVu);
+                UpdateNhanVien(maNV, hoTen, gioiTinh, dateBD, sDT, diaChi, luong, tenDN, matKhauHash, eMail, chiNhanh, chucVu);
 
                 MessageBox.Show("Update Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                //GetDataGridView();
             }
             catch (Exception ex)
             {
@@ -293,17 +386,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             }
         }
 
-        private void btnRefesh_Click(object sender, EventArgs e)
-        {
-            txtMaNV.Text = "";
-            txtMatKhau.Text = " ";
-            txtHoTen.Text = " ";
-            txtSDT.Text = " ";
-            txtDiaChi.Text = " ";
-            txtTenDN.Text = " ";
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnThoat_Click(object sender, EventArgs e)
         {
             DialogResult mess = MessageBox.Show("Bạn có muốn thoát hay không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (mess == DialogResult.OK)

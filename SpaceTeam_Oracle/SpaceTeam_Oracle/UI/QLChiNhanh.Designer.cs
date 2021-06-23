@@ -31,7 +31,6 @@
             this.groupBoxButton = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnRefesh = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -53,24 +52,23 @@
             // 
             this.groupBoxButton.Controls.Add(this.btnExit);
             this.groupBoxButton.Controls.Add(this.btnRefesh);
-            this.groupBoxButton.Controls.Add(this.btnSave);
             this.groupBoxButton.Controls.Add(this.btnUpdate);
             this.groupBoxButton.Controls.Add(this.btnDelete);
             this.groupBoxButton.Controls.Add(this.btnAdd);
-            this.groupBoxButton.Location = new System.Drawing.Point(70, 539);
-            this.groupBoxButton.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxButton.Location = new System.Drawing.Point(93, 663);
+            this.groupBoxButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxButton.Name = "groupBoxButton";
-            this.groupBoxButton.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxButton.Size = new System.Drawing.Size(648, 62);
+            this.groupBoxButton.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxButton.Size = new System.Drawing.Size(864, 76);
             this.groupBoxButton.TabIndex = 35;
             this.groupBoxButton.TabStop = false;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(539, 15);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExit.Location = new System.Drawing.Point(694, 20);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(81, 29);
+            this.btnExit.Size = new System.Drawing.Size(108, 36);
             this.btnExit.TabIndex = 0;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -78,31 +76,21 @@
             // 
             // btnRefesh
             // 
-            this.btnRefesh.Location = new System.Drawing.Point(430, 15);
-            this.btnRefesh.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRefesh.Location = new System.Drawing.Point(533, 20);
+            this.btnRefesh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefesh.Name = "btnRefesh";
-            this.btnRefesh.Size = new System.Drawing.Size(82, 29);
+            this.btnRefesh.Size = new System.Drawing.Size(109, 36);
             this.btnRefesh.TabIndex = 0;
             this.btnRefesh.Text = "Refesh";
             this.btnRefesh.UseVisualStyleBackColor = true;
             this.btnRefesh.Click += new System.EventHandler(this.btnRefesh_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(328, 16);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(79, 28);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Ghi/Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(217, 17);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpdate.Location = new System.Drawing.Point(357, 20);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(83, 28);
+            this.btnUpdate.Size = new System.Drawing.Size(111, 34);
             this.btnUpdate.TabIndex = 0;
             this.btnUpdate.Text = "Sửa";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -110,10 +98,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(107, 16);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Location = new System.Drawing.Point(174, 19);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(81, 28);
+            this.btnDelete.Size = new System.Drawing.Size(108, 34);
             this.btnDelete.TabIndex = 0;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -121,10 +109,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(9, 15);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Location = new System.Drawing.Point(12, 18);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(72, 28);
+            this.btnAdd.Size = new System.Drawing.Size(96, 34);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -134,19 +122,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label1.Location = new System.Drawing.Point(372, 28);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(496, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 25);
+            this.label1.Size = new System.Drawing.Size(132, 29);
             this.label1.TabIndex = 34;
             this.label1.Text = "Chi Nhánh";
             // 
             // groupBoxCN
             // 
             this.groupBoxCN.Controls.Add(this.dataGridViewDSCN);
-            this.groupBoxCN.Location = new System.Drawing.Point(12, 192);
+            this.groupBoxCN.Location = new System.Drawing.Point(16, 236);
+            this.groupBoxCN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxCN.Name = "groupBoxCN";
-            this.groupBoxCN.Size = new System.Drawing.Size(776, 338);
+            this.groupBoxCN.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCN.Size = new System.Drawing.Size(1035, 416);
             this.groupBoxCN.TabIndex = 33;
             this.groupBoxCN.TabStop = false;
             this.groupBoxCN.Text = "Danh Sách Chi Nhánh";
@@ -154,9 +144,11 @@
             // dataGridViewDSCN
             // 
             this.dataGridViewDSCN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDSCN.Location = new System.Drawing.Point(16, 19);
+            this.dataGridViewDSCN.Location = new System.Drawing.Point(21, 23);
+            this.dataGridViewDSCN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewDSCN.Name = "dataGridViewDSCN";
-            this.dataGridViewDSCN.Size = new System.Drawing.Size(742, 299);
+            this.dataGridViewDSCN.RowHeadersWidth = 51;
+            this.dataGridViewDSCN.Size = new System.Drawing.Size(989, 368);
             this.dataGridViewDSCN.TabIndex = 0;
             this.dataGridViewDSCN.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDSCN_CellContentClick);
             // 
@@ -166,54 +158,61 @@
             this.groupBox1.Controls.Add(this.txtTenCN);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Location = new System.Drawing.Point(12, 71);
+            this.groupBox1.Location = new System.Drawing.Point(16, 87);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 83);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1035, 102);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Chung";
             // 
             // txtMaCN
             // 
-            this.txtMaCN.Location = new System.Drawing.Point(116, 30);
+            this.txtMaCN.Location = new System.Drawing.Point(155, 37);
+            this.txtMaCN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtMaCN.Name = "txtMaCN";
-            this.txtMaCN.Size = new System.Drawing.Size(121, 20);
+            this.txtMaCN.Size = new System.Drawing.Size(160, 22);
             this.txtMaCN.TabIndex = 56;
             // 
             // txtTenCN
             // 
-            this.txtTenCN.Location = new System.Drawing.Point(515, 29);
+            this.txtTenCN.Location = new System.Drawing.Point(687, 36);
+            this.txtTenCN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTenCN.Name = "txtTenCN";
-            this.txtTenCN.Size = new System.Drawing.Size(121, 20);
+            this.txtTenCN.Size = new System.Drawing.Size(160, 22);
             this.txtTenCN.TabIndex = 53;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 36);
+            this.label7.Location = new System.Drawing.Point(17, 44);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 13);
+            this.label7.Size = new System.Drawing.Size(97, 17);
             this.label7.TabIndex = 44;
             this.label7.Text = "Mã Chi Nhánh";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(425, 33);
+            this.label9.Location = new System.Drawing.Point(567, 41);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(79, 13);
+            this.label9.Size = new System.Drawing.Size(103, 17);
             this.label9.TabIndex = 43;
             this.label9.Text = "Tên Chi Nhánh";
             // 
             // QLChiNhanh
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 621);
+            this.ClientSize = new System.Drawing.Size(1067, 764);
             this.Controls.Add(this.groupBoxButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBoxCN);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "QLChiNhanh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QLChiNhanh";
@@ -233,7 +232,6 @@
         private System.Windows.Forms.GroupBox groupBoxButton;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnRefesh;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
