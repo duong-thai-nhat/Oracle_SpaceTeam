@@ -32,6 +32,12 @@
             this.groupBoxCN = new System.Windows.Forms.GroupBox();
             this.dataGridViewDSNCC = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtMaNCC = new System.Windows.Forms.TextBox();
             this.txtTenNCC = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -42,12 +48,6 @@
             this.btnRefesh = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.groupBoxButton = new System.Windows.Forms.GroupBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSDT = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBoxCN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDSNCC)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -108,6 +108,60 @@
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Chung";
+            // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.Location = new System.Drawing.Point(171, 163);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(204, 29);
+            this.txtDiaChi.TabIndex = 62;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.PaleGreen;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.label4.Location = new System.Drawing.Point(17, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 21);
+            this.label4.TabIndex = 61;
+            this.label4.Text = "Địa Chỉ";
+            // 
+            // txtSDT
+            // 
+            this.txtSDT.Location = new System.Drawing.Point(552, 111);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(184, 29);
+            this.txtSDT.TabIndex = 60;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.PaleGreen;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.label3.Location = new System.Drawing.Point(398, 111);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 21);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "Số Điện Thoại";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(171, 111);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(204, 29);
+            this.txtEmail.TabIndex = 58;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.PaleGreen;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.label2.Location = new System.Drawing.Point(17, 111);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 21);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Email";
             // 
             // txtMaNCC
             // 
@@ -218,60 +272,6 @@
             this.groupBoxButton.Size = new System.Drawing.Size(742, 73);
             this.groupBoxButton.TabIndex = 39;
             this.groupBoxButton.TabStop = false;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(171, 111);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(204, 29);
-            this.txtEmail.TabIndex = 58;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.PaleGreen;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.label2.Location = new System.Drawing.Point(17, 111);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 21);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Email";
-            // 
-            // txtSDT
-            // 
-            this.txtSDT.Location = new System.Drawing.Point(552, 111);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(204, 29);
-            this.txtSDT.TabIndex = 60;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.PaleGreen;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.label3.Location = new System.Drawing.Point(398, 111);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 21);
-            this.label3.TabIndex = 59;
-            this.label3.Text = "Số Điện Thoại";
-            // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.Location = new System.Drawing.Point(171, 163);
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(204, 29);
-            this.txtDiaChi.TabIndex = 62;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.PaleGreen;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.label4.Location = new System.Drawing.Point(17, 163);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 21);
-            this.label4.TabIndex = 61;
-            this.label4.Text = "Địa Chỉ";
             // 
             // QLNhaCungCap
             // 

@@ -67,14 +67,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.PaleGreen;
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.btnSua);
             this.groupBox2.Controls.Add(this.btnLoadDL);
-            this.groupBox2.Location = new System.Drawing.Point(50, 579);
+            this.groupBox2.Location = new System.Drawing.Point(50, 573);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(758, 139);
+            this.groupBox2.Size = new System.Drawing.Size(758, 79);
             this.groupBox2.TabIndex = 52;
             this.groupBox2.TabStop = false;
             // 
@@ -120,6 +121,7 @@
             // groupBoxEmployeeInfo
             // 
             this.groupBoxEmployeeInfo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBoxEmployeeInfo.BackColor = System.Drawing.Color.PaleGreen;
             this.groupBoxEmployeeInfo.Controls.Add(this.groupBox1);
             this.groupBoxEmployeeInfo.Controls.Add(this.radioFemale);
             this.groupBoxEmployeeInfo.Controls.Add(this.radioMen);
@@ -143,7 +145,7 @@
             this.groupBoxEmployeeInfo.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxEmployeeInfo.Name = "groupBoxEmployeeInfo";
             this.groupBoxEmployeeInfo.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxEmployeeInfo.Size = new System.Drawing.Size(758, 509);
+            this.groupBoxEmployeeInfo.Size = new System.Drawing.Size(758, 491);
             this.groupBoxEmployeeInfo.TabIndex = 49;
             this.groupBoxEmployeeInfo.TabStop = false;
             this.groupBoxEmployeeInfo.Text = "Thông Tin Cá Nhân";
@@ -166,7 +168,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(705, 229);
+            this.groupBox1.Size = new System.Drawing.Size(705, 216);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Người Dùng";
@@ -459,7 +461,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(855, 690);
+            this.ClientSize = new System.Drawing.Size(855, 669);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBoxEmployeeInfo);
             this.Controls.Add(this.label1);

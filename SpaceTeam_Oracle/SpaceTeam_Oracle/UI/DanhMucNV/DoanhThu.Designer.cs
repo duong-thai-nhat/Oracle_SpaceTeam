@@ -89,7 +89,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label1.Location = new System.Drawing.Point(437, 15);
+            this.label1.Location = new System.Drawing.Point(622, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(186, 31);
@@ -131,10 +131,10 @@
             this.tabControl.Controls.Add(this.tabPageTheoTuan);
             this.tabControl.Controls.Add(this.tabPageTheoThang);
             this.tabControl.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.tabControl.Location = new System.Drawing.Point(10, 280);
+            this.tabControl.Location = new System.Drawing.Point(186, 304);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1008, 419);
+            this.tabControl.Size = new System.Drawing.Size(1030, 368);
             this.tabControl.TabIndex = 42;
             // 
             // tabPageTheoNgay
@@ -149,10 +149,10 @@
             this.tabPageTheoNgay.Controls.Add(this.dataGridViewTheoNgay);
             this.tabPageTheoNgay.Location = new System.Drawing.Point(4, 26);
             this.tabPageTheoNgay.Name = "tabPageTheoNgay";
-            this.tabPageTheoNgay.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPageTheoNgay.Size = new System.Drawing.Size(1000, 389);
+            this.tabPageTheoNgay.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTheoNgay.Size = new System.Drawing.Size(1022, 338);
             this.tabPageTheoNgay.TabIndex = 0;
-            this.tabPageTheoNgay.Text = "Theo Ngày";
+            this.tabPageTheoNgay.Text = "  ";
             // 
             // label15
             // 
@@ -165,7 +165,7 @@
             // 
             // txtTongTien
             // 
-            this.txtTongTien.Location = new System.Drawing.Point(128, 58);
+            this.txtTongTien.Location = new System.Drawing.Point(139, 58);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.Size = new System.Drawing.Size(234, 25);
             this.txtTongTien.TabIndex = 44;
@@ -182,7 +182,7 @@
             // btnXem
             // 
             this.btnXem.BackColor = System.Drawing.Color.Ivory;
-            this.btnXem.Location = new System.Drawing.Point(387, 21);
+            this.btnXem.Location = new System.Drawing.Point(398, 21);
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(75, 54);
             this.btnXem.TabIndex = 43;
@@ -193,7 +193,7 @@
             // btnTaiLai
             // 
             this.btnTaiLai.BackColor = System.Drawing.Color.Ivory;
-            this.btnTaiLai.Location = new System.Drawing.Point(478, 21);
+            this.btnTaiLai.Location = new System.Drawing.Point(489, 21);
             this.btnTaiLai.Name = "btnTaiLai";
             this.btnTaiLai.Size = new System.Drawing.Size(75, 53);
             this.btnTaiLai.TabIndex = 3;
@@ -203,7 +203,7 @@
             // 
             // dateTimePickerTheoNgay
             // 
-            this.dateTimePickerTheoNgay.Location = new System.Drawing.Point(128, 21);
+            this.dateTimePickerTheoNgay.Location = new System.Drawing.Point(139, 21);
             this.dateTimePickerTheoNgay.Name = "dateTimePickerTheoNgay";
             this.dateTimePickerTheoNgay.Size = new System.Drawing.Size(234, 25);
             this.dateTimePickerTheoNgay.TabIndex = 1;
@@ -213,10 +213,10 @@
             // 
             this.dataGridViewTheoNgay.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dataGridViewTheoNgay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTheoNgay.Location = new System.Drawing.Point(6, 90);
+            this.dataGridViewTheoNgay.Location = new System.Drawing.Point(15, 96);
             this.dataGridViewTheoNgay.Name = "dataGridViewTheoNgay";
             this.dataGridViewTheoNgay.RowHeadersWidth = 51;
-            this.dataGridViewTheoNgay.Size = new System.Drawing.Size(990, 293);
+            this.dataGridViewTheoNgay.Size = new System.Drawing.Size(990, 227);
             this.dataGridViewTheoNgay.TabIndex = 0;
             // 
             // tabPageTheoTuan
@@ -233,8 +233,8 @@
             this.tabPageTheoTuan.Controls.Add(this.dataGridViewTheoTuan);
             this.tabPageTheoTuan.Location = new System.Drawing.Point(4, 26);
             this.tabPageTheoTuan.Name = "tabPageTheoTuan";
-            this.tabPageTheoTuan.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPageTheoTuan.Size = new System.Drawing.Size(1000, 435);
+            this.tabPageTheoTuan.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTheoTuan.Size = new System.Drawing.Size(1000, 389);
             this.tabPageTheoTuan.TabIndex = 1;
             this.tabPageTheoTuan.Text = "Theo Tháng";
             // 
@@ -360,8 +360,8 @@
             this.tabPageTheoThang.Controls.Add(this.dataGridViewTheoThang);
             this.tabPageTheoThang.Location = new System.Drawing.Point(4, 26);
             this.tabPageTheoThang.Name = "tabPageTheoThang";
-            this.tabPageTheoThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPageTheoThang.Size = new System.Drawing.Size(1000, 435);
+            this.tabPageTheoThang.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTheoThang.Size = new System.Drawing.Size(1000, 389);
             this.tabPageTheoThang.TabIndex = 2;
             this.tabPageTheoThang.Text = "Theo Năm";
             // 
@@ -549,14 +549,14 @@
             this.groupBox1.Controls.Add(this.txtTongTienCN);
             this.groupBox1.Controls.Add(this.cmbChiNhanh);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(92, 56);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(303, 71);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(829, 214);
             this.groupBox1.TabIndex = 53;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tìm Kiếm Doanh Thu";
+            this.groupBox1.Text = "  ";
             // 
             // label4
             // 
@@ -572,7 +572,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(1024, 745);
+            this.ClientSize = new System.Drawing.Size(1024, 686);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.label1);

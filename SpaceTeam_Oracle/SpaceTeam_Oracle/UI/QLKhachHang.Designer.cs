@@ -315,7 +315,7 @@
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.Honeydew;
-            this.btnAdd.Location = new System.Drawing.Point(26, 17);
+            this.btnAdd.Location = new System.Drawing.Point(26, 15);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 43);
@@ -328,7 +328,7 @@
             // 
             this.lblEmployeeList.AutoSize = true;
             this.lblEmployeeList.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeList.Location = new System.Drawing.Point(377, 19);
+            this.lblEmployeeList.Location = new System.Drawing.Point(327, 19);
             this.lblEmployeeList.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmployeeList.Name = "lblEmployeeList";
             this.lblEmployeeList.Size = new System.Drawing.Size(290, 31);
@@ -367,7 +367,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(830, 642);
+            this.ClientSize = new System.Drawing.Size(891, 642);
             this.Controls.Add(this.groupBoxEmployeeInfo);
             this.Controls.Add(this.groupBoxButton);
             this.Controls.Add(this.lblEmployeeList);
