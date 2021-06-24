@@ -21,6 +21,13 @@ namespace SpaceTeam_Oracle
 
         #region Hàm Insert CN
 
+        /// <summary>
+        /// test thử lại đi. 
+        /// còn lỗi gì ko. tối rồi t team view qua push
+        /// </summary>
+        /// <param name="maCN"></param>
+        /// <param name="tenCN"></param>
+        /// <returns></returns>
         public string InsertCN(int maCN, string tenCN)
         {
             int dem = db.CHINHANHs.Count(w => w.TENCHINHANH == tenCN);

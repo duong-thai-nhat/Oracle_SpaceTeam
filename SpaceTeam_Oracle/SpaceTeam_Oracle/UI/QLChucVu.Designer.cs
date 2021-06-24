@@ -55,7 +55,7 @@
             this.groupBoxButton.Controls.Add(this.btnUpdate);
             this.groupBoxButton.Controls.Add(this.btnDelete);
             this.groupBoxButton.Controls.Add(this.btnAdd);
-            this.groupBoxButton.Location = new System.Drawing.Point(12, 513);
+            this.groupBoxButton.Location = new System.Drawing.Point(40, 513);
             this.groupBoxButton.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxButton.Name = "groupBoxButton";
             this.groupBoxButton.Padding = new System.Windows.Forms.Padding(2);
@@ -126,11 +126,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label1.Location = new System.Drawing.Point(307, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(345, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 31);
+            this.label1.Size = new System.Drawing.Size(125, 31);
             this.label1.TabIndex = 38;
             this.label1.Text = "Chức Vụ";
             // 
@@ -139,7 +139,7 @@
             this.groupBoxCN.BackColor = System.Drawing.Color.PaleGreen;
             this.groupBoxCN.Controls.Add(this.dataGridViewDSCV);
             this.groupBoxCN.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxCN.Location = new System.Drawing.Point(12, 212);
+            this.groupBoxCN.Location = new System.Drawing.Point(34, 212);
             this.groupBoxCN.Name = "groupBoxCN";
             this.groupBoxCN.Size = new System.Drawing.Size(726, 287);
             this.groupBoxCN.TabIndex = 37;
@@ -165,9 +165,9 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 67);
+            this.groupBox1.Location = new System.Drawing.Point(34, 67);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 115);
+            this.groupBox1.Size = new System.Drawing.Size(726, 115);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Chung";
@@ -213,7 +213,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(748, 601);
+            this.ClientSize = new System.Drawing.Size(789, 601);
             this.Controls.Add(this.groupBoxButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBoxCN);

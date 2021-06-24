@@ -40,7 +40,7 @@ namespace SpaceTeam_Oracle.UI
 
         #region Hàm Insert NCC
 
-        public string InsertNCC(int maNCC, string tenNCC/*, string eMail, string SDT, string diaChi*/)
+        public string InsertNCC(int maNCC, string tenNCC, string eMail, string SDT, string diaChi)
         {
             int dem = db.NHACUNGCAPs.Count(w => w.TENCONGTY == tenNCC );
             if (dem == 0)
@@ -48,9 +48,9 @@ namespace SpaceTeam_Oracle.UI
                 NHACUNGCAP add = new NHACUNGCAP();
                 add.MANCC = maNCC;
                 add.TENCONGTY = tenNCC;
-                //add.EMAIL = eMail;
-                //add.DIENTHOAI = SDT;
-                //add.DIACHI = diaChi;
+                add.EMAIL = eMail;
+                add.DIENTHOAI = SDT;
+                add.DIACHI = diaChi;
                 db.NHACUNGCAPs.Add(add);
                 db.SaveChanges();
                 return "1";
@@ -70,7 +70,7 @@ namespace SpaceTeam_Oracle.UI
             update.EMAIL = eMail;
             update.DIENTHOAI = SDT;
             update.DIACHI = diaChi;
-            db.SaveChanges();//cứ tới đây là nó dừng tại năng quá k lưu nổi
+            db.SaveChanges();
         }
 
         #endregion Hàm Update NCC
@@ -139,10 +139,10 @@ namespace SpaceTeam_Oracle.UI
         {
             int maNCC = GetIdNCC();
             string tenNCC = txtTenNCC.Text;
-            //string eMail = txtEmail.Text;
-            //string SDT = txtSDT.Text;// để qua máy t sửa  thử
-            //string diaChi = txtDiaChi.Text;
-            string temp = InsertNCC(maNCC, tenNCC/*, eMail, SDT, diaChi*/);
+            string eMail = txtEmail.Text;
+            string SDT = txtSDT.Text;// để qua máy t sửa  thử
+            string diaChi = txtDiaChi.Text;
+            string temp = InsertNCC(maNCC, tenNCC, eMail, SDT, diaChi);
             
             if (temp == "1")
             {

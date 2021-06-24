@@ -66,7 +66,7 @@ namespace SpaceTeam_Oracle.UI
                                 }
                             return;
                         }
-                        if (user.MACHUCVU == Convert.ToDecimal(2))
+                        if (user.MACHUCVU == Convert.ToDecimal(21))
                         {
                             using (DanhMucNV dmNV = new DanhMucNV(txtDangNhap.Text))
                                 if (dmNV.ShowDialog() == DialogResult.OK)

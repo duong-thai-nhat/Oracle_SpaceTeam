@@ -44,7 +44,7 @@ CREATE TABLE CHUCVU
 );
 
 
-INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('1', N'Nhân Viên Bán Hàng');
+INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('1', N'Admin');
 INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('2', N'Nhân Viên Quản Lí');
 INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('3', N'Nhân Viên Thu Ngân');
 INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('4', N'Nhân Viên Bảo Vệ');
@@ -64,7 +64,7 @@ INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('17', 'Kế Tóan Lương');
 INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('18', N'Nhân Viên Kho');
 INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('19', N'Giám Đốc Chi Nhánh');
 INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('20', N'Quản Lý Chi Nhánh');
-
+INSERT INTO CHUCVU (MaChucVu, TenChucVu ) VALUES ('21', N'Nhân Viên Bán Hàng');
 
 
 CREATE TABLE NHANVIEN
@@ -100,12 +100,12 @@ INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau,
 INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu )  VALUES (13, N'Lý Hoàng Mai', 0, TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'), '0377077630', '230 An Dường Vương P11 A5','NGQL13', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C','ZhAUSvIL8i7Q07+sGscTCQ==','employee13@gmail.com', 13,'20');
 INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (14 , N' Hồng Đại ', 0 , TO_TIMESTAMP ('1953-02-05','YYYY-MM-DD'), '0669501295', N'191 Đường số 96 Quận  Bình Chánh TP.HCM. ', N'NGQL14', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee110834@gmail.com', 14, '20' );
 INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (15 , N'Hồ Kim Hoàng ', 0 , TO_TIMESTAMP ('1975-03-18','YYYY-MM-DD'), '0294961558', N'92  Quận Bình Thạnh  TP.Thủ Đức. ', N'NGQL15', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee54214@gmail.com', 15, '20' );
-INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (16 , N'Võ  Hồng Đại ', 0 , TO_TIMESTAMP ('2009-07-12','YYYY-MM-DD'), '0612905938', N'355   TP.Thủ Đức. ', N'NV3897660', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee472667@gmail.com', 12 , '1');
-INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (17 , N'Lý Quốc Linh ', 1 , TO_TIMESTAMP ('1994-12-07','YYYY-MM-DD'), '0314591996', N'366  Quận 9 TP.Thủ Đức. ', N'NV1491322', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee800428@gmail.com', 9 , '1');
-INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (18 , N'  Quang ', 1 , TO_TIMESTAMP ('1960-08-21','YYYY-MM-DD'), '0747157884', N'63  Quận 5 TP.Thủ Đức. ', N'NV9478952', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee789615@gmail.com', 4 , '1');
-INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (19 , N'Hoàng Diệu Hùng ', 0 , TO_TIMESTAMP ('1961-10-13','YYYY-MM-DD'), '0612285495', N'10 Phường 33 Quận Bình Thạnh  TP.HCM. ', N'NV0832803', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee134753@gmail.com', 9 , '1');
-INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (20 , N'Lý Uyển Đức Anh ', 0 , TO_TIMESTAMP ('1995-05-19','YYYY-MM-DD'), '0181510599', N'861   TP.Thủ Đức. ', N'NV5912480', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee239949@gmail.com', 14 , '1');
-INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (21 , N'Võ  Uyển Hoa ', 0 , TO_TIMESTAMP ('1996-04-05','YYYY-MM-DD'), '0158301314', N'71  Quận 5 TP.HCM. ', N'NV7855664', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee11[722@gmail.com', 7 , '1');
+INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (16 , N'Võ  Hồng Đại ', 0 , TO_TIMESTAMP ('2009-07-12','YYYY-MM-DD'), '0612905938', N'355   TP.Thủ Đức. ', N'nqcuong20', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee472667@gmail.com', 12 , '1');
+INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (17 , N'Lý Quốc Linh ', 1 , TO_TIMESTAMP ('1994-12-07','YYYY-MM-DD'), '0314591996', N'366  Quận 9 TP.Thủ Đức. ', N'NV1491322', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee800428@gmail.com', 9 , '21');
+INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (18 , N'  Quang ', 1 , TO_TIMESTAMP ('1960-08-21','YYYY-MM-DD'), '0747157884', N'63  Quận 5 TP.Thủ Đức. ', N'NV9478952', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee789615@gmail.com', 4 , '21');
+INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (19 , N'Hoàng Diệu Hùng ', 0 , TO_TIMESTAMP ('1961-10-13','YYYY-MM-DD'), '0612285495', N'10 Phường 33 Quận Bình Thạnh  TP.HCM. ', N'NV0832803', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee134753@gmail.com', 9 , '21');
+INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (20 , N'Lý Uyển Đức Anh ', 0 , TO_TIMESTAMP ('1995-05-19','YYYY-MM-DD'), '0181510599', N'861   TP.Thủ Đức. ', N'NV5912480', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee239949@gmail.com', 14 , '21');
+INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh,NgaySinh,SDT, DiaChi,TenDN, MatKhau, Luong, Email, MaChiNhanh, MaChucVu ) VALUES (21 , N'Võ  Uyển Hoa ', 0 , TO_TIMESTAMP ('1996-04-05','YYYY-MM-DD'), '0158301314', N'71  Quận 5 TP.HCM. ', N'NV7855664', 'C35A37F0BCA08AFA583247CC461CAD9C8082A47C', 'ZhAUSvIL8i7Q07+sGscTCQ==' , N'employee11[722@gmail.com', 7 , '21');
 
 
 CREATE TABLE LOAI(
@@ -410,24 +410,33 @@ CREATE TABLE KHACHHANG (
   NgaySinh DATE,
   CONSTRAINT pk_kh PRIMARY KEY (MaKH)
 );
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (1,  N'Nguyẽn Thanh Sang', N'Bình Dương', N'0971890712', N'sanglun2254@gmail.com' , 1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (2,  N'Minh Cao', N'TPHCM', N'0971890712', N'minhcd@gmail.com',  1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (3,  N'Nguyễn Thanh Sang', N'Q11', N'0971890712', N'sanglun2254_1@gmail.com',  1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (4,  N'Nguyễn Ngọc Hiền', N'Gò Vấp', N'', N'pinkwater98@gmail.com', 0, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (5,  N'Hồ  Quỳnh Nga', N'280 ADV', N'0904877306', N'wanriky2998@gmail.com',   0, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (6,  N'Lê Thị Hiền', N'Bình Thạnh', N'0904877306', N'hiennt@gmail.com',   0, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (7,  N'Lê Thanh Sang', N'Thủ Đức', N'0904877306', N'sanglt8@gmail.com',   1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (8,  N'Hồ Viết Thọ', N'Q11', N'0904877306', N'thobt@gmail.com',   1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (9,  N'Nguyễn Quốc Hoàn', N'Q12', N'0904877306', N'hoan2008@gmail.com',   1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (19,  N'Đinh Văn Thanh', N'Bình Thạnh', N'0904877306', N'thanhpt@gmail.com',   1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (11,  N'Ngô Đức Anh', N'Khu CN sóng Thần', N'0904877306', N'ducanh@gmail.com',   1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (12,  N'Nguyễn Thị Ngọc Huyền', N' Vũng Tàu', N'0904877306', N'huyen1999@gmail.com',   0, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (13,  N'Hồ Diệu Huyền', N'Q5', N'0904877306', N'hien7965@gmail.com',   0, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (14,  N'Nguyễn Thị Uyển Cương', N'Thủ Đức', N'0904877306', N'cuongcntt8@gmail.com',   0, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (15,  N'Lê Văn Hậu', N'Bình Tân', N'0904877306', N'haucnaa@gmail.com',   1, NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh) values (16,  N'Nguyễn Hoàng Anh', N'Bình Thạnh', N'0904877306', N'anhbinhthanh@gmail.com',   0, NULL);
 
-
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (0 , N'Không có thông tin' , N'Không có thông tin ', N'Không có thông tin', N'Không có thông tin', N'Không có thông tin', NULL);
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (1 , N' Phạm Kim Đắc ', N'80 Đường số 82 Quận  Bình Chánh TP.HCM. ', N'0047943239', N'qyzcwfj.twdu0@gmail.com', 0, TO_TIMESTAMP(N'2008-07-07' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (2 , N' Dương Viết Huy ', N'38  Quận 3 TP.Thủ Đức. ', N'0787755959', N'vmjv2710@gmail.com',1, TO_TIMESTAMP(N'2002-03-04' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (3 , N' Phạm Duy  Quốc ', N'44  Quận Tân Bình TP.Thủ Đức. ', N'0834476668', N'qsslscnk30@gmail.com',1, NULL);
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (4 , N' Nguyễn Uyển Huy ', N'631 Phường 69 Quận  TP.HCM. ', N'0020932763', N'kbefexd41@gmail.com',1, TO_TIMESTAMP(N'1994-12-31' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (5 , N' Lê Hoài Anh ', N'784  Quận 9 TP.Thủ Đức. ', N'0671941926', N'kaaeje.roqvka1@gmail.com',1, TO_TIMESTAMP(N'1985-11-19' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (6 , N' Hồ Kim Hoa ', N'684  Quận Tân Bình TP.Thủ Đức. ', N'0398966021', N'khdne390@gmail.com',1, TO_TIMESTAMP(N'1963-01-08' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (7 , N' Lê Hoài Anh ', N'240   TP.HCM. ', N'0655554774', N'fidyh.ibnf1@gmail.com', 0, TO_TIMESTAMP(N'1993-08-13' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (8 , N' Phạm Kim Đắc ', N'168 Đường số 57 Quận 5 TP.Thủ Đức. ', N'0732380140', N'mrrwkj.enrkhhkjqr0@gmail.com',1, TO_TIMESTAMP(N'1957-10-25' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (9 , N' Hoàng Duy  Quyên ', N'230   TP.Thủ Đức. ', N'0740700312', N'nqhopix.rcemq0@gmail.com',1, TO_TIMESTAMP(N'1962-05-30' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (10 , N' Hoàng Quốc Đại ', N'20   TP.Thủ Đức. ', N'0244590264', N'joyqgn0@gmail.com',1, TO_TIMESTAMP(N'1983-12-27' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (11 , N' Dương Hồng Khánh ', N'92   TP.HCM. ', N'0417320740', N'apmylw01@gmail.com', 0, TO_TIMESTAMP(N'2001-09-04' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (12 , N' Nguyễn Quốc Quyên ', N'69  Quận 9 TP.HCM. ', N'0451502575', N'cgblhkm960@gmail.com', 0, TO_TIMESTAMP(N'1978-10-21' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (13 , N' Hoàng Diệu Bảo ', N'72  Quận 1 TP.HCM. ', N'0065893874', N'abso5510@gmail.com', 0, TO_TIMESTAMP(N'1984-12-05' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (14 , N' Nguyễn Hồng Linh ', N'91   Quận Bình Tân TP.Thủ Đức. ', N'0859115665', N'hbufgey.dgiwezcpj1@gmail.com',1, TO_TIMESTAMP(N'1971-10-11' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (15 , N' Phùng Viết Khánh ', N'605 Đường số 90 Quận Bình Tân TP.HCM. ', N'0280617294', N'kipxk500@gmail.com', 0, TO_TIMESTAMP(N'1955-05-23' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (16 , N' Lý Duy  Tân ', N'46    TP.Thủ Đức. ', N'0541987693', N'aetd20@gmail.com',1, TO_TIMESTAMP(N'1973-06-11' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (17 , N' Đặng Quốc Lý ', N'68  Quận 3 TP.Thủ Đức. ', N'0200379503', N'zactutw8910@gmail.com',1, TO_TIMESTAMP(N'1992-04-01' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (18 , N' Phùng Diệu Trung ', N'18 Đường số 58  TP.Thủ Đức. ', N'0582512687', N'xylwvd.pwggdca1@gmail.com',1, TO_TIMESTAMP(N'1960-01-19' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (19 , N' Hồ Duy  Thiện ', N'77 Phường 43 Quận  Bình Chánh TP.Thủ Đức. ', N'0092623403', N'ifqqjg.qgcmciswsw0@gmail.com', 0, TO_TIMESTAMP(N'1980-09-20' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (20 , N'  Uyển Huy ', N'18  Quận 5 TP.Thủ Đức. ', N'0973672779', N'tlbqo5561@gmail.com', 0, TO_TIMESTAMP(N'1960-12-28' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (21 , N' Lê Diệu Nhung ', N'368   Quận  TP.HCM. ', N'0125927267', N'gkqynvn.tewpym1@gmail.com',1, TO_TIMESTAMP(N'2010-05-31' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (22 , N'  Uyển Thịnh ', N'30   TP.Thủ Đức. ', N'0072083741', N'jkgvzt.zbybioant0@gmail.com',1, TO_TIMESTAMP(N'1980-12-21' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (23 , N' Võ  Kim Phương ', N'24  Quận Bình Tân TP.HCM. ', N'0456957457', N'sujwi9210@gmail.com',1, TO_TIMESTAMP(N'1972-08-18' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (24 , N' Hoàng Viết Quyên ', N'46  Quận  Bình Chánh TP.HCM. ', N'0499517334', N'xrzee.grtunup1@gmail.com', 0, TO_TIMESTAMP(N'2002-02-12' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (25 , N' Đặng  Ngọc Khánh ', N'79  Quận Bình Tân TP.HCM. ', N'0082731528', N'edivsuw.oxiwtqzyla0@gmail.com', 0, TO_TIMESTAMP(N'1957-11-13' ,'YYYY-MM-DD'));
 
 
 
@@ -448,21 +457,21 @@ CREATE TABLE HOADON (
   CONSTRAINT fk_hd_nv FOREIGN KEY (MANV) REFERENCES NHANVIEN(MaNV),
   CONSTRAINT fk_hd_cn FOREIGN KEY (MaChiNhanh) REFERENCES CHINHANH(MaChiNhanh)
 );
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (1, 1,1,1,N'Nguyẽn Thanh Sang',N'Bình Dương', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (2, 1,2,2,N'Minh Cao', N'TPHCM', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),236800,237000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (3, 2,3,3,N'Nguyễn Thanh Sang', N'Q11', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),34500,345000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (4, 3,4,4,N'Nguyễn Ngọc Hiền', N'Gò Vấp', N'',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),1135100,1135000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (5, 4,5,5,N'Hồ  Quỳnh Nga', N'280 ADV', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),6800,6800);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (6, 5,6,6, N'Lê Thị Hiền', N'Bình Thạnh', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (7, 6,7,7,N'Lê Thanh Sang', N'Thủ Đức', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),356100,256000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (8, 7,8,8,N'Hồ Viết Thọ', N'Q11', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),115100,115000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (9, 8,9,9,N'Nguyễn Quốc Hoàn', N'Q12', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),679000,679000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (10,9,10,19, N'Đinh Văn Thanh', N'Bình Thạnh', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),127800,127800);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (11,10,11,11,N'Ngô Đức Anh', N'Khu CN sóng Thần', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),13500,13500);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (12,11,12,12,N'Nguyễn Thị Ngọc Huyền', N' Vũng Tàu', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),34200,34000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (13,12,13,13, N'Hồ Diệu Huyền', N'Q5', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),50000,50000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (14,13,14,14,N'Nguyễn Thị Uyển Cương', N'Thủ Đức', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),234000,234000);
-INSERT INTO HOADON (MaHD, MANV,MACN, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (15,2,15,15, N'Lê Văn Hậu', N'Bình Tân', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (1, 1,1,1,N'Nguyẽn Thanh Sang',N'Bình Dương', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (2, 1,2,2,N'Minh Cao', N'TPHCM', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),236800,237000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (3, 2,3,3,N'Nguyễn Thanh Sang', N'Q11', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),34500,345000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (4, 3,4,4,N'Nguyễn Ngọc Hiền', N'Gò Vấp', N'',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),1135100,1135000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (5, 4,5,5,N'Hồ  Quỳnh Nga', N'280 ADV', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),6800,6800);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (6, 5,6,6, N'Lê Thị Hiền', N'Bình Thạnh', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (7, 6,7,7,N'Lê Thanh Sang', N'Thủ Đức', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),356100,256000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (8, 7,8,8,N'Hồ Viết Thọ', N'Q11', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),115100,115000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (9, 8,9,9,N'Nguyễn Quốc Hoàn', N'Q12', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),679000,679000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (10,9,10,19, N'Đinh Văn Thanh', N'Bình Thạnh', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),127800,127800);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (11,10,11,11,N'Ngô Đức Anh', N'Khu CN sóng Thần', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),13500,13500);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (12,11,12,12,N'Nguyễn Thị Ngọc Huyền', N' Vũng Tàu', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),34200,34000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (13,12,13,13, N'Hồ Diệu Huyền', N'Q5', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),50000,50000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (14,13,14,14,N'Nguyễn Thị Uyển Cương', N'Thủ Đức', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),234000,234000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (15,2,15,15, N'Lê Văn Hậu', N'Bình Tân', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
 
 
 CREATE TABLE CHITIETHD(
@@ -490,6 +499,3 @@ INSERT INTO CHITIETHD ( MaHD, MaHH, DonGia, GiamGia, SoLuong) VALUES (12 , 22 , 
 INSERT INTO CHITIETHD ( MaHD, MaHH, DonGia, GiamGia, SoLuong) VALUES (13 , 23 , 1556475.7 , 1.3 , 528 );
 INSERT INTO CHITIETHD ( MaHD, MaHH, DonGia, GiamGia, SoLuong) VALUES (14 , 24 , 362289.1 , 1.2 , 968 );
 INSERT INTO CHITIETHD ( MaHD, MaHH, DonGia, GiamGia, SoLuong) VALUES (15 , 25 , 1508319.1 , 1.3 , 371 );
-INSERT INTO CHITIETHD ( MaHD, MaHH, DonGia, GiamGia, SoLuong) VALUES (16 , 26 , 1856226.2 , 1.4 , 311 );
-INSERT INTO CHITIETHD ( MaHD, MaHH, DonGia, GiamGia, SoLuong) VALUES (17 , 27 , 1414540.6 , 1.4 , 262 );
-I

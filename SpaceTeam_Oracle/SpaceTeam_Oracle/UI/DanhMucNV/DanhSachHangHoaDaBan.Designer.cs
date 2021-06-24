@@ -52,12 +52,13 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(324, 18);
+            this.label1.Location = new System.Drawing.Point(341, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(278, 31);
             this.label1.TabIndex = 20;
             this.label1.Text = "SẢN PHẨM ĐÃ BÁN";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cmbChiNhanh
             // 
@@ -81,7 +82,7 @@
             // 
             this.dataGridViewHHDB.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dataGridViewHHDB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHHDB.Location = new System.Drawing.Point(12, 394);
+            this.dataGridViewHHDB.Location = new System.Drawing.Point(29, 394);
             this.dataGridViewHHDB.Name = "dataGridViewHHDB";
             this.dataGridViewHHDB.RowHeadersWidth = 51;
             this.dataGridViewHHDB.Size = new System.Drawing.Size(775, 248);
@@ -151,14 +152,16 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cmbTenNV);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(12, 78);
+            this.panel1.Location = new System.Drawing.Point(29, 78);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(772, 298);
             this.panel1.TabIndex = 46;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnTK
             // 
             this.btnTK.BackColor = System.Drawing.Color.Honeydew;
+            this.btnTK.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.btnTK.Location = new System.Drawing.Point(557, 105);
             this.btnTK.Name = "btnTK";
             this.btnTK.Size = new System.Drawing.Size(78, 59);
@@ -180,12 +183,14 @@
             // btnTaiLai
             // 
             this.btnTaiLai.BackColor = System.Drawing.Color.Honeydew;
+            this.btnTaiLai.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.btnTaiLai.Location = new System.Drawing.Point(669, 105);
             this.btnTaiLai.Name = "btnTaiLai";
             this.btnTaiLai.Size = new System.Drawing.Size(78, 59);
             this.btnTaiLai.TabIndex = 54;
             this.btnTaiLai.Text = "Tải Lại";
             this.btnTaiLai.UseVisualStyleBackColor = false;
+            this.btnTaiLai.Click += new System.EventHandler(this.btnTaiLai_Click);
             // 
             // dtTKNgayBanTu
             // 
@@ -210,7 +215,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(800, 654);
+            this.ClientSize = new System.Drawing.Size(832, 654);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridViewHHDB);
             this.Controls.Add(this.label1);

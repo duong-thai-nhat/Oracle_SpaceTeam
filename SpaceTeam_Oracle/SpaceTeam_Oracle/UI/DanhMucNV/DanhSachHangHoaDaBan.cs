@@ -685,17 +685,27 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 TKcmbCa3();
             }
         }
+
         #endregion
-        #region btn TaiLai
+
         private void btnTaiLai_Click(object sender, EventArgs e)
         {
             GetDataGridView();
             cmbChiNhanh.Text = "";
             cmbTenNV.Text = "";
             cmbTenSP.Text = "";
-            dtTKNgayBanTu.Value = new DateTime(2018, 11, 29);
-            dtTKNgayBanDen.Value = new DateTime(2021, 6, 14);
+            dtTKNgayBanTu.Value = new DateTime(2018, 1, 1);
+            dtTKNgayBanDen.Value = new DateTime(2020, 9, 1);
         }
-        #endregion
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
