@@ -40,14 +40,17 @@ namespace SpaceTeam_Oracle.UI
 
         #region Hàm Insert NCC
 
-        public string InsertNCC(int maNCC, string tenNCC)
+        public string InsertNCC(int maNCC, string tenNCC/*, string eMail, string SDT, string diaChi*/)
         {
-            int dem = db.NHACUNGCAPs.Count(w => w.TENCONGTY == tenNCC);
+            int dem = db.NHACUNGCAPs.Count(w => w.TENCONGTY == tenNCC );
             if (dem == 0)
             {
                 NHACUNGCAP add = new NHACUNGCAP();
                 add.MANCC = maNCC;
                 add.TENCONGTY = tenNCC;
+                //add.EMAIL = eMail;
+                //add.DIENTHOAI = SDT;
+                //add.DIACHI = diaChi;
                 db.NHACUNGCAPs.Add(add);
                 db.SaveChanges();
                 return "1";
@@ -59,13 +62,15 @@ namespace SpaceTeam_Oracle.UI
 
         #region Hàm Update NCC
 
-        public void UpdateNCC(int maNCC, string tenNCC)
+        public void UpdateNCC(int maNCC, string tenNCC, string eMail, string SDT, string diaChi)
         {
-            ContextCUONG db = new ContextCUONG();
-            NHACUNGCAP update = db.NHACUNGCAPs.SingleOrDefault(ncc => ncc.MANCC == Convert.ToDecimal(maNCC));
+            NHACUNGCAP update = db.NHACUNGCAPs.SingleOrDefault(ncc => ncc.MANCC == maNCC);
             update.MANCC = maNCC;
             update.TENCONGTY = tenNCC;
-            db.SaveChanges();
+            update.EMAIL = eMail;
+            update.DIENTHOAI = SDT;
+            update.DIACHI = diaChi;
+            db.SaveChanges();//cứ tới đây là nó dừng tại năng quá k lưu nổi
         }
 
         #endregion Hàm Update NCC
@@ -89,15 +94,24 @@ namespace SpaceTeam_Oracle.UI
                           select new
                           {
                               ncc.MANCC,
-                              ncc.TENCONGTY
+                              ncc.TENCONGTY,
+                              ncc.EMAIL,
+                              ncc.DIENTHOAI,
+                              ncc.DIACHI
                           };
 
             var ListEmployee = NCCdata.ToList();
             dataGridViewDSNCC.DataSource = ListEmployee;
             dataGridViewDSNCC.Columns[0].HeaderText = "Mã Nhà Cung Cấp";
             dataGridViewDSNCC.Columns[1].HeaderText = "Tên Nhà Cung Cấp";
-            dataGridViewDSNCC.Columns[0].Width = 200;
-            dataGridViewDSNCC.Columns[1].Width = 600;
+            dataGridViewDSNCC.Columns[2].HeaderText = "Email";
+            dataGridViewDSNCC.Columns[3].HeaderText = "Số Điện Thoại";
+            dataGridViewDSNCC.Columns[4].HeaderText = "Địa Chỉ";
+            dataGridViewDSNCC.Columns[0].Width = 100;
+            dataGridViewDSNCC.Columns[1].Width = 400;
+            dataGridViewDSNCC.Columns[2].Width = 200;
+            dataGridViewDSNCC.Columns[3].Width = 200;
+            dataGridViewDSNCC.Columns[4].Width = 600;
         }
 
         #endregion Load DataGridView
@@ -111,6 +125,9 @@ namespace SpaceTeam_Oracle.UI
                 DataGridViewRow row = this.dataGridViewDSNCC.Rows[e.RowIndex];
                 txtMaNCC.Text = row.Cells[0].Value.ToString();
                 txtTenNCC.Text = row.Cells[1].Value.ToString();
+                txtEmail.Text = row.Cells[2].Value.ToString();
+                txtSDT.Text = row.Cells[3].Value.ToString();
+                txtDiaChi.Text = row.Cells[4].Value.ToString();
             }
         }
 
@@ -122,7 +139,11 @@ namespace SpaceTeam_Oracle.UI
         {
             int maNCC = GetIdNCC();
             string tenNCC = txtTenNCC.Text;
-            string temp = InsertNCC(maNCC, tenNCC);
+            //string eMail = txtEmail.Text;
+            //string SDT = txtSDT.Text;// để qua máy t sửa  thử
+            //string diaChi = txtDiaChi.Text;
+            string temp = InsertNCC(maNCC, tenNCC/*, eMail, SDT, diaChi*/);
+            
             if (temp == "1")
             {
                 MessageBox.Show("Thêm Nhà Cung Cấp Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -161,11 +182,12 @@ namespace SpaceTeam_Oracle.UI
         {
             int maNCC = int.Parse(txtMaNCC.Text);
             string tenNCC = txtTenNCC.Text;
-
+            string eMail = txtEmail.Text;
+            string SDT = txtSDT.Text;
+            string diaChi = txtDiaChi.Text;
             try
             {
-                UpdateNCC(maNCC, tenNCC);
-                UpdateNCC(maNCC, tenNCC);
+                UpdateNCC(maNCC, tenNCC, eMail, SDT, diaChi);
                 MessageBox.Show("Sửa Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetDataGridView();
             }
@@ -177,7 +199,7 @@ namespace SpaceTeam_Oracle.UI
 
         #endregion button Update NCC
 
-        #region button Update NCC
+        #region button Refesh NCC
 
         private void btnRefesh_Click(object sender, EventArgs e)
         {
@@ -200,5 +222,7 @@ namespace SpaceTeam_Oracle.UI
         }
 
         #endregion button Exit NCC
+
+        
     }
 }
