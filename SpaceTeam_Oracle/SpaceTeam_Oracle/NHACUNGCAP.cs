@@ -15,6 +15,12 @@ namespace SpaceTeam_Oracle
     public partial class NHACUNGCAP
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
+        public NHACUNGCAP(int maNCC, string tenNCC)
+        {
+            this.MANCC = maNCC;
+            this.TENCONGTY = tenNCC;
+        }
         public NHACUNGCAP()
         {
             this.HANGHOAs = new HashSet<HANGHOA>();

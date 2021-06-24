@@ -15,6 +15,11 @@ namespace SpaceTeam_Oracle
     public partial class CHINHANH
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CHINHANH(int maCN, string tenCN)
+        {
+            this.MACHINHANH = maCN;
+            this.TENCHINHANH = tenCN;
+        }
         public CHINHANH()
         {
             this.HOADONs = new HashSet<HOADON>();

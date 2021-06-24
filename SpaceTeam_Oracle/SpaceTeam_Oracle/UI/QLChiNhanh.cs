@@ -7,7 +7,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class QLChiNhanh : Form
     {
-        private ContextCUONG db = new ContextCUONG();
+        ContextCUONG db  = new ContextCUONG();
 
         public QLChiNhanh()
         {
@@ -198,5 +198,7 @@ namespace SpaceTeam_Oracle
         }
 
         #endregion Thoat
+
+       
     }
 }

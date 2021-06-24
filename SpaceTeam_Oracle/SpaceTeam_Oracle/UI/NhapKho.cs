@@ -49,7 +49,7 @@ namespace SpaceTeam_Oracle
             {
                 List<NHACUNGCAP> listNhaCungCap = db.NHACUNGCAPs.ToList();
                 cmbMaNCC.DataSource = listNhaCungCap;
-                cmbMaNCC.DisplayMember = "MANCC";
+                cmbMaNCC.DisplayMember = "TENCONGTY";
                 cmbMaNCC.ValueMember = "MANCC";
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace SpaceTeam_Oracle
         {
             ContextCUONG db = new ContextCUONG();
             HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.MAHH == maHH);
-            update.MAHH = maHH;
+          
             update.TENHH = tenHH;
             update.MALOAI = maLoai;
             update.SOLUONG = soLuong;
@@ -122,6 +122,8 @@ namespace SpaceTeam_Oracle
             update.GIAMGIA = giamGia;
             update.MOTA = moTa;
             update.MANCC = maNCC;
+            //update.TENCONGTY = tenNCC;
+            //Nếu thêm tên ncc thì cái bảng hàng hóa t phải thêm cột tên công ty rồi:(( là 
             db.SaveChanges();
         }
 
@@ -156,7 +158,8 @@ namespace SpaceTeam_Oracle
                                    h.DONGIA,
                                    h.GIAMGIA,
                                    h.MOTA,
-                                   ncc.MANCC
+                                   ncc.MANCC,
+                                   ncc.TENCONGTY
                                }).OrderBy(i => i.MAHH);
 
             var ListEmployee = employeeData.ToList();
@@ -169,7 +172,7 @@ namespace SpaceTeam_Oracle
             dataGridViewDSHHNhap.Columns[5].HeaderText = "Giảm Giá";
             dataGridViewDSHHNhap.Columns[6].HeaderText = "Mô Tả";
             dataGridViewDSHHNhap.Columns[7].HeaderText = "Mã Nhà Cung Cấp";
-
+            dataGridViewDSHHNhap.Columns[8].HeaderText = "Tên Nhà Cung Cấp";
             dataGridViewDSHHNhap.Columns[0].Width = 100;
             dataGridViewDSHHNhap.Columns[1].Width = 250;
             dataGridViewDSHHNhap.Columns[2].Width = 100;
@@ -178,6 +181,7 @@ namespace SpaceTeam_Oracle
             dataGridViewDSHHNhap.Columns[5].Width = 70;
             dataGridViewDSHHNhap.Columns[6].Width = 300;
             dataGridViewDSHHNhap.Columns[7].Width = 100;
+            dataGridViewDSHHNhap.Columns[8].Width = 400;
         }
 
         #endregion Load DataGridView
@@ -196,7 +200,7 @@ namespace SpaceTeam_Oracle
                 txtDonGia.Text = row.Cells[4].Value.ToString();
                 txtGiamGia.Text = row.Cells[5].Value.ToString();
                 txtMoTa.Text = row.Cells[6].Value.ToString();
-                cmbMaNCC.Text = row.Cells[7].Value.ToString();
+                cmbMaNCC.Text = row.Cells[8].Value.ToString();
             }
         }
 
@@ -271,6 +275,7 @@ namespace SpaceTeam_Oracle
             decimal giamGia = decimal.Parse(txtGiamGia.Text);
             string moTa = txtMoTa.Text;
             int maNCC = int.Parse(cmbMaNCC.SelectedValue.ToString());
+            //string tenNCC = cmbMaNCC.Text;
             try
             {
                 UpdateHH(maHH, tenHH, maLoai, soLuong, donGia, giamGia, moTa, maNCC);
@@ -313,5 +318,7 @@ namespace SpaceTeam_Oracle
         }
 
         #endregion button Exit HH
+
+        
     }
 }

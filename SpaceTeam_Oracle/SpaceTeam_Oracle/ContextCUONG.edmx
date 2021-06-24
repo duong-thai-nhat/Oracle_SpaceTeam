@@ -214,15 +214,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="CUONGCUONG" store:Type="Tables" />
+          <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="SPACETEAM_3" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="SPACETEAM_3" store:Type="Tables" />
           <AssociationSet Name="FK_CTHD_HD" Association="Self.FK_CTHD_HD">
             <End Role="HOADON" EntitySet="HOADON" />
             <End Role="CHITIETHD" EntitySet="CHITIETHD" />

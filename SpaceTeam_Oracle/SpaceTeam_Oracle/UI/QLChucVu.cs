@@ -12,7 +12,7 @@ namespace SpaceTeam_Oracle
         {
             InitializeComponent();
         }
-
+       
         private void QLChucVu_Load(object sender, EventArgs e)
         {
             GetDataGridView();
@@ -62,7 +62,7 @@ namespace SpaceTeam_Oracle
         #region Hàm Delete CV
         public void DeleteCV(int maCV)
         {
-            var chucVu = db.CHUCVUs.Where(cv => cv.MACHUCVU== Convert.ToDecimal(maCV)).SingleOrDefault();
+            var chucVu = db.CHUCVUs.Where(cv => cv.MACHUCVU== maCV).SingleOrDefault();
             db.CHUCVUs.Remove(chucVu);
             db.SaveChanges();
         }
@@ -82,8 +82,8 @@ namespace SpaceTeam_Oracle
             dataGridViewDSCV.DataSource = ListEmployee;
             dataGridViewDSCV.Columns[0].HeaderText = "Mã Chức Vụ";
             dataGridViewDSCV.Columns[1].HeaderText = "Tên Chức Vụ";
-            dataGridViewDSCV.Columns[0].Width = 200;
-            dataGridViewDSCV.Columns[1].Width = 600;
+            dataGridViewDSCV.Columns[0].Width = 150;
+            dataGridViewDSCV.Columns[1].Width = 450;
         }
         #endregion
         
@@ -160,5 +160,8 @@ namespace SpaceTeam_Oracle
                 txtTenCV.Text = row.Cells[1].Value.ToString();
             }
         }
+
+       
+
     }
 }
