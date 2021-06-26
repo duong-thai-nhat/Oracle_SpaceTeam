@@ -51,6 +51,16 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.OracleClient, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.OracleClient.1.0.8\lib\netstandard2.0\System.Data.OracleClient.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -67,46 +77,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CHINHANH.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="CHITIETHD.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="CHUCVU.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContextCUONG.Context.cs">
+    <Compile Include="Context.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ContextCUONG.Context.tt</DependentUpon>
+      <DependentUpon>Context.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContextCUONG.cs">
+    <Compile Include="Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContextCUONG.Designer.cs">
+    <Compile Include="Context.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ContextCUONG.edmx</DependentUpon>
+      <DependentUpon>Context.edmx</DependentUpon>
     </Compile>
     <Compile Include="HANGHOA.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="HOADON.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="KHACHHANG.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="LOAI.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="NHACUNGCAP.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="NHANVIEN.cs">
-      <DependentUpon>ContextCUONG.tt</DependentUpon>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -255,12 +265,12 @@
     <EmbeddedResource Include="UI\QLNhanVien.resx">
       <DependentUpon>QLNhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="ContextCUONG.edmx">
+    <EntityDeploy Include="Context.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ContextCUONG.Designer.cs</LastGenOutput>
+      <LastGenOutput>Context.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ContextCUONG.edmx.diagram">
-      <DependentUpon>ContextCUONG.edmx</DependentUpon>
+    <None Include="Context.edmx.diagram">
+      <DependentUpon>Context.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -280,15 +290,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ContextCUONG.Context.tt">
+    <Content Include="Context.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ContextCUONG.edmx</DependentUpon>
-      <LastGenOutput>ContextCUONG.Context.cs</LastGenOutput>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ContextCUONG.tt">
+    <Content Include="Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ContextCUONG.edmx</DependentUpon>
-      <LastGenOutput>ContextCUONG.cs</LastGenOutput>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Context">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ContextCuong">
     <EntitySetMapping Name="CHINHANHs">
       <EntityTypeMapping TypeName="Model.CHINHANH">
         <MappingFragment StoreEntitySet="CHINHANH">
@@ -17,7 +17,6 @@
           <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
           <ScalarProperty Name="GIAMGIA" ColumnName="GIAMGIA" />
           <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="KICHCO" ColumnName="KICHCO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -48,7 +47,7 @@
         <MappingFragment StoreEntitySet="HOADON">
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
           <ScalarProperty Name="MANV" ColumnName="MANV" />
-          <ScalarProperty Name="MACN" ColumnName="MACN" />
+          <ScalarProperty Name="MACHINHANH" ColumnName="MACHINHANH" />
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
           <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
@@ -103,10 +102,16 @@
           <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
           <ScalarProperty Name="TENDN" ColumnName="TENDN" />
           <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+          <ScalarProperty Name="LUONG" ColumnName="LUONG" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
           <ScalarProperty Name="MACHINHANH" ColumnName="MACHINHANH" />
           <ScalarProperty Name="MACHUCVU" ColumnName="MACHUCVU" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PAGINGHANGHOA" FunctionName="Model.Store.PAGINGHANGHOA" />
+    <FunctionImportMapping FunctionImportName="PAGINGHANGHOA10" FunctionName="Model.Store.PAGINGHANGHOA10" />
+    <FunctionImportMapping FunctionImportName="PAGINGHANGHOA2" FunctionName="Model.Store.PAGINGHANGHOA2" />
+    <FunctionImportMapping FunctionImportName="PAGINGHANGHOA23" FunctionName="Model.Store.PAGINGHANGHOA23" />
   </EntityContainerMapping>
 </Mapping>

@@ -13,7 +13,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class DanhSachHangHoaDaBan : Form
     {
-        ContextCUONG db = new ContextCUONG();
+        ContextCuong db = new ContextCuong();
         public DanhSachHangHoaDaBan()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             LoadComboboxCN();
             LoadComboboxNhanVien();
             LoadComboboxSP();
-            GetDataGridView();
+            GetDataGridView(pageNumber,numberRecord);
             cmbChiNhanh.Text = "";
             cmbTenNV.Text = "";
             cmbTenSP.Text = "";
@@ -86,61 +86,6 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion 
 
-        #region Load DataGridView Hang Hoa Da Ban
-        public void GetDataGridView()
-        {
-            var employeeData = from ct in db.CHITIETHDs
-                               join hh in db.HANGHOAs
-                               on ct.MAHH equals hh.MAHH
-                               where ct.MAHH == hh.MAHH
-                               join ncc in db.NHACUNGCAPs
-                               on hh.MANCC equals ncc.MANCC
-                               join l in db.LOAIs
-                               on hh.MALOAI equals l.MALOAI
-                               join hd in db.HOADONs
-                               on ct.MAHD equals hd.MAHD
-                               join cn in db.CHINHANHs
-                               on hd.MACHINHANH equals cn.MACHINHANH
-                               join nv in db.NHANVIENs
-                               on hd.MANV equals nv.MANV
-                               select new
-                               {
-                                   ct.MAHH,
-                                   hh.TENHH,
-                                   ct.SOLUONG,
-                                   l.TENLOAI,
-                                   hh.DONGIA,
-                                   hh.GIAMGIA,
-                                   hh.MOTA,
-                                   ncc.TENCONGTY,
-                                   nv.HOTEN,
-                                   cn.TENCHINHANH
-                               };
-
-            var ListEmployee = employeeData.ToList();
-            dataGridViewHHDB.DataSource = ListEmployee;
-            dataGridViewHHDB.Columns[0].HeaderText = "Mã Hàng Hóa";
-            dataGridViewHHDB.Columns[1].HeaderText = "Tên Hàng Hóa";
-            dataGridViewHHDB.Columns[2].HeaderText = "Số Lượng";
-            dataGridViewHHDB.Columns[3].HeaderText = "Tên Loại";
-            dataGridViewHHDB.Columns[4].HeaderText = "Đơn Giá";
-            dataGridViewHHDB.Columns[5].HeaderText = "Giảm Giá";
-            dataGridViewHHDB.Columns[6].HeaderText = "Mô Tả";
-            dataGridViewHHDB.Columns[7].HeaderText = "Tên Công Ty";
-            dataGridViewHHDB.Columns[8].HeaderText = "Tên Nhân Viên";
-            dataGridViewHHDB.Columns[9].HeaderText = "Tên Chi Nhánh";
-            dataGridViewHHDB.Columns[0].Width = 50;
-            dataGridViewHHDB.Columns[1].Width = 130;
-            dataGridViewHHDB.Columns[2].Width = 50;
-            dataGridViewHHDB.Columns[3].Width = 150;
-            dataGridViewHHDB.Columns[4].Width = 80;
-            dataGridViewHHDB.Columns[5].Width = 50;
-            dataGridViewHHDB.Columns[6].Width = 150;
-            dataGridViewHHDB.Columns[7].Width = 140;
-            dataGridViewHHDB.Columns[8].Width = 150;
-            dataGridViewHHDB.Columns[9].Width = 140;
-        }
-        #endregion
 
         #region Ham Tim Kiem theo SP
         void TKcmbSP()
@@ -690,7 +635,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 
         private void btnTaiLai_Click(object sender, EventArgs e)
         {
-            GetDataGridView();
+            GetDataGridView(pageNumber,numberRecord);
             cmbChiNhanh.Text = "";
             cmbTenNV.Text = "";
             cmbTenSP.Text = "";
@@ -698,14 +643,110 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             dtTKNgayBanDen.Value = new DateTime(2020, 9, 1);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        int pageNumber = 1;
+        int numberRecord = 10;
+
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
         {
-
+            pageNumber = 1;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
         }
+        #endregion
 
-        private void label1_Click(object sender, EventArgs e)
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
         {
-
+            if (pageNumber - 1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
         }
+        #endregion
+
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecord = db.CHITIETHDs.Count();
+            if (pageNumber - 1 < (totalRecord / numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            int sumRecord = db.CHITIETHDs.Count();
+
+            int pageNumber = sumRecord / 10;
+
+            if (sumRecord % 10 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
+        {
+            var hangHoa = (from ct in db.CHITIETHDs
+                           join hh in db.HANGHOAs
+                           on ct.MAHH equals hh.MAHH
+                           where ct.MAHH == hh.MAHH
+                           join ncc in db.NHACUNGCAPs
+                           on hh.MANCC equals ncc.MANCC
+                           join l in db.LOAIs
+                           on hh.MALOAI equals l.MALOAI
+                           join hd in db.HOADONs
+                           on ct.MAHD equals hd.MAHD
+                           join cn in db.CHINHANHs
+                           on hd.MACHINHANH equals cn.MACHINHANH
+                           join nv in db.NHANVIENs
+                           on hd.MANV equals nv.MANV
+                           select new
+                           {
+                               ct.MAHH,
+                               hh.TENHH,
+                               ct.SOLUONG,
+                               l.TENLOAI,
+                               hh.DONGIA,
+                               hh.GIAMGIA,
+                               hh.MOTA,
+                               ncc.TENCONGTY,
+                               nv.HOTEN,
+                               cn.TENCHINHANH
+                           }).OrderByDescending(i => i.MAHH).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridViewHHDB.DataSource = hangHoa;
+            dataGridViewHHDB.Columns[0].HeaderText = "Mã Hàng Hóa";
+            dataGridViewHHDB.Columns[1].HeaderText = "Tên Hàng Hóa";
+            dataGridViewHHDB.Columns[2].HeaderText = "Số Lượng";
+            dataGridViewHHDB.Columns[3].HeaderText = "Tên Loại";
+            dataGridViewHHDB.Columns[4].HeaderText = "Đơn Giá";
+            dataGridViewHHDB.Columns[5].HeaderText = "Giảm Giá";
+            dataGridViewHHDB.Columns[6].HeaderText = "Mô Tả";
+            dataGridViewHHDB.Columns[7].HeaderText = "Tên Công Ty";
+            dataGridViewHHDB.Columns[8].HeaderText = "Tên Nhân Viên";
+            dataGridViewHHDB.Columns[9].HeaderText = "Tên Chi Nhánh";
+            dataGridViewHHDB.Columns[0].Width = 50;
+            dataGridViewHHDB.Columns[1].Width = 130;
+            dataGridViewHHDB.Columns[2].Width = 50;
+            dataGridViewHHDB.Columns[3].Width = 150;
+            dataGridViewHHDB.Columns[4].Width = 80;
+            dataGridViewHHDB.Columns[5].Width = 50;
+            dataGridViewHHDB.Columns[6].Width = 150;
+            dataGridViewHHDB.Columns[7].Width = 140;
+            dataGridViewHHDB.Columns[8].Width = 150;
+            dataGridViewHHDB.Columns[9].Width = 140;
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
     }
 }

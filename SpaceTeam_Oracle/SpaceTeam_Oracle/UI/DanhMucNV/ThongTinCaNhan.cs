@@ -15,7 +15,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class ThongTinCaNhan : Form
     {
-        ContextCUONG db = new ContextCUONG();
+        ContextCuong db = new ContextCuong();
         private string TenDN { get; set; }
         public ThongTinCaNhan(string tenNV)
         {
@@ -216,7 +216,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Hàm Update Nhân Viên
         public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string luong, string tenDN, byte[] matKhau, string eMail, int maChiNhanh, int maChucVu)
         {
-            ContextCUONG db = new ContextCUONG();
+            ContextCuong db = new ContextCuong();
             NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -236,7 +236,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Hàm Delete Bill
         public void Delete(int maNV)
         {
-            ContextCUONG db = new ContextCUONG();
+            ContextCuong db = new ContextCuong();
             var nhanVien = db.NHANVIENs.Where(nv => nv.MANV == maNV).SingleOrDefault();
 
             db.NHANVIENs.Remove(nhanVien);

@@ -13,17 +13,19 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class DanhSachDonHang : Form
     {
-        ContextCUONG db = new ContextCUONG();
+        ContextCuong db = new ContextCuong();
         public DanhSachDonHang()
         {
             InitializeComponent();
         }
 
+        int pageNumber = 1;
+        int numberRecord = 10;
         private void DanhSachDonHang_Load(object sender, EventArgs e)
         {
             LoadComboboxCN();
             LoadComboboxNhanVien();
-            GetDataGridView();
+            GetDataGridView(pageNumber, numberRecord);
             cmbChiNhanh.Text = "";
             cmbTenNV.Text = "";
         }
@@ -315,5 +317,100 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 GetdataGridView1(int.Parse(row.Cells[0].Value.ToString()));
             }
         }
+
+
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
+        {
+            pageNumber = 1;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
+        {
+            if (pageNumber - 1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecord = db.HOADONs.Count();
+            if (pageNumber - 1 < (totalRecord / numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            int sumRecord = db.HOADONs.Count();
+
+            int pageNumber = sumRecord / numberRecord;
+
+            if (sumRecord % 5 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
+        {
+            var hangHoa = (from h in db.HOADONs
+                           join c in db.CHINHANHs
+                           on h.MACHINHANH equals c.MACHINHANH
+                           join k in db.KHACHHANGs
+                           on h.MAKH equals k.MAKH
+                           join nv in db.NHANVIENs
+                           on h.MANV equals nv.MANV
+                           select new
+                           {
+                               h.MAHD,
+                               k.HOTEN,
+                               k.DIACHI,
+                               k.DIENTHOAI,
+                               h.GHICHU,
+                               h.NGAYTAO,
+                               nv.MANV,
+                               TENNV = nv.HOTEN,
+                               c.TENCHINHANH
+                           }).OrderByDescending(i => i.MAHD).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridViewDonHang.DataSource = hangHoa;
+            dataGridViewDonHang.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridViewDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridViewDonHang.Columns[2].HeaderText = "Địa chỉ";
+            dataGridViewDonHang.Columns[3].HeaderText = "Điện Thoại";
+            dataGridViewDonHang.Columns[4].HeaderText = "Ghi chú";
+            dataGridViewDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridViewDonHang.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridViewDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridViewDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridViewDonHang.Columns[0].Width = 30;
+            dataGridViewDonHang.Columns[1].Width = 130;
+            dataGridViewDonHang.Columns[2].Width = 120;
+            dataGridViewDonHang.Columns[3].Width = 90;
+            dataGridViewDonHang.Columns[4].Width = 120;
+            dataGridViewDonHang.Columns[5].Width = 100;
+            dataGridViewDonHang.Columns[6].Width = 40;
+            dataGridViewDonHang.Columns[7].Width = 140;
+            dataGridViewDonHang.Columns[8].Width = 120;
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+        
     }
 }

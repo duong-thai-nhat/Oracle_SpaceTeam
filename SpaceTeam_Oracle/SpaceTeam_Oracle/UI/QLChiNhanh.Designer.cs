@@ -42,6 +42,11 @@
             this.txtTenCN = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.txbPageBill = new System.Windows.Forms.TextBox();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPreviours = new System.Windows.Forms.Button();
+            this.btnFirsts = new System.Windows.Forms.Button();
             this.groupBoxButton.SuspendLayout();
             this.groupBoxCN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDSCN)).BeginInit();
@@ -55,21 +60,21 @@
             this.groupBoxButton.Controls.Add(this.btnUpdate);
             this.groupBoxButton.Controls.Add(this.btnDelete);
             this.groupBoxButton.Controls.Add(this.btnAdd);
-            this.groupBoxButton.Location = new System.Drawing.Point(12, 539);
-            this.groupBoxButton.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxButton.Location = new System.Drawing.Point(16, 726);
+            this.groupBoxButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxButton.Name = "groupBoxButton";
-            this.groupBoxButton.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxButton.Size = new System.Drawing.Size(776, 76);
+            this.groupBoxButton.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxButton.Size = new System.Drawing.Size(1035, 94);
             this.groupBoxButton.TabIndex = 35;
             this.groupBoxButton.TabStop = false;
             // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Honeydew;
-            this.btnExit.Location = new System.Drawing.Point(658, 15);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExit.Location = new System.Drawing.Point(877, 18);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(100, 43);
+            this.btnExit.Size = new System.Drawing.Size(133, 53);
             this.btnExit.TabIndex = 0;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -78,10 +83,10 @@
             // btnRefesh
             // 
             this.btnRefesh.BackColor = System.Drawing.Color.Honeydew;
-            this.btnRefesh.Location = new System.Drawing.Point(509, 16);
-            this.btnRefesh.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRefesh.Location = new System.Drawing.Point(679, 20);
+            this.btnRefesh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefesh.Name = "btnRefesh";
-            this.btnRefesh.Size = new System.Drawing.Size(100, 43);
+            this.btnRefesh.Size = new System.Drawing.Size(133, 53);
             this.btnRefesh.TabIndex = 0;
             this.btnRefesh.Text = "Refesh";
             this.btnRefesh.UseVisualStyleBackColor = false;
@@ -90,10 +95,10 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.Honeydew;
-            this.btnUpdate.Location = new System.Drawing.Point(349, 16);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpdate.Location = new System.Drawing.Point(465, 20);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(100, 43);
+            this.btnUpdate.Size = new System.Drawing.Size(133, 53);
             this.btnUpdate.TabIndex = 0;
             this.btnUpdate.Text = "Sửa";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -102,10 +107,10 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Honeydew;
-            this.btnDelete.Location = new System.Drawing.Point(188, 16);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Location = new System.Drawing.Point(251, 20);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(100, 43);
+            this.btnDelete.Size = new System.Drawing.Size(133, 53);
             this.btnDelete.TabIndex = 0;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -114,10 +119,10 @@
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.Honeydew;
-            this.btnAdd.Location = new System.Drawing.Point(24, 17);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Location = new System.Drawing.Point(32, 21);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 43);
+            this.btnAdd.Size = new System.Drawing.Size(133, 53);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -127,10 +132,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label1.Location = new System.Drawing.Point(310, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(413, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 31);
+            this.label1.Size = new System.Drawing.Size(179, 39);
             this.label1.TabIndex = 34;
             this.label1.Text = "Chi Nhánh";
             // 
@@ -138,9 +143,11 @@
             // 
             this.groupBoxCN.Controls.Add(this.dataGridViewDSCN);
             this.groupBoxCN.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxCN.Location = new System.Drawing.Point(12, 192);
+            this.groupBoxCN.Location = new System.Drawing.Point(16, 236);
+            this.groupBoxCN.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxCN.Name = "groupBoxCN";
-            this.groupBoxCN.Size = new System.Drawing.Size(776, 338);
+            this.groupBoxCN.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxCN.Size = new System.Drawing.Size(1035, 416);
             this.groupBoxCN.TabIndex = 33;
             this.groupBoxCN.TabStop = false;
             this.groupBoxCN.Text = "Danh Sách Chi Nhánh";
@@ -149,10 +156,11 @@
             // 
             this.dataGridViewDSCN.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dataGridViewDSCN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDSCN.Location = new System.Drawing.Point(16, 39);
+            this.dataGridViewDSCN.Location = new System.Drawing.Point(21, 48);
+            this.dataGridViewDSCN.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDSCN.Name = "dataGridViewDSCN";
             this.dataGridViewDSCN.RowHeadersWidth = 51;
-            this.dataGridViewDSCN.Size = new System.Drawing.Size(742, 279);
+            this.dataGridViewDSCN.Size = new System.Drawing.Size(989, 343);
             this.dataGridViewDSCN.TabIndex = 0;
             this.dataGridViewDSCN.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDSCN_CellContentClick);
             // 
@@ -163,55 +171,125 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 71);
+            this.groupBox1.Location = new System.Drawing.Point(16, 87);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 102);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(1035, 126);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Chung";
             // 
             // txtMaCN
             // 
-            this.txtMaCN.Location = new System.Drawing.Point(148, 36);
+            this.txtMaCN.Location = new System.Drawing.Point(197, 44);
+            this.txtMaCN.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaCN.Name = "txtMaCN";
-            this.txtMaCN.Size = new System.Drawing.Size(183, 29);
+            this.txtMaCN.Size = new System.Drawing.Size(243, 34);
             this.txtMaCN.TabIndex = 56;
             // 
             // txtTenCN
             // 
-            this.txtTenCN.Location = new System.Drawing.Point(547, 36);
+            this.txtTenCN.Location = new System.Drawing.Point(729, 44);
+            this.txtTenCN.Margin = new System.Windows.Forms.Padding(4);
             this.txtTenCN.Name = "txtTenCN";
-            this.txtTenCN.Size = new System.Drawing.Size(177, 29);
+            this.txtTenCN.Size = new System.Drawing.Size(235, 34);
             this.txtTenCN.TabIndex = 53;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 36);
+            this.label7.Location = new System.Drawing.Point(17, 44);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(111, 21);
+            this.label7.Size = new System.Drawing.Size(142, 28);
             this.label7.TabIndex = 44;
             this.label7.Text = "Mã Chi Nhánh";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(404, 39);
+            this.label9.Location = new System.Drawing.Point(539, 48);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(113, 21);
+            this.label9.Size = new System.Drawing.Size(146, 28);
             this.label9.TabIndex = 43;
             this.label9.Text = "Tên Chi Nhánh";
             // 
+            // txbPageBill
+            // 
+            this.txbPageBill.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.txbPageBill.Location = new System.Drawing.Point(400, 660);
+            this.txbPageBill.Margin = new System.Windows.Forms.Padding(4);
+            this.txbPageBill.Name = "txbPageBill";
+            this.txbPageBill.Size = new System.Drawing.Size(272, 34);
+            this.txbPageBill.TabIndex = 82;
+            this.txbPageBill.Text = "1";
+            // 
+            // btnLast
+            // 
+            this.btnLast.BackColor = System.Drawing.Color.Ivory;
+            this.btnLast.Location = new System.Drawing.Point(911, 654);
+            this.btnLast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(140, 50);
+            this.btnLast.TabIndex = 86;
+            this.btnLast.Text = "Last";
+            this.btnLast.UseVisualStyleBackColor = false;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.Ivory;
+            this.btnNext.Location = new System.Drawing.Point(733, 654);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(140, 50);
+            this.btnNext.TabIndex = 85;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPreviours
+            // 
+            this.btnPreviours.BackColor = System.Drawing.Color.Ivory;
+            this.btnPreviours.Location = new System.Drawing.Point(177, 654);
+            this.btnPreviours.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPreviours.Name = "btnPreviours";
+            this.btnPreviours.Size = new System.Drawing.Size(140, 50);
+            this.btnPreviours.TabIndex = 84;
+            this.btnPreviours.Text = "Previours";
+            this.btnPreviours.UseVisualStyleBackColor = false;
+            this.btnPreviours.Click += new System.EventHandler(this.btnPreviours_Click);
+            // 
+            // btnFirsts
+            // 
+            this.btnFirsts.BackColor = System.Drawing.Color.Ivory;
+            this.btnFirsts.Location = new System.Drawing.Point(16, 656);
+            this.btnFirsts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFirsts.Name = "btnFirsts";
+            this.btnFirsts.Size = new System.Drawing.Size(140, 50);
+            this.btnFirsts.TabIndex = 83;
+            this.btnFirsts.Text = "Firsts";
+            this.btnFirsts.UseVisualStyleBackColor = false;
+            this.btnFirsts.Click += new System.EventHandler(this.btnFirsts_Click);
+            // 
             // QLChiNhanh
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(800, 626);
+            this.ClientSize = new System.Drawing.Size(1067, 831);
+            this.Controls.Add(this.txbPageBill);
+            this.Controls.Add(this.btnLast);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPreviours);
+            this.Controls.Add(this.btnFirsts);
             this.Controls.Add(this.groupBoxButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBoxCN);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "QLChiNhanh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QLChiNhanh";
@@ -242,5 +320,10 @@
         private System.Windows.Forms.TextBox txtTenCN;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txbPageBill;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPreviours;
+        private System.Windows.Forms.Button btnFirsts;
     }
 }

@@ -412,7 +412,7 @@ CREATE TABLE KHACHHANG (
 );
 
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (0 , N'Không có thông tin' , N'Không có thông tin ', N'Không có thông tin', N'Không có thông tin', N'Không có thông tin', NULL);
-INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (1 , N' Phạm Kim Đắc ', N'80 Đường số 82 Quận  Bình Chánh TP.HCM. ', N'0047943239', N'qyzcwfj.twdu0@gmail.com', 0, TO_TIMESTAMP(N'2008-07-07' ,'YYYY-MM-DD'));
+INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (1 , N' Khách vãng lai ', N'Không ', N'Không', N'Không', 0, TO_TIMESTAMP(N'2008-07-07' ,'YYYY-MM-DD'));
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (2 , N' Dương Viết Huy ', N'38  Quận 3 TP.Thủ Đức. ', N'0787755959', N'vmjv2710@gmail.com',1, TO_TIMESTAMP(N'2002-03-04' ,'YYYY-MM-DD'));
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (3 , N' Phạm Duy  Quốc ', N'44  Quận Tân Bình TP.Thủ Đức. ', N'0834476668', N'qsslscnk30@gmail.com',1, NULL);
 INSERT INTO KHACHHANG (MaKH, HoTen, DiaChi, DienThoai, Email, GioiTinh, NgaySinh)VALUES (4 , N' Nguyễn Uyển Huy ', N'631 Phường 69 Quận  TP.HCM. ', N'0020932763', N'kbefexd41@gmail.com',1, TO_TIMESTAMP(N'1994-12-31' ,'YYYY-MM-DD'));
@@ -460,7 +460,7 @@ CREATE TABLE HOADON (
 INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (1, 1,1,1,N'Nguyẽn Thanh Sang',N'Bình Dương', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
 INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (2, 1,2,2,N'Minh Cao', N'TPHCM', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),236800,237000);
 INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (3, 2,3,3,N'Nguyễn Thanh Sang', N'Q11', N'0971890712',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),34500,345000);
-INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (4, 3,4,4,N'Nguyễn Ngọc Hiền', N'Gò Vấp', N'',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),1135100,1135000);
+INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (4, 3,4,4,N'Nguyễn Ngọc Hiền', N'Gò Vấp', N'0377077630',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),1135100,1135000);
 INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (5, 4,5,5,N'Hồ  Quỳnh Nga', N'280 ADV', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),6800,6800);
 INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (6, 5,6,6, N'Lê Thị Hiền', N'Bình Thạnh', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),135100,135000);
 INSERT INTO HOADON (MaHD, MANV,MaChiNhanh, MaKH,HoTen, DiaChi,SDT,GhiChu,NgayTao,TongTienHang,TongThucThu) VALUES (7, 6,7,7,N'Lê Thanh Sang', N'Thủ Đức', N'0904877306',N'',TO_TIMESTAMP ('2018-11-30 17:53:28.673','YYYY-MM-DD HH24:MI:SS.FF3'),356100,256000);

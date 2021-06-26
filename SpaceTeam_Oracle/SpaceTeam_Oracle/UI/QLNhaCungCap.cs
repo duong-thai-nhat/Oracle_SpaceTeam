@@ -7,7 +7,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhaCungCap : Form
     {
-        private ContextCUONG db = new ContextCUONG();
+        private ContextCuong db = new ContextCuong();
 
         public QLNhaCungCap()
         {
@@ -16,7 +16,7 @@ namespace SpaceTeam_Oracle.UI
 
         private void QLNhaCungCap_Load(object sender, EventArgs e)
         {
-            GetDataGridView();
+            GetDataGridView(pageNumber, numberRecord);
         }
 
         #region Hàm Get IdNCC
@@ -86,35 +86,7 @@ namespace SpaceTeam_Oracle.UI
 
         #endregion Hàm Delete NCC
 
-        #region Load DataGridView
-
-        public void GetDataGridView()
-        {
-            var NCCdata = from ncc in db.NHACUNGCAPs
-                          select new
-                          {
-                              ncc.MANCC,
-                              ncc.TENCONGTY,
-                              ncc.EMAIL,
-                              ncc.DIENTHOAI,
-                              ncc.DIACHI
-                          };
-
-            var ListEmployee = NCCdata.ToList();
-            dataGridViewDSNCC.DataSource = ListEmployee;
-            dataGridViewDSNCC.Columns[0].HeaderText = "Mã Nhà Cung Cấp";
-            dataGridViewDSNCC.Columns[1].HeaderText = "Tên Nhà Cung Cấp";
-            dataGridViewDSNCC.Columns[2].HeaderText = "Email";
-            dataGridViewDSNCC.Columns[3].HeaderText = "Số Điện Thoại";
-            dataGridViewDSNCC.Columns[4].HeaderText = "Địa Chỉ";
-            dataGridViewDSNCC.Columns[0].Width = 100;
-            dataGridViewDSNCC.Columns[1].Width = 400;
-            dataGridViewDSNCC.Columns[2].Width = 200;
-            dataGridViewDSNCC.Columns[3].Width = 200;
-            dataGridViewDSNCC.Columns[4].Width = 600;
-        }
-
-        #endregion Load DataGridView
+        
 
         #region Cell CLick
 
@@ -147,7 +119,7 @@ namespace SpaceTeam_Oracle.UI
             if (temp == "1")
             {
                 MessageBox.Show("Thêm Nhà Cung Cấp Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             else
             {
@@ -166,7 +138,7 @@ namespace SpaceTeam_Oracle.UI
             {
                 DeleteNCC(maNCC);
                 MessageBox.Show("Xóa Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -189,7 +161,7 @@ namespace SpaceTeam_Oracle.UI
             {
                 UpdateNCC(maNCC, tenNCC, eMail, SDT, diaChi);
                 MessageBox.Show("Sửa Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -205,7 +177,7 @@ namespace SpaceTeam_Oracle.UI
         {
             txtMaNCC.Text = " ";
             txtTenNCC.Text = " ";
-            GetDataGridView();
+            GetDataGridView(pageNumber, numberRecord);
         }
 
         #endregion button Update NCC
@@ -221,8 +193,85 @@ namespace SpaceTeam_Oracle.UI
             }
         }
 
+
         #endregion button Exit NCC
 
-        
+        int pageNumber = 1;
+        int numberRecord = 10;
+
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
+        {
+            pageNumber = 1;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
+        {
+            if (pageNumber - 1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecord = db.NHACUNGCAPs.Count();
+            if (pageNumber - 1 < (totalRecord / numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            int sumRecord = db.NHACUNGCAPs.Count();
+
+            int pageNumber = sumRecord / 10;
+
+            if (sumRecord % 10 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
+        {
+            var hangHoa = (from ncc in db.NHACUNGCAPs
+                           select new
+                           {
+                               ncc.MANCC,
+                               ncc.TENCONGTY,
+                               ncc.EMAIL,
+                               ncc.DIENTHOAI,
+                               ncc.DIACHI
+                           }).OrderByDescending(i => i.MANCC).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridViewDSNCC.DataSource = hangHoa;
+            dataGridViewDSNCC.Columns[0].HeaderText = "Mã Nhà Cung Cấp";
+            dataGridViewDSNCC.Columns[1].HeaderText = "Tên Nhà Cung Cấp";
+            dataGridViewDSNCC.Columns[2].HeaderText = "Email";
+            dataGridViewDSNCC.Columns[3].HeaderText = "Số Điện Thoại";
+            dataGridViewDSNCC.Columns[4].HeaderText = "Địa Chỉ";
+            dataGridViewDSNCC.Columns[0].Width = 100;
+            dataGridViewDSNCC.Columns[1].Width = 400;
+            dataGridViewDSNCC.Columns[2].Width = 200;
+            dataGridViewDSNCC.Columns[3].Width = 200;
+            dataGridViewDSNCC.Columns[4].Width = 600;
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
     }
 }

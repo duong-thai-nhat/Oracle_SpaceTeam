@@ -7,7 +7,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class QLChucVu : Form
     {
-        ContextCUONG db = new ContextCUONG();
+        ContextCuong db = new ContextCuong();
         public QLChucVu()
         {
             InitializeComponent();

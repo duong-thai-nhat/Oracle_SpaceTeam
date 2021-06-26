@@ -8,7 +8,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class NhapKho : Form
     {
-        private ContextCUONG db = new ContextCUONG();
+        private ContextCuong db = new ContextCuong();
 
         public NhapKho()
         {
@@ -19,7 +19,7 @@ namespace SpaceTeam_Oracle
         {
             LoadComboboxLoai();
             LoadComboboxNCC();
-            GetDataGridView();
+            GetDataGridView(pageNumber,numberRecord);
         }
 
         #region Load Combobox Ten Loai
@@ -99,7 +99,7 @@ namespace SpaceTeam_Oracle
 
         public void UpdateHH1(string tenHH, int soLuong)
         {
-            ContextCUONG db = new ContextCUONG();
+            ContextCuong db = new ContextCuong();
             HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.TENHH == tenHH);
             update.TENHH = tenHH;
             update.SOLUONG = update.SOLUONG + soLuong;
@@ -112,7 +112,7 @@ namespace SpaceTeam_Oracle
 
         public void UpdateHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, int maNCC)
         {
-            ContextCUONG db = new ContextCUONG();
+            ContextCuong db = new ContextCuong();
             HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.MAHH == maHH);
           
             update.TENHH = tenHH;
@@ -140,51 +140,7 @@ namespace SpaceTeam_Oracle
 
         #endregion Hàm Delete HH
 
-        #region Load DataGridView
-
-        public void GetDataGridView()
-        {
-            var employeeData = (from h in db.HANGHOAs
-                               join l in db.LOAIs
-                               on h.MALOAI equals l.MALOAI
-                               join ncc in db.NHACUNGCAPs
-                               on h.MANCC equals ncc.MANCC
-                               select new
-                               {
-                                   h.MAHH,
-                                   h.TENHH,
-                                   l.TENLOAI,
-                                   h.SOLUONG,
-                                   h.DONGIA,
-                                   h.GIAMGIA,
-                                   h.MOTA,
-                                   ncc.MANCC,
-                                   ncc.TENCONGTY
-                               }).OrderBy(i => i.MAHH);
-
-            var ListEmployee = employeeData.ToList();
-            dataGridViewDSHHNhap.DataSource = ListEmployee;
-            dataGridViewDSHHNhap.Columns[0].HeaderText = "Mã Hàng Hóa";
-            dataGridViewDSHHNhap.Columns[1].HeaderText = "Tên Hàng Hóa";
-            dataGridViewDSHHNhap.Columns[2].HeaderText = "Mã Loại";
-            dataGridViewDSHHNhap.Columns[3].HeaderText = "Số Lượng";
-            dataGridViewDSHHNhap.Columns[4].HeaderText = "Đơn Giá";
-            dataGridViewDSHHNhap.Columns[5].HeaderText = "Giảm Giá";
-            dataGridViewDSHHNhap.Columns[6].HeaderText = "Mô Tả";
-            dataGridViewDSHHNhap.Columns[7].HeaderText = "Mã Nhà Cung Cấp";
-            dataGridViewDSHHNhap.Columns[8].HeaderText = "Tên Nhà Cung Cấp";
-            dataGridViewDSHHNhap.Columns[0].Width = 100;
-            dataGridViewDSHHNhap.Columns[1].Width = 250;
-            dataGridViewDSHHNhap.Columns[2].Width = 100;
-            dataGridViewDSHHNhap.Columns[3].Width = 70;
-            dataGridViewDSHHNhap.Columns[4].Width = 150;
-            dataGridViewDSHHNhap.Columns[5].Width = 70;
-            dataGridViewDSHHNhap.Columns[6].Width = 300;
-            dataGridViewDSHHNhap.Columns[7].Width = 100;
-            dataGridViewDSHHNhap.Columns[8].Width = 400;
-        }
-
-        #endregion Load DataGridView
+        
 
         #region Cell Click
 
@@ -227,13 +183,13 @@ namespace SpaceTeam_Oracle
                 {
                     UpdateHH1(tenHH, soLuong);
                     MessageBox.Show("Đã thêm "+ soLuong + " sản phẩm vào hàng hóa này!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GetDataGridView();
+                    GetDataGridView(pageNumber, numberRecord);
                 }
                 if (dem1 == 0)
                 {
                     InsertHH(maHH, tenHH, maLoai, soLuong, donGia, giamGia, moTa, maNCC);
                     MessageBox.Show("Thêm Hàng Hóa Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GetDataGridView();
+                    GetDataGridView(pageNumber, numberRecord);
                 }
             }
             catch (Exception ex)
@@ -253,7 +209,7 @@ namespace SpaceTeam_Oracle
             {
                 DeleteHH(maHH);
                 MessageBox.Show("Xóa Hàng Hóa Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -280,7 +236,7 @@ namespace SpaceTeam_Oracle
             {
                 UpdateHH(maHH, tenHH, maLoai, soLuong, donGia, giamGia, moTa, maNCC);
                 MessageBox.Show("Sửa Hàng Hóa Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -317,8 +273,102 @@ namespace SpaceTeam_Oracle
             }
         }
 
+
         #endregion button Exit HH
 
-        
+
+        int pageNumber = 1;
+        int numberRecord = 10;
+
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
+        {
+            pageNumber = 1;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
+        {
+            if (pageNumber - 1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecord = db.HANGHOAs.Count();
+            if (pageNumber - 1 < (totalRecord / numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            int sumRecord = db.HANGHOAs.Count();
+
+            int pageNumber = sumRecord / 10;
+
+            if (sumRecord % 10 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
+        {
+            var hangHoa = (from h in db.HANGHOAs
+                           join l in db.LOAIs
+                           on h.MALOAI equals l.MALOAI
+                           join ncc in db.NHACUNGCAPs
+                           on h.MANCC equals ncc.MANCC
+                           select new
+                           {
+                               h.MAHH,
+                               h.TENHH,
+                               l.TENLOAI,
+                               h.SOLUONG,
+                               h.DONGIA,
+                               h.GIAMGIA,
+                               h.MOTA,
+                               ncc.MANCC,
+                               ncc.TENCONGTY
+                           }).OrderByDescending(i => i.MAHH).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridViewDSHHNhap.DataSource = hangHoa;
+            dataGridViewDSHHNhap.Columns[0].HeaderText = "Mã Hàng Hóa";
+            dataGridViewDSHHNhap.Columns[1].HeaderText = "Tên Hàng Hóa";
+            dataGridViewDSHHNhap.Columns[2].HeaderText = "Mã Loại";
+            dataGridViewDSHHNhap.Columns[3].HeaderText = "Số Lượng";
+            dataGridViewDSHHNhap.Columns[4].HeaderText = "Đơn Giá";
+            dataGridViewDSHHNhap.Columns[5].HeaderText = "Giảm Giá";
+            dataGridViewDSHHNhap.Columns[6].HeaderText = "Mô Tả";
+            dataGridViewDSHHNhap.Columns[7].HeaderText = "Mã Nhà Cung Cấp";
+            dataGridViewDSHHNhap.Columns[8].HeaderText = "Tên Nhà Cung Cấp";
+            dataGridViewDSHHNhap.Columns[0].Width = 100;
+            dataGridViewDSHHNhap.Columns[1].Width = 250;
+            dataGridViewDSHHNhap.Columns[2].Width = 100;
+            dataGridViewDSHHNhap.Columns[3].Width = 70;
+            dataGridViewDSHHNhap.Columns[4].Width = 150;
+            dataGridViewDSHHNhap.Columns[5].Width = 70;
+            dataGridViewDSHHNhap.Columns[6].Width = 300;
+            dataGridViewDSHHNhap.Columns[7].Width = 100;
+            dataGridViewDSHHNhap.Columns[8].Width = 400;
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
     }
 }
