@@ -14,9 +14,11 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
     public partial class DanhSachDonHang : Form
     {
         ContextCuong db = new ContextCuong();
-        public DanhSachDonHang()
+        private string TenDN { get; set; }
+        public DanhSachDonHang(string tenDN)
         {
             InitializeComponent();
+            TenDN = tenDN;
         }
 
         int pageNumber = 1;
@@ -62,51 +64,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             }
         }
         #endregion
-        #region Load DataGridView Danh Sach Đơn Hàng
-        public void GetDataGridView()
-        {
-            var employeeData = from h in db.HOADONs
-                               join c in db.CHINHANHs
-                               on h.MACHINHANH equals c.MACHINHANH
-                               join k in db.KHACHHANGs
-                               on h.MAKH equals k.MAKH
-                               join nv in db.NHANVIENs
-                               on h.MANV equals nv.MANV
-                               select new
-                               {
-                                   h.MAHD,
-                                   k.HOTEN,
-                                   k.DIACHI,
-                                   k.DIENTHOAI,
-                                   h.GHICHU,
-                                   h.NGAYTAO,
-                                   nv.MANV,
-                                   TENNV = nv.HOTEN,
-                                   c.TENCHINHANH
-                               };
 
-            var ListEmployee = employeeData.ToList();
-            dataGridViewDonHang.DataSource = ListEmployee;
-            dataGridViewDonHang.Columns[0].HeaderText = "Mã hóa đơn";
-            dataGridViewDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
-            dataGridViewDonHang.Columns[2].HeaderText = "Địa chỉ";
-            dataGridViewDonHang.Columns[3].HeaderText = "Điện Thoại";
-            dataGridViewDonHang.Columns[4].HeaderText = "Ghi chú";
-            dataGridViewDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
-            dataGridViewDonHang.Columns[6].HeaderText = "Mã nhân viên";
-            dataGridViewDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
-            dataGridViewDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
-            dataGridViewDonHang.Columns[0].Width = 30;
-            dataGridViewDonHang.Columns[1].Width = 130;
-            dataGridViewDonHang.Columns[2].Width = 120;
-            dataGridViewDonHang.Columns[3].Width = 90;
-            dataGridViewDonHang.Columns[4].Width = 120;
-            dataGridViewDonHang.Columns[5].Width = 100;
-            dataGridViewDonHang.Columns[6].Width = 40;
-            dataGridViewDonHang.Columns[7].Width = 140;
-            dataGridViewDonHang.Columns[8].Width = 120;
-        }
-        #endregion
         #region button Xem
         private void btnXem_Click(object sender, EventArgs e)
         {
@@ -263,7 +221,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region button Tai Lai
         private void btnTaiLai_Click(object sender, EventArgs e)
         {
-            GetDataGridView();
+            GetDataGridView(pageNumber, numberRecord);
             cmbChiNhanh.Text = "";
             cmbTenNV.Text = "";
         }
@@ -370,45 +328,139 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region GetDataGridView
         void GetDataGridView(int page, int recordNum)
         {
-            var hangHoa = (from h in db.HOADONs
-                           join c in db.CHINHANHs
-                           on h.MACHINHANH equals c.MACHINHANH
-                           join k in db.KHACHHANGs
-                           on h.MAKH equals k.MAKH
-                           join nv in db.NHANVIENs
-                           on h.MANV equals nv.MANV
-                           select new
-                           {
-                               h.MAHD,
-                               k.HOTEN,
-                               k.DIACHI,
-                               k.DIENTHOAI,
-                               h.GHICHU,
-                               h.NGAYTAO,
-                               nv.MANV,
-                               TENNV = nv.HOTEN,
-                               c.TENCHINHANH
-                           }).OrderByDescending(i => i.MAHD).Skip((page - 1) * recordNum).Take(recordNum).ToList();
-            dataGridViewDonHang.DataSource = hangHoa;
-            dataGridViewDonHang.Columns[0].HeaderText = "Mã hóa đơn";
-            dataGridViewDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
-            dataGridViewDonHang.Columns[2].HeaderText = "Địa chỉ";
-            dataGridViewDonHang.Columns[3].HeaderText = "Điện Thoại";
-            dataGridViewDonHang.Columns[4].HeaderText = "Ghi chú";
-            dataGridViewDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
-            dataGridViewDonHang.Columns[6].HeaderText = "Mã nhân viên";
-            dataGridViewDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
-            dataGridViewDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
-            dataGridViewDonHang.Columns[0].Width = 30;
-            dataGridViewDonHang.Columns[1].Width = 130;
-            dataGridViewDonHang.Columns[2].Width = 120;
-            dataGridViewDonHang.Columns[3].Width = 90;
-            dataGridViewDonHang.Columns[4].Width = 120;
-            dataGridViewDonHang.Columns[5].Width = 100;
-            dataGridViewDonHang.Columns[6].Width = 40;
-            dataGridViewDonHang.Columns[7].Width = 140;
-            dataGridViewDonHang.Columns[8].Width = 120;
-            txbPageBill.Text = pageNumber.ToString();
+            var user = db.NHANVIENs.FirstOrDefault(nv => nv.TENDN == TenDN);
+            if (user.MACHUCVU == 1)
+            {
+                var listDH = (from h in db.HOADONs
+                             join c in db.CHINHANHs
+                             on h.MACHINHANH equals c.MACHINHANH
+                             join k in db.KHACHHANGs
+                             on h.MAKH equals k.MAKH
+                             join nv in db.NHANVIENs
+                             on h.MANV equals nv.MANV
+                             select new
+                             {
+                                 h.MAHD,
+                                 k.HOTEN,
+                                 k.DIACHI,
+                                 k.DIENTHOAI,
+                                 h.GHICHU,
+                                 h.NGAYTAO,
+                                 nv.MANV,
+                                 TENNV = nv.HOTEN,
+                                 c.TENCHINHANH
+                             }).OrderByDescending(i => i.MAHD).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+                dataGridViewDonHang.DataSource = listDH;
+                dataGridViewDonHang.Columns[0].HeaderText = "Mã hóa đơn";
+                dataGridViewDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
+                dataGridViewDonHang.Columns[2].HeaderText = "Địa chỉ";
+                dataGridViewDonHang.Columns[3].HeaderText = "Điện Thoại";
+                dataGridViewDonHang.Columns[4].HeaderText = "Ghi chú";
+                dataGridViewDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+                dataGridViewDonHang.Columns[6].HeaderText = "Mã nhân viên";
+                dataGridViewDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
+                dataGridViewDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
+                dataGridViewDonHang.Columns[0].Width = 30;
+                dataGridViewDonHang.Columns[1].Width = 130;
+                dataGridViewDonHang.Columns[2].Width = 120;
+                dataGridViewDonHang.Columns[3].Width = 90;
+                dataGridViewDonHang.Columns[4].Width = 120;
+                dataGridViewDonHang.Columns[5].Width = 100;
+                dataGridViewDonHang.Columns[6].Width = 40;
+                dataGridViewDonHang.Columns[7].Width = 140;
+                dataGridViewDonHang.Columns[8].Width = 120;
+                txbPageBill.Text = pageNumber.ToString();
+            }
+
+            if (user.MACHUCVU == 20)
+            {
+                var listDH = (from h in db.HOADONs
+                              join c in db.CHINHANHs
+                              on h.MACHINHANH equals c.MACHINHANH
+                              join k in db.KHACHHANGs
+                              on h.MAKH equals k.MAKH
+                              join nv in db.NHANVIENs
+                              on h.MANV equals nv.MANV
+                              where h.MACHINHANH == user.MACHINHANH
+                              select new
+                              {
+                                  h.MAHD,
+                                  k.HOTEN,
+                                  k.DIACHI,
+                                  k.DIENTHOAI,
+                                  h.GHICHU,
+                                  h.NGAYTAO,
+                                  nv.MANV,
+                                  TENNV = nv.HOTEN,
+                                  c.TENCHINHANH
+                              }).OrderByDescending(i => i.MAHD).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+                dataGridViewDonHang.DataSource = listDH;
+                dataGridViewDonHang.Columns[0].HeaderText = "Mã hóa đơn";
+                dataGridViewDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
+                dataGridViewDonHang.Columns[2].HeaderText = "Địa chỉ";
+                dataGridViewDonHang.Columns[3].HeaderText = "Điện Thoại";
+                dataGridViewDonHang.Columns[4].HeaderText = "Ghi chú";
+                dataGridViewDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+                dataGridViewDonHang.Columns[6].HeaderText = "Mã nhân viên";
+                dataGridViewDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
+                dataGridViewDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
+                dataGridViewDonHang.Columns[0].Width = 30;
+                dataGridViewDonHang.Columns[1].Width = 130;
+                dataGridViewDonHang.Columns[2].Width = 120;
+                dataGridViewDonHang.Columns[3].Width = 90;
+                dataGridViewDonHang.Columns[4].Width = 120;
+                dataGridViewDonHang.Columns[5].Width = 100;
+                dataGridViewDonHang.Columns[6].Width = 40;
+                dataGridViewDonHang.Columns[7].Width = 140;
+                dataGridViewDonHang.Columns[8].Width = 120;
+                txbPageBill.Text = pageNumber.ToString();
+            }
+
+            if (user.MACHUCVU == 21)
+            {
+                var listDH = (from h in db.HOADONs
+                              join c in db.CHINHANHs
+                              on h.MACHINHANH equals c.MACHINHANH
+                              join k in db.KHACHHANGs
+                              on h.MAKH equals k.MAKH
+                              join nv in db.NHANVIENs
+                              on h.MANV equals nv.MANV
+                              where h.MANV == user.MANV && h.MACHINHANH == user.MACHINHANH
+                              select new
+                              {
+                                  h.MAHD,
+                                  k.HOTEN,
+                                  k.DIACHI,
+                                  k.DIENTHOAI,
+                                  h.GHICHU,
+                                  h.NGAYTAO,
+                                  nv.MANV,
+                                  TENNV = nv.HOTEN,
+                                  c.TENCHINHANH
+                              }).OrderByDescending(i => i.MAHD).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+                dataGridViewDonHang.DataSource = listDH;
+                dataGridViewDonHang.Columns[0].HeaderText = "Mã hóa đơn";
+                dataGridViewDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
+                dataGridViewDonHang.Columns[2].HeaderText = "Địa chỉ";
+                dataGridViewDonHang.Columns[3].HeaderText = "Điện Thoại";
+                dataGridViewDonHang.Columns[4].HeaderText = "Ghi chú";
+                dataGridViewDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+                dataGridViewDonHang.Columns[6].HeaderText = "Mã nhân viên";
+                dataGridViewDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
+                dataGridViewDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
+                dataGridViewDonHang.Columns[0].Width = 30;
+                dataGridViewDonHang.Columns[1].Width = 130;
+                dataGridViewDonHang.Columns[2].Width = 120;
+                dataGridViewDonHang.Columns[3].Width = 90;
+                dataGridViewDonHang.Columns[4].Width = 120;
+                dataGridViewDonHang.Columns[5].Width = 100;
+                dataGridViewDonHang.Columns[6].Width = 40;
+                dataGridViewDonHang.Columns[7].Width = 140;
+                dataGridViewDonHang.Columns[8].Width = 120;
+                txbPageBill.Text = pageNumber.ToString();
+            }
+
+
         }
         #endregion
         

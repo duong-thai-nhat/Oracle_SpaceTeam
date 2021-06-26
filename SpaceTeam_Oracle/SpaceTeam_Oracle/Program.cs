@@ -15,7 +15,7 @@ namespace SpaceTeam_Oracle
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QLKhachHang());
+            Application.Run(new DangNhap());
         }
     }
 }

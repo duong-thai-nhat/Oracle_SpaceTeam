@@ -1,14 +1,9 @@
 ﻿using GUI.SpaceTeam;
 using SpaceTeam_Oracle.SpaceTeam;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SpaceTeam_Oracle.UI
@@ -76,10 +71,6 @@ namespace SpaceTeam_Oracle.UI
                                     this.Show();
                                 }
                             return;
-                            //MessageBox.Show(" Mật khẩu đúng ", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //using (DanhMucNV nV = new DanhMucNV())
-                            //    if (nV.ShowDialog() == DialogResult.OK)
-                            //        Application.Run(new DanhMucNV());
                         }
                         if (user.MACHUCVU == Convert.ToDecimal(20))
                         {
@@ -123,7 +114,7 @@ namespace SpaceTeam_Oracle.UI
 
         private void txtDangNhap_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)13)//Enter key
+            if (e.KeyChar == (char)13)
                 txtMatKhau.Focus();
         }
 

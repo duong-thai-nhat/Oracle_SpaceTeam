@@ -42,9 +42,9 @@ namespace GUI.SpaceTeam
 
         private void btnDSDonHang_Click(object sender, EventArgs e)
         {
-            using (DanhSachDonHang lophoc = new DanhSachDonHang())
+            using (DanhSachDonHang lophoc = new DanhSachDonHang(TenDN))
                 if (lophoc.ShowDialog() == DialogResult.OK)
-                    Application.Run(new DanhSachDonHang());
+                    Application.Run(new DanhSachDonHang(TenDN));
         }
 
         private void btnDSHHDaBan_Click(object sender, EventArgs e)
