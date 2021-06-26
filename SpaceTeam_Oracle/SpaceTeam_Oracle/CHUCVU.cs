@@ -19,11 +19,7 @@ namespace SpaceTeam_Oracle
         {
             this.NHANVIENs = new HashSet<NHANVIEN>();
         }
-        public CHUCVU(int maCV, string tenCV)
-        {
-            this.MACHUCVU = maCV;
-            this.TENCHUCVU = tenCV;
-        }
+    
         public int MACHUCVU { get; set; }
         public string TENCHUCVU { get; set; }
     

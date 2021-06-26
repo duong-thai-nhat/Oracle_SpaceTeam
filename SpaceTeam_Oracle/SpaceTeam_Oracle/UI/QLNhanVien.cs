@@ -11,7 +11,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhanVien : Form
     {
-        ContextCUONG db = new ContextCUONG();
+        ContextCuong db = new ContextCuong();
         public QLNhanVien()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace SpaceTeam_Oracle.UI
         {
             LoadComboboxChiNhanh();
             LoadComboboxChucVu();
-            GetDataGridView();
+            GetDataGridView(pageNumber, numberRecord);
         }
 
         #region Load Combobox Chi Nhanh
@@ -214,7 +214,6 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Update Nhân Viên
         public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string tenDN, byte[] matKhau, string email, string luong, int maChiNhanh, int maChucVu)
         {
-            ContextCUONG db = new ContextCUONG();
             NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -241,52 +240,6 @@ namespace SpaceTeam_Oracle.UI
         }
         #endregion
 
-        #region Load DataGridView
-        public void GetDataGridView()
-        {
-            var employeeData = (from nv in db.NHANVIENs
-                                join cn in db.CHINHANHs
-                                on nv.MACHINHANH equals cn.MACHINHANH
-                                join cv in db.CHUCVUs
-                                on nv.MACHUCVU equals cv.MACHUCVU
-                                select new
-                                {
-                                    nv.MANV,
-                                    nv.HOTEN,
-                                    nv.GIOITINH,
-                                    nv.NGAYSINH,
-                                    nv.SDT,
-                                    nv.DIACHI,
-                                    nv.TENDN,
-                                    cn.TENCHINHANH,
-                                    cv.TENCHUCVU,
-                                    nv.EMAIL
-                                }).OrderBy(i => i.MANV);
-
-            var ListEmployee = employeeData.ToList();
-            dataGridViewEmployee.DataSource = ListEmployee;
-            dataGridViewEmployee.Columns[0].HeaderText = "Mã nhân viên";
-            dataGridViewEmployee.Columns[1].HeaderText = "Họ tên nhân viên";
-            dataGridViewEmployee.Columns[2].HeaderText = "Giới Tính";
-            dataGridViewEmployee.Columns[3].HeaderText = "Ngày sinh";
-            dataGridViewEmployee.Columns[4].HeaderText = "Số điện thoại";
-            dataGridViewEmployee.Columns[5].HeaderText = "Địa chỉ";
-            dataGridViewEmployee.Columns[6].HeaderText = "Tên đăng nhập";
-            dataGridViewEmployee.Columns[7].HeaderText = "Tên chi nhánh";
-            dataGridViewEmployee.Columns[8].HeaderText = "Chức vụ";
-            dataGridViewEmployee.Columns[9].HeaderText = "Email";
-            dataGridViewEmployee.Columns[0].Width = 100;
-            dataGridViewEmployee.Columns[1].Width = 130;
-            dataGridViewEmployee.Columns[2].Width = 80;
-            dataGridViewEmployee.Columns[3].Width = 90;
-            dataGridViewEmployee.Columns[4].Width = 120;
-            dataGridViewEmployee.Columns[5].Width = 190;
-            dataGridViewEmployee.Columns[6].Width = 140;
-            dataGridViewEmployee.Columns[7].Width = 120;
-            dataGridViewEmployee.Columns[8].Width = 160;
-            dataGridViewEmployee.Columns[9].Width = 160;
-        }
-        #endregion
 
         #region Cell CLick
 
@@ -389,7 +342,7 @@ namespace SpaceTeam_Oracle.UI
                 InsertNV(hoTen, gioiTinh, dateBD, sDT, diaChi, tenDN, matKhauHash, email, luong, chiNhanh, chucVu);
 
                 MessageBox.Show("Thêm Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -408,7 +361,7 @@ namespace SpaceTeam_Oracle.UI
                 Delete(maNV);
 
                 MessageBox.Show("Xóa Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -455,7 +408,7 @@ namespace SpaceTeam_Oracle.UI
             {
                 UpdateNhanVien(maNV, hoTen, gioiTinh, dateBD, sDT, diaChi, tenDN, matKhauHash, email, luong, chiNhanh, chucVu);
                 MessageBox.Show("Update Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -472,6 +425,103 @@ namespace SpaceTeam_Oracle.UI
             {
                 Close();
             }
+        }
+        #endregion
+
+        int pageNumber = 1;
+        int numberRecord = 10;
+
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
+        {
+            pageNumber = 1;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
+        {
+            if (pageNumber - 1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecord = db.NHANVIENs.Count();
+            if (pageNumber - 1 < (totalRecord / numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            int sumRecord = db.NHANVIENs.Count();
+
+            int pageNumber = sumRecord / 10;
+
+            if (sumRecord % 10 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
+        {
+            var hangHoa = (from nv in db.NHANVIENs
+                           join cn in db.CHINHANHs
+                           on nv.MACHINHANH equals cn.MACHINHANH
+                           join cv in db.CHUCVUs
+                           on nv.MACHUCVU equals cv.MACHUCVU
+                           select new
+                           {
+                               nv.MANV,
+                               nv.HOTEN,
+                               nv.GIOITINH,
+                               nv.NGAYSINH,
+                               nv.SDT,
+                               nv.DIACHI,
+                               nv.TENDN,
+                               cn.TENCHINHANH,
+                               cv.TENCHUCVU,
+                               nv.EMAIL
+                           }).OrderByDescending(i => i.MANV).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridViewEmployee.DataSource = hangHoa;
+            dataGridViewEmployee.Columns[0].HeaderText = "Mã nhân viên";
+            dataGridViewEmployee.Columns[1].HeaderText = "Họ tên nhân viên";
+            dataGridViewEmployee.Columns[2].HeaderText = "Giới Tính";
+            dataGridViewEmployee.Columns[3].HeaderText = "Ngày sinh";
+            dataGridViewEmployee.Columns[4].HeaderText = "Số điện thoại";
+            dataGridViewEmployee.Columns[5].HeaderText = "Địa chỉ";
+            dataGridViewEmployee.Columns[6].HeaderText = "Tên đăng nhập";
+            dataGridViewEmployee.Columns[7].HeaderText = "Tên chi nhánh";
+            dataGridViewEmployee.Columns[8].HeaderText = "Chức vụ";
+            dataGridViewEmployee.Columns[9].HeaderText = "Email";
+            dataGridViewEmployee.Columns[0].Width = 100;
+            dataGridViewEmployee.Columns[1].Width = 130;
+            dataGridViewEmployee.Columns[2].Width = 80;
+            dataGridViewEmployee.Columns[3].Width = 90;
+            dataGridViewEmployee.Columns[4].Width = 120;
+            dataGridViewEmployee.Columns[5].Width = 190;
+            dataGridViewEmployee.Columns[6].Width = 140;
+            dataGridViewEmployee.Columns[7].Width = 120;
+            dataGridViewEmployee.Columns[8].Width = 160;
+            dataGridViewEmployee.Columns[9].Width = 160;
+            txbPageBill.Text = pageNumber.ToString();
         }
         #endregion
     }

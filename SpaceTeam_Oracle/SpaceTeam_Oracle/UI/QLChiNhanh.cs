@@ -7,7 +7,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class QLChiNhanh : Form
     {
-        ContextCUONG db  = new ContextCUONG();
+        ContextCuong db  = new ContextCuong();
 
         public QLChiNhanh()
         {
@@ -16,7 +16,7 @@ namespace SpaceTeam_Oracle
 
         private void QLChiNhanh_Load(object sender, EventArgs e)
         {
-            GetDataGridView();
+            GetDataGridView(pageNumber, numberRecord);
         }
 
         #region Hàm Insert CN
@@ -88,27 +88,6 @@ namespace SpaceTeam_Oracle
 
         #endregion Hàm Get Id CN
 
-        #region Load DataGridView
-
-        public void GetDataGridView()
-        {
-            var employeeData = from cn in db.CHINHANHs
-                               select new
-                               {
-                                   cn.MACHINHANH,
-                                   cn.TENCHINHANH,
-                               };
-
-            var ListEmployee = employeeData.ToList();
-            dataGridViewDSCN.DataSource = ListEmployee;
-            dataGridViewDSCN.Columns[0].HeaderText = "Mã Chi Nhánh";
-            dataGridViewDSCN.Columns[1].HeaderText = "Tên Chi Nhánh";
-            dataGridViewDSCN.Columns[0].Width = 200;
-            dataGridViewDSCN.Columns[1].Width = 600;
-        }
-
-        #endregion Load DataGridView
-
         #region Cell CLick
 
         private void dataGridViewDSCN_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -133,7 +112,7 @@ namespace SpaceTeam_Oracle
             if (temp == "1")
             {
                 MessageBox.Show("Thêm Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             else
             {
@@ -152,7 +131,7 @@ namespace SpaceTeam_Oracle
             {
                 DeleteCN(maCN);
                 MessageBox.Show("Xóa Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -173,7 +152,7 @@ namespace SpaceTeam_Oracle
             {
                 UpdateCN(maCN, tenCN);
                 MessageBox.Show("Sửa Chi Nhánh Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -204,8 +183,74 @@ namespace SpaceTeam_Oracle
             }
         }
 
-        #endregion Thoat
 
-       
+        #endregion Thoat
+        int pageNumber = 1;
+        int numberRecord = 10;
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
+        {
+            pageNumber = 1;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
+        {
+            if (pageNumber - 1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecord = db.CHINHANHs.Count();
+            if (pageNumber - 1 < (totalRecord / numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            int sumRecord = db.CHINHANHs.Count();
+
+            int pageNumber = sumRecord / 10;
+
+            if (sumRecord % 10 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
+        {
+            var hangHoa = (from cn in db.CHINHANHs
+                           select new
+                           {
+                               cn.MACHINHANH,
+                               cn.TENCHINHANH,
+                           }).OrderByDescending(i => i.MACHINHANH).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridViewDSCN.DataSource = hangHoa;
+            dataGridViewDSCN.Columns[0].HeaderText = "Mã Chi Nhánh";
+            dataGridViewDSCN.Columns[1].HeaderText = "Tên Chi Nhánh";
+            dataGridViewDSCN.Columns[0].Width = 200;
+            dataGridViewDSCN.Columns[1].Width = 600;
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
     }
 }

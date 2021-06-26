@@ -96,6 +96,7 @@
             this.txtMatKhau.Location = new System.Drawing.Point(195, 96);
             this.txtMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(281, 30);
             this.txtMatKhau.TabIndex = 9;
             this.txtMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatKhau_KeyPress);

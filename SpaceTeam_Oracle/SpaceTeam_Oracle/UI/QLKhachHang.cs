@@ -12,7 +12,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLKhachHang : Form
     {
-        ContextCUONG db = new ContextCUONG();
+        ContextCuong db = new ContextCuong();
         public QLKhachHang()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace SpaceTeam_Oracle.UI
 
         private void QLKhachHang_Load(object sender, EventArgs e)
         {
-            GetDataGridView();
+            GetDataGridView(pageNumber,numberRecord);
         }
         #region Hàm GetIDNV
         int GetIdKH()
@@ -56,7 +56,6 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Update Khách Hàng
         public void UpdateKH(int maKH, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi,string email)
         {
-            ContextCUONG db = new ContextCUONG();
             KHACHHANG update = db.KHACHHANGs.SingleOrDefault(kh => kh.MAKH == maKH);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -71,46 +70,11 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Delete KH
         public void DeleteKH(int maKH)
         {
-            ContextCUONG db = new ContextCUONG();
+            ContextCuong db = new ContextCuong();
             var khachHang = db.KHACHHANGs.Where(kh => kh.MAKH == maKH).SingleOrDefault();
 
             db.KHACHHANGs.Remove(khachHang);
             db.SaveChanges();
-        }
-        #endregion
-        #region Load DataGridView
-        public void GetDataGridView()
-        {
-            var KHData = from kh in db.KHACHHANGs
-                               select new
-                               {
-                                   kh.MAKH,
-                                   kh.HOTEN,
-                                   kh.GIOITINH,
-                                   kh.NGAYSINH,
-                                   kh.EMAIL,
-                                   kh.DIENTHOAI,
-                                   kh.DIACHI,
-                                   
-                               };
-
-            var ListKH = KHData.ToList();
-            dataGridViewKhachHang.DataSource = ListKH;
-            dataGridViewKhachHang.Columns[0].HeaderText = "Mã Khách Hàng";
-            dataGridViewKhachHang.Columns[1].HeaderText = "Họ tên Khách Hàng";
-            dataGridViewKhachHang.Columns[2].HeaderText = "Giới Tính";
-            dataGridViewKhachHang.Columns[3].HeaderText = "Ngày sinh";
-            dataGridViewKhachHang.Columns[4].HeaderText = "Email";
-            dataGridViewKhachHang.Columns[5].HeaderText = "Số Điện Thoại";
-            dataGridViewKhachHang.Columns[6].HeaderText = "Địa Chỉ";
-            
-            dataGridViewKhachHang.Columns[0].Width = 100;
-            dataGridViewKhachHang.Columns[1].Width = 150;
-            dataGridViewKhachHang.Columns[2].Width = 80;
-            dataGridViewKhachHang.Columns[3].Width = 120;
-            dataGridViewKhachHang.Columns[4].Width = 150;
-            dataGridViewKhachHang.Columns[5].Width = 100;
-            dataGridViewKhachHang.Columns[6].Width = 500;
         }
         #endregion
 
@@ -135,6 +99,7 @@ namespace SpaceTeam_Oracle.UI
         }
 
         #endregion DONE 
+
         #region btn Add
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -159,7 +124,7 @@ namespace SpaceTeam_Oracle.UI
                 InsertKH(maKH, hoTen, gioiTinh, dateBD, sDT, diaChi, email);
 
                 MessageBox.Show("Thêm Khách Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -167,6 +132,7 @@ namespace SpaceTeam_Oracle.UI
             }
         }
         #endregion
+
         #region Delete Khach Hang
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -176,7 +142,7 @@ namespace SpaceTeam_Oracle.UI
                 DeleteKH(maKH);
 
                 MessageBox.Show("Xóa Khách Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -184,6 +150,7 @@ namespace SpaceTeam_Oracle.UI
             }
         }
         #endregion
+
         #region Update KH
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -208,7 +175,7 @@ namespace SpaceTeam_Oracle.UI
                 UpdateKH(maKH, hoTen, gioiTinh, dateBD, sDT, diaChi, email);
 
                 MessageBox.Show("Update Khách Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -218,6 +185,7 @@ namespace SpaceTeam_Oracle.UI
 
 
         #endregion
+
         #region button Fresh NCC
         private void btnRefesh_Click(object sender, EventArgs e)
         {
@@ -239,6 +207,92 @@ namespace SpaceTeam_Oracle.UI
             {
                 Close();
             }
+        }
+        #endregion
+
+        int pageNumber = 1;
+        int numberRecord = 10;
+
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
+        {
+            pageNumber = 1;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
+        {
+            if (pageNumber - 1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecord = db.KHACHHANGs.Count();
+            if (pageNumber - 1 < (totalRecord / numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
+        }
+        #endregion
+
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            int sumRecord = db.KHACHHANGs.Count();
+
+            int pageNumber = sumRecord / 10;
+
+            if (sumRecord % 10 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
+        }
+        #endregion
+
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
+        {
+            var hangHoa = (from kh in db.KHACHHANGs
+                           select new
+                           {
+                               kh.MAKH,
+                               kh.HOTEN,
+                               kh.GIOITINH,
+                               kh.NGAYSINH,
+                               kh.EMAIL,
+                               kh.DIENTHOAI,
+                               kh.DIACHI,
+
+                           }).OrderByDescending(i => i.MAKH).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridViewKhachHang.DataSource = hangHoa;
+            dataGridViewKhachHang.Columns[0].HeaderText = "Mã Khách Hàng";
+            dataGridViewKhachHang.Columns[1].HeaderText = "Họ tên Khách Hàng";
+            dataGridViewKhachHang.Columns[2].HeaderText = "Giới Tính";
+            dataGridViewKhachHang.Columns[3].HeaderText = "Ngày sinh";
+            dataGridViewKhachHang.Columns[4].HeaderText = "Email";
+            dataGridViewKhachHang.Columns[5].HeaderText = "Số Điện Thoại";
+            dataGridViewKhachHang.Columns[6].HeaderText = "Địa Chỉ";
+
+            dataGridViewKhachHang.Columns[0].Width = 100;
+            dataGridViewKhachHang.Columns[1].Width = 150;
+            dataGridViewKhachHang.Columns[2].Width = 80;
+            dataGridViewKhachHang.Columns[3].Width = 120;
+            dataGridViewKhachHang.Columns[4].Width = 150;
+            dataGridViewKhachHang.Columns[5].Width = 100;
+            dataGridViewKhachHang.Columns[6].Width = 500;
+            txbPageBill.Text = pageNumber.ToString();
         }
         #endregion
     }

@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="MACHINHANH" />
     </Key>
-    <Property Name="MACHINHANH" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="MACHINHANH" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="TENCHINHANH" Type="nvarchar2" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="CHITIETHD">
@@ -17,13 +17,12 @@
     <Property Name="DONGIA" Type="number" Precision="10" Scale="1" />
     <Property Name="GIAMGIA" Type="number" Precision="10" Scale="1" />
     <Property Name="SOLUONG" Type="number" Precision="10" Scale="0" />
-    <Property Name="KICHCO" Type="varchar2" MaxLength="5" />
   </EntityType>
   <EntityType Name="CHUCVU">
     <Key>
       <PropertyRef Name="MACHUCVU" />
     </Key>
-    <Property Name="MACHUCVU" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MACHUCVU" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="TENCHUCVU" Type="nvarchar2" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="HANGHOA">
@@ -32,20 +31,20 @@
     </Key>
     <Property Name="MAHH" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="TENHH" Type="nvarchar2" MaxLength="60" Nullable="false" />
-    <Property Name="MALOAI" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="SOLUONG" Type="number" Precision="38" Scale="0" />
+    <Property Name="MALOAI" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="SOLUONG" Type="number" Precision="10" Scale="0" />
     <Property Name="DONGIA" Type="float" Precision="126" Scale="0" />
     <Property Name="GIAMGIA" Type="float" Precision="126" Scale="0" />
     <Property Name="MOTA" Type="nvarchar2" MaxLength="1000" />
-    <Property Name="MANCC" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MANCC" Type="number" Precision="10" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="HOADON">
     <Key>
       <PropertyRef Name="MAHD" />
     </Key>
     <Property Name="MAHD" Type="number" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="MANV" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="MACN" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="MANV" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="MACHINHANH" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="MAKH" Type="number" Precision="10" Scale="0" />
     <Property Name="HOTEN" Type="nvarchar2" MaxLength="50" />
     <Property Name="DIACHI" Type="nvarchar2" MaxLength="60" />
@@ -71,14 +70,14 @@
     <Key>
       <PropertyRef Name="MALOAI" />
     </Key>
-    <Property Name="MALOAI" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="MALOAI" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="TENLOAI" Type="nvarchar2" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="NHACUNGCAP">
     <Key>
       <PropertyRef Name="MANCC" />
     </Key>
-    <Property Name="MANCC" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MANCC" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="TENCONGTY" Type="nvarchar2" MaxLength="50" />
     <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
     <Property Name="DIENTHOAI" Type="varchar2" MaxLength="24" />
@@ -88,7 +87,7 @@
     <Key>
       <PropertyRef Name="MANV" />
     </Key>
-    <Property Name="MANV" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="MANV" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="HOTEN" Type="nvarchar2" MaxLength="100" Nullable="false" />
     <Property Name="GIOITINH" Type="number" Precision="1" Scale="0" Nullable="false" />
     <Property Name="NGAYSINH" Type="date" />
@@ -96,8 +95,10 @@
     <Property Name="DIACHI" Type="nvarchar2" MaxLength="100" />
     <Property Name="TENDN" Type="varchar2" MaxLength="20" Nullable="false" />
     <Property Name="MATKHAU" Type="long raw" />
-    <Property Name="MACHINHANH" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="MACHUCVU" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="LUONG" Type="clob" />
+    <Property Name="EMAIL" Type="varchar2" MaxLength="100" />
+    <Property Name="MACHINHANH" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="MACHUCVU" Type="number" Precision="10" Scale="0" Nullable="false" />
   </EntityType>
   <Association Name="FK_CTHD_HD">
     <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
@@ -131,7 +132,7 @@
         <PropertyRef Name="MACHINHANH" />
       </Principal>
       <Dependent Role="HOADON">
-        <PropertyRef Name="MACN" />
+        <PropertyRef Name="MACHINHANH" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -207,16 +208,37 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="PAGINGHANGHOA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
+    <Parameter Name="PAGESIZE" Type="number" Mode="In" />
+    <Parameter Name="PAGEINDEX" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PAGINGHANGHOA10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
+    <Parameter Name="MAHH" Type="number" Mode="Out" />
+    <Parameter Name="TENHH" Type="nvarchar2" Mode="Out" />
+    <Parameter Name="MALOAI" Type="number" Mode="Out" />
+    <Parameter Name="SOLUONG" Type="number" Mode="Out" />
+    <Parameter Name="DONGIA" Type="float" Mode="Out" />
+    <Parameter Name="MOTA" Type="nvarchar2" Mode="Out" />
+    <Parameter Name="MANCC" Type="number" Mode="Out" />
+  </Function>
+  <Function Name="PAGINGHANGHOA2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
+    <Parameter Name="PAGESIZE" Type="number" Mode="In" />
+    <Parameter Name="PAGEINDEX" Type="number" Mode="In" />
+  </Function>
+  <Function Name="PAGINGHANGHOA23" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
+    <Parameter Name="PAGESIZE" Type="number" Mode="In" />
+    <Parameter Name="PAGEINDEX" Type="number" Mode="In" />
+  </Function>
   <EntityContainer Name="ModelStoreContainer">
-    <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="SPACETEAM_3" store:Type="Tables" />
+    <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="CUONGCUONG" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="CUONGCUONG" store:Type="Tables" />
     <AssociationSet Name="FK_CTHD_HD" Association="Self.FK_CTHD_HD">
       <End Role="HOADON" EntitySet="HOADON" />
       <End Role="CHITIETHD" EntitySet="CHITIETHD" />

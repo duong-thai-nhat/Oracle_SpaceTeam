@@ -4,19 +4,20 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data;
 using System.Collections.Generic;
-using SpaceTeam_Oracle.UI;
 
 namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class TaoDonHang : Form
     {
-        ContextCUONG db = new ContextCUONG();
+        ContextCuong db = new ContextCuong();
 
         public TaoDonHang()
         {
             InitializeComponent();
         }
 
+        int pageNumber = 1;
+        int numberRecord = 10;
         #region Load Form
         private void TaoDonHang_Load(object sender, EventArgs e)
         {
@@ -27,7 +28,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             LoadComboboxKhachHang();
             LoadComboboxNhanVien();
             LoadComboboxCN();
-            GetDataGridView();
+            GetDataGridView(pageNumber, numberRecord);
         }
         #endregion
 
@@ -272,51 +273,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         }
         #endregion
 
-        #region Load DataGridView Hóa Đơn
-        public void GetDataGridView()
-        {
-            var employeeData = (from h in db.HOADONs
-                                join c in db.CHINHANHs
-                                on h.MACHINHANH equals c.MACHINHANH
-                                join k in db.KHACHHANGs
-                                on h.MAKH equals k.MAKH
-                                join nv in db.NHANVIENs
-                                on h.MANV equals nv.MANV
-                                select new
-                                {
-                                    h.MAHD,
-                                    k.HOTEN,
-                                    h.DIACHI,
-                                    h.SDT,
-                                    h.GHICHU,
-                                    h.NGAYTAO,
-                                    nv.MANV,
-                                    TENNV = nv.HOTEN,
-                                    c.TENCHINHANH
-                                }).OrderByDescending(i => i.MAHD);
-
-            var ListEmployee = employeeData.ToList();
-            dataGridDonHang.DataSource = ListEmployee;
-            dataGridDonHang.Columns[0].HeaderText = "Mã hóa đơn";
-            dataGridDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
-            dataGridDonHang.Columns[2].HeaderText = "Địa chỉ";
-            dataGridDonHang.Columns[3].HeaderText = "Điện Thoại";
-            dataGridDonHang.Columns[4].HeaderText = "Ghi chú";
-            dataGridDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
-            dataGridDonHang.Columns[6].HeaderText = "Mã nhân viên";
-            dataGridDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
-            dataGridDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
-            dataGridDonHang.Columns[0].Width = 30;
-            dataGridDonHang.Columns[1].Width = 130;
-            dataGridDonHang.Columns[2].Width = 120;
-            dataGridDonHang.Columns[3].Width = 90;
-            dataGridDonHang.Columns[4].Width = 120;
-            dataGridDonHang.Columns[5].Width = 100;
-            dataGridDonHang.Columns[6].Width = 40;
-            dataGridDonHang.Columns[7].Width = 140;
-            dataGridDonHang.Columns[8].Width = 120;
-        }
-        #endregion
+        
 
         #region Load DataGridView CT Hóa Đơn
         public void GetDataGridViewCTDH(int maHD)
@@ -458,7 +415,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 InsertBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao, tongTien);
                 txtMaHD.Text = maHD.ToString();
                 MessageBox.Show("Thêm Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -496,7 +453,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             {
                 UpdateBill(maHD, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, tongTien);
                 MessageBox.Show("Sửa Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
                 GetDataGridViewCTDH(maHD);
             }
             catch (Exception ex)
@@ -514,7 +471,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             {
                 DeleteBill(maHD);
                 MessageBox.Show("Xóa Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
             }
             catch (Exception ex)
             {
@@ -608,7 +565,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                         UpdateSoLuongConLai(maHangHoa, soLuong);
                         InsertBill(maHoaDon, maCN, maKH, hoTen, diaChi, soDienThoai, ghiChu, maNV, ngayTao, tongTien);
                         InsertBillDetail(maHoaDon, maHangHoa, donGia, tienGiamGia, soLuong);
-                        GetDataGridView();
+                        GetDataGridView(pageNumber, numberRecord);
                         GetDataGridViewCTDH(maHoaDon);
                         MessageBox.Show("Thêm Vào Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -716,7 +673,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
                 UpdateHangHoaKhiXoa(maHD, maHH);
                 DeleteProductInBill(maHH,maHD);
                 MessageBox.Show("Xóa Sản Phẩm Khỏi Đơn Hàng Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView();
+                GetDataGridView(pageNumber, numberRecord);
                 GetDataGridViewCTDH(maHD);
             }
             catch (Exception ex)
@@ -735,45 +692,97 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
             resultUpdate.SOLUONG = resultUpdate.SOLUONG + sl;
             db.SaveChanges();
         }
-
-        private void txtMaHD_TextChanged(object sender, EventArgs e)
+        #region Firsts
+        private void btnFirsts_Click(object sender, EventArgs e)
         {
-
+                pageNumber = 1 ;
+            GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
         }
+        #endregion
 
-        private void dtNgayBan_ValueChanged(object sender, EventArgs e)
+        #region Previours
+        private void btnPreviours_Click(object sender, EventArgs e)
         {
-
+            if (pageNumber -  1 > 0)
+            {
+                pageNumber--;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }
         }
+        #endregion
 
-        private void label14_Click(object sender, EventArgs e)
+        #region Next
+        private void btnNext_Click(object sender, EventArgs e)
         {
-
+            int totalRecord = db.HOADONs.Count();
+            if(pageNumber - 1 < (totalRecord/numberRecord))
+            {
+                pageNumber++;
+                GetDataGridView(pageNumber, numberRecord);
+                txbPageBill.Text = pageNumber.ToString();
+            }    
         }
+        #endregion
 
-        private void label15_Click(object sender, EventArgs e)
+        #region btnLast
+        private void btnLast_Click(object sender, EventArgs e)
         {
+            int sumRecord = db.HOADONs.Count();
 
+            int pageNumber = sumRecord / 10;
+
+            if (sumRecord % 10 != 0)
+                pageNumber++;
+            GetDataGridView(pageNumber, numberRecord);
+            txbPageBill.Text = pageNumber.ToString();
         }
+        #endregion
 
-        private void label16_Click(object sender, EventArgs e)
+        #region GetDataGridView
+        void GetDataGridView(int page, int recordNum)
         {
-
+            var hangHoa = (from h in db.HOADONs
+                       join c in db.CHINHANHs
+                       on h.MACHINHANH equals c.MACHINHANH
+                       join k in db.KHACHHANGs
+                       on h.MAKH equals k.MAKH
+                       join nv in db.NHANVIENs
+                       on h.MANV equals nv.MANV
+                       select new
+                       {
+                           h.MAHD,
+                           k.HOTEN,
+                           h.DIACHI,
+                           h.SDT,
+                           h.GHICHU,
+                           h.NGAYTAO,
+                           nv.MANV,
+                           TENNV = nv.HOTEN,
+                           c.TENCHINHANH
+                       }).OrderByDescending(i => i.MAHD).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            dataGridDonHang.DataSource = hangHoa;
+            dataGridDonHang.Columns[0].HeaderText = "Mã hóa đơn";
+            dataGridDonHang.Columns[1].HeaderText = "Họ tên khách hàng";
+            dataGridDonHang.Columns[2].HeaderText = "Địa chỉ";
+            dataGridDonHang.Columns[3].HeaderText = "Điện Thoại";
+            dataGridDonHang.Columns[4].HeaderText = "Ghi chú";
+            dataGridDonHang.Columns[5].HeaderText = "Ngày tạo đơn hàng";
+            dataGridDonHang.Columns[6].HeaderText = "Mã nhân viên";
+            dataGridDonHang.Columns[7].HeaderText = "Nhân viên bán hàng";
+            dataGridDonHang.Columns[8].HeaderText = "Tên Chi Nhánh";
+            dataGridDonHang.Columns[0].Width = 30;
+            dataGridDonHang.Columns[1].Width = 130;
+            dataGridDonHang.Columns[2].Width = 120;
+            dataGridDonHang.Columns[3].Width = 90;
+            dataGridDonHang.Columns[4].Width = 120;
+            dataGridDonHang.Columns[5].Width = 100;
+            dataGridDonHang.Columns[6].Width = 40;
+            dataGridDonHang.Columns[7].Width = 140;
+            dataGridDonHang.Columns[8].Width = 120;
+            txbPageBill.Text = pageNumber.ToString();
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
     }
 }
