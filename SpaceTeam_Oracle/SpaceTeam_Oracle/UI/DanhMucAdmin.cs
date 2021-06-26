@@ -20,6 +20,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new QLNhanVien());
         }
         #endregion
+
         #region btn Man hinh Doanh Thu
         private void btnDoanhThu_Click(object sender, EventArgs e)
         {
@@ -28,6 +29,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new DoanhThu());
         }
         #endregion
+
         #region btn Man hinh Thong Tin Ca Nhan
         private void btnTTCaNhan_Click(object sender, EventArgs e)
         {
@@ -36,6 +38,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new ThongTinCaNhan(TenDN));
         }
         #endregion
+
         #region btn Man hinh Kho Hang
         private void btnQLKhoHang_Click(object sender, EventArgs e)
         {
@@ -44,6 +47,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new NhapKho());
         }
         #endregion
+
         #region btn Man hinh Danh Sach Hang Hoa Da Ban
         private void btnDSHHDaBan_Click(object sender, EventArgs e)
         {
@@ -52,6 +56,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new DanhSachHangHoaDaBan());
         }
         #endregion
+
         #region btn Man hinh Quan ly Chi Nhanh
         private void btnQLDSChiNhanh_Click(object sender, EventArgs e)
         {
@@ -60,6 +65,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new QLChiNhanh());
         }
         #endregion
+
         #region btn Man hinh Quan Ly Chuc Vu
         private void btnQLDSChucVu_Click(object sender, EventArgs e)
         {
@@ -68,6 +74,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new QLChucVu());
         }
         #endregion
+
         #region btn Man hinh Quan Ly Khach Hang
         private void btnQLDSKhachHang_Click(object sender, EventArgs e)
         {
@@ -76,6 +83,7 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new QLKhachHang());
         }
         #endregion
+
         #region btn Man hinh Quan Ly Nha Cung Cap
         private void btnQLDSNhaCungCap_Click(object sender, EventArgs e)
         {
@@ -84,14 +92,16 @@ namespace SpaceTeam_Oracle.UI
                     Application.Run(new QLNhaCungCap());
         }
         #endregion
+
         #region btn Quan Ly Danh Sach Don Hang
         private void btnQLDSDonHang_Click(object sender, EventArgs e)
         {
-            using (DanhSachDonHang dSDH = new DanhSachDonHang())
+            using (DanhSachDonHang dSDH = new DanhSachDonHang(TenDN))
                 if (dSDH.ShowDialog() == DialogResult.OK)
-                    Application.Run(new DanhSachDonHang());
+                    Application.Run(new DanhSachDonHang(TenDN));
         }
         #endregion
+
         #region btn Thoat
         private void btnThoat_Click(object sender, EventArgs e)
         {

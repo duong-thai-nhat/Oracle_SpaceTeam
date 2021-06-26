@@ -58,9 +58,9 @@ namespace SpaceTeam_Oracle.SpaceTeam
 
         private void btnQLDSDonHang_Click(object sender, EventArgs e)
         {
-            using (DanhSachDonHang dsDH = new DanhSachDonHang())
+            using (DanhSachDonHang dsDH = new DanhSachDonHang(TenDN))
                 if (dsDH.ShowDialog() == DialogResult.OK)
-                    Application.Run(new DanhSachDonHang());
+                    Application.Run(new DanhSachDonHang(TenDN));
         }
 
         private void btnQLDSChucVu_Click(object sender, EventArgs e)
