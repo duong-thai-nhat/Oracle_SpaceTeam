@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhMucNV));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnQLKhachHang = new System.Windows.Forms.Button();
             this.btnThoát = new System.Windows.Forms.Button();
@@ -51,20 +52,18 @@
             this.panel1.Controls.Add(this.btnDoanhThu);
             this.panel1.Controls.Add(this.btnTaoDonHang);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(65, 12);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(49, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(937, 469);
+            this.panel1.Size = new System.Drawing.Size(703, 381);
             this.panel1.TabIndex = 8;
             // 
             // btnQLKhachHang
             // 
             this.btnQLKhachHang.BackColor = System.Drawing.Color.Ivory;
             this.btnQLKhachHang.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnQLKhachHang.Location = new System.Drawing.Point(671, 223);
-            this.btnQLKhachHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQLKhachHang.Location = new System.Drawing.Point(503, 181);
             this.btnQLKhachHang.Name = "btnQLKhachHang";
-            this.btnQLKhachHang.Size = new System.Drawing.Size(212, 86);
+            this.btnQLKhachHang.Size = new System.Drawing.Size(159, 70);
             this.btnQLKhachHang.TabIndex = 7;
             this.btnQLKhachHang.Text = "Quản Lý Khách Hàng";
             this.btnQLKhachHang.UseVisualStyleBackColor = false;
@@ -74,10 +73,9 @@
             // 
             this.btnThoát.BackColor = System.Drawing.Color.Ivory;
             this.btnThoát.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnThoát.Location = new System.Drawing.Point(365, 367);
-            this.btnThoát.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThoát.Location = new System.Drawing.Point(274, 298);
             this.btnThoát.Name = "btnThoát";
-            this.btnThoát.Size = new System.Drawing.Size(212, 86);
+            this.btnThoát.Size = new System.Drawing.Size(159, 70);
             this.btnThoát.TabIndex = 6;
             this.btnThoát.Text = "Thoát";
             this.btnThoát.UseVisualStyleBackColor = false;
@@ -87,10 +85,9 @@
             // 
             this.btnDSHHDaBan.BackColor = System.Drawing.Color.Ivory;
             this.btnDSHHDaBan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDSHHDaBan.Location = new System.Drawing.Point(365, 223);
-            this.btnDSHHDaBan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDSHHDaBan.Location = new System.Drawing.Point(274, 181);
             this.btnDSHHDaBan.Name = "btnDSHHDaBan";
-            this.btnDSHHDaBan.Size = new System.Drawing.Size(212, 86);
+            this.btnDSHHDaBan.Size = new System.Drawing.Size(159, 70);
             this.btnDSHHDaBan.TabIndex = 5;
             this.btnDSHHDaBan.Text = "Danh Sách Hàng Hóa Đã Bán";
             this.btnDSHHDaBan.UseVisualStyleBackColor = false;
@@ -100,10 +97,9 @@
             // 
             this.btnDSDonHang.BackColor = System.Drawing.Color.Ivory;
             this.btnDSDonHang.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDSDonHang.Location = new System.Drawing.Point(60, 223);
-            this.btnDSDonHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDSDonHang.Location = new System.Drawing.Point(45, 181);
             this.btnDSDonHang.Name = "btnDSDonHang";
-            this.btnDSDonHang.Size = new System.Drawing.Size(212, 86);
+            this.btnDSDonHang.Size = new System.Drawing.Size(159, 70);
             this.btnDSDonHang.TabIndex = 4;
             this.btnDSDonHang.Text = "Danh Sách Đơn Hàng";
             this.btnDSDonHang.UseVisualStyleBackColor = false;
@@ -113,10 +109,9 @@
             // 
             this.btnTTCaNhan.BackColor = System.Drawing.Color.Ivory;
             this.btnTTCaNhan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnTTCaNhan.Location = new System.Drawing.Point(671, 75);
-            this.btnTTCaNhan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTTCaNhan.Location = new System.Drawing.Point(503, 61);
             this.btnTTCaNhan.Name = "btnTTCaNhan";
-            this.btnTTCaNhan.Size = new System.Drawing.Size(212, 86);
+            this.btnTTCaNhan.Size = new System.Drawing.Size(159, 70);
             this.btnTTCaNhan.TabIndex = 3;
             this.btnTTCaNhan.Text = "Thông tin cá nhân";
             this.btnTTCaNhan.UseVisualStyleBackColor = false;
@@ -126,10 +121,9 @@
             // 
             this.btnDoanhThu.BackColor = System.Drawing.Color.Ivory;
             this.btnDoanhThu.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDoanhThu.Location = new System.Drawing.Point(365, 75);
-            this.btnDoanhThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDoanhThu.Location = new System.Drawing.Point(274, 61);
             this.btnDoanhThu.Name = "btnDoanhThu";
-            this.btnDoanhThu.Size = new System.Drawing.Size(212, 86);
+            this.btnDoanhThu.Size = new System.Drawing.Size(159, 70);
             this.btnDoanhThu.TabIndex = 2;
             this.btnDoanhThu.Text = "Doanh Thu";
             this.btnDoanhThu.UseVisualStyleBackColor = false;
@@ -139,10 +133,9 @@
             // 
             this.btnTaoDonHang.BackColor = System.Drawing.Color.Ivory;
             this.btnTaoDonHang.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnTaoDonHang.Location = new System.Drawing.Point(60, 75);
-            this.btnTaoDonHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTaoDonHang.Location = new System.Drawing.Point(45, 61);
             this.btnTaoDonHang.Name = "btnTaoDonHang";
-            this.btnTaoDonHang.Size = new System.Drawing.Size(212, 86);
+            this.btnTaoDonHang.Size = new System.Drawing.Size(159, 70);
             this.btnTaoDonHang.TabIndex = 1;
             this.btnTaoDonHang.Text = "Tạo Đơn Hàng";
             this.btnTaoDonHang.UseVisualStyleBackColor = false;
@@ -152,21 +145,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(377, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(283, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 39);
+            this.label1.Size = new System.Drawing.Size(149, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nhân Viên";
             // 
             // DanhMucNV
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.ClientSize = new System.Drawing.Size(1067, 587);
+            this.ClientSize = new System.Drawing.Size(800, 477);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DanhMucNV";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh mục Nhân Viên";

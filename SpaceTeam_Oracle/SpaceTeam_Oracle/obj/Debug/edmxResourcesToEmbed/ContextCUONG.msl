@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ContextCUONG">
+  <EntityContainerMapping StorageEntityContainer="ContextCuongStoreContainer" CdmEntityContainer="ContextNhat">
     <EntitySetMapping Name="CHINHANHs">
-      <EntityTypeMapping TypeName="Model.CHINHANH">
+      <EntityTypeMapping TypeName="ContextCuong.CHINHANH">
         <MappingFragment StoreEntitySet="CHINHANH">
           <ScalarProperty Name="MACHINHANH" ColumnName="MACHINHANH" />
           <ScalarProperty Name="TENCHINHANH" ColumnName="TENCHINHANH" />
@@ -10,7 +10,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CHITIETHDs">
-      <EntityTypeMapping TypeName="Model.CHITIETHD">
+      <EntityTypeMapping TypeName="ContextCuong.CHITIETHD">
         <MappingFragment StoreEntitySet="CHITIETHD">
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
           <ScalarProperty Name="MAHH" ColumnName="MAHH" />
@@ -21,7 +21,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CHUCVUs">
-      <EntityTypeMapping TypeName="Model.CHUCVU">
+      <EntityTypeMapping TypeName="ContextCuong.CHUCVU">
         <MappingFragment StoreEntitySet="CHUCVU">
           <ScalarProperty Name="MACHUCVU" ColumnName="MACHUCVU" />
           <ScalarProperty Name="TENCHUCVU" ColumnName="TENCHUCVU" />
@@ -29,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HANGHOAs">
-      <EntityTypeMapping TypeName="Model.HANGHOA">
+      <EntityTypeMapping TypeName="ContextCuong.HANGHOA">
         <MappingFragment StoreEntitySet="HANGHOA">
           <ScalarProperty Name="MAHH" ColumnName="MAHH" />
           <ScalarProperty Name="TENHH" ColumnName="TENHH" />
@@ -43,7 +43,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HOADONs">
-      <EntityTypeMapping TypeName="Model.HOADON">
+      <EntityTypeMapping TypeName="ContextCuong.HOADON">
         <MappingFragment StoreEntitySet="HOADON">
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
           <ScalarProperty Name="MANV" ColumnName="MANV" />
@@ -60,7 +60,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KHACHHANGs">
-      <EntityTypeMapping TypeName="Model.KHACHHANG">
+      <EntityTypeMapping TypeName="ContextCuong.KHACHHANG">
         <MappingFragment StoreEntitySet="KHACHHANG">
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
@@ -73,7 +73,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LOAIs">
-      <EntityTypeMapping TypeName="Model.LOAI">
+      <EntityTypeMapping TypeName="ContextCuong.LOAI">
         <MappingFragment StoreEntitySet="LOAI">
           <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
           <ScalarProperty Name="TENLOAI" ColumnName="TENLOAI" />
@@ -81,7 +81,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NHACUNGCAPs">
-      <EntityTypeMapping TypeName="Model.NHACUNGCAP">
+      <EntityTypeMapping TypeName="ContextCuong.NHACUNGCAP">
         <MappingFragment StoreEntitySet="NHACUNGCAP">
           <ScalarProperty Name="MANCC" ColumnName="MANCC" />
           <ScalarProperty Name="TENCONGTY" ColumnName="TENCONGTY" />
@@ -92,7 +92,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NHANVIENs">
-      <EntityTypeMapping TypeName="Model.NHANVIEN">
+      <EntityTypeMapping TypeName="ContextCuong.NHANVIEN">
         <MappingFragment StoreEntitySet="NHANVIEN">
           <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />

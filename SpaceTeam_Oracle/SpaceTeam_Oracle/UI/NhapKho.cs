@@ -8,7 +8,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class NhapKho : Form
     {
-        private ContextCuong db = new ContextCuong();
+        private ContextNhat db = new ContextNhat();
 
         public NhapKho()
         {
@@ -99,7 +99,7 @@ namespace SpaceTeam_Oracle
 
         public void UpdateHH1(string tenHH, int soLuong)
         {
-            ContextCuong db = new ContextCuong();
+            ContextNhat db = new ContextNhat();
             HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.TENHH == tenHH);
             update.TENHH = tenHH;
             update.SOLUONG = update.SOLUONG + soLuong;
@@ -112,7 +112,7 @@ namespace SpaceTeam_Oracle
 
         public void UpdateHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, int maNCC)
         {
-            ContextCuong db = new ContextCuong();
+            ContextNhat db = new ContextNhat();
             HANGHOA update = db.HANGHOAs.SingleOrDefault(hh => hh.MAHH == maHH);
           
             update.TENHH = tenHH;

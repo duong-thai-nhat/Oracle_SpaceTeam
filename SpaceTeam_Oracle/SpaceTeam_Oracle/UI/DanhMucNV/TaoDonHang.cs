@@ -9,7 +9,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class TaoDonHang : Form
     {
-        ContextCuong db = new ContextCuong();
+        ContextNhat db = new ContextNhat();
 
         public TaoDonHang()
         {

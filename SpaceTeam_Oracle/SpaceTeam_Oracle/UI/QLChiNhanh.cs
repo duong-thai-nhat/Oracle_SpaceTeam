@@ -7,7 +7,7 @@ namespace SpaceTeam_Oracle
 {
     public partial class QLChiNhanh : Form
     {
-        ContextCuong db  = new ContextCuong();
+        ContextNhat db  = new ContextNhat();
 
         public QLChiNhanh()
         {

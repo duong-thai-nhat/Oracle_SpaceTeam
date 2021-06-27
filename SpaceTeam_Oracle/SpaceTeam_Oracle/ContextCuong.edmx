@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ContextCuong.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHINHANH">
           <Key>
             <PropertyRef Name="MACHINHANH" />
@@ -213,37 +213,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="PAGINGHANGHOA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
-          <Parameter Name="PAGESIZE" Type="number" Mode="In" />
-          <Parameter Name="PAGEINDEX" Type="number" Mode="In" />
-        </Function>
-        <Function Name="PAGINGHANGHOA10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
-          <Parameter Name="MAHH" Type="number" Mode="Out" />
-          <Parameter Name="TENHH" Type="nvarchar2" Mode="Out" />
-          <Parameter Name="MALOAI" Type="number" Mode="Out" />
-          <Parameter Name="SOLUONG" Type="number" Mode="Out" />
-          <Parameter Name="DONGIA" Type="float" Mode="Out" />
-          <Parameter Name="MOTA" Type="nvarchar2" Mode="Out" />
-          <Parameter Name="MANCC" Type="number" Mode="Out" />
-        </Function>
-        <Function Name="PAGINGHANGHOA2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
-          <Parameter Name="PAGESIZE" Type="number" Mode="In" />
-          <Parameter Name="PAGEINDEX" Type="number" Mode="In" />
-        </Function>
-        <Function Name="PAGINGHANGHOA23" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CUONGCUONG">
-          <Parameter Name="PAGESIZE" Type="number" Mode="In" />
-          <Parameter Name="PAGEINDEX" Type="number" Mode="In" />
-        </Function>
-        <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="CUONGCUONG" store:Type="Tables" />
-          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="CUONGCUONG" store:Type="Tables" />
+        <EntityContainer Name="ContextCuongStoreContainer">
+          <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="SPACETEAM" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="SPACETEAM" store:Type="Tables" />
           <AssociationSet Name="FK_CTHD_HD" Association="Self.FK_CTHD_HD">
             <End Role="HOADON" EntitySet="HOADON" />
             <End Role="CHITIETHD" EntitySet="CHITIETHD" />
@@ -285,7 +264,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ContextCuong" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="CHINHANH">
           <Key>
             <PropertyRef Name="MACHINHANH" />
@@ -512,7 +491,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ContextCuong" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ContextNhat" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHINHANHs" EntityType="Self.CHINHANH" />
           <EntitySet Name="CHITIETHDs" EntityType="Self.CHITIETHD" />
           <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />
@@ -558,36 +537,15 @@
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="HOADON" EntitySet="HOADONs" />
           </AssociationSet>
-          <FunctionImport Name="PAGINGHANGHOA">
-            <Parameter Name="PAGESIZE" Mode="In" Type="Decimal" />
-            <Parameter Name="PAGEINDEX" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="PAGINGHANGHOA10">
-            <Parameter Name="MAHH" Mode="Out" Type="Decimal" />
-            <Parameter Name="TENHH" Mode="Out" Type="String" />
-            <Parameter Name="MALOAI" Mode="Out" Type="Decimal" />
-            <Parameter Name="SOLUONG" Mode="Out" Type="Decimal" />
-            <Parameter Name="DONGIA" Mode="Out" Type="Decimal" />
-            <Parameter Name="MOTA" Mode="Out" Type="String" />
-            <Parameter Name="MANCC" Mode="Out" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="PAGINGHANGHOA2">
-            <Parameter Name="PAGESIZE" Mode="In" Type="Decimal" />
-            <Parameter Name="PAGEINDEX" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="PAGINGHANGHOA23">
-            <Parameter Name="PAGESIZE" Mode="In" Type="Decimal" />
-            <Parameter Name="PAGEINDEX" Mode="In" Type="Decimal" />
-          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ContextCuong">
+        <EntityContainerMapping StorageEntityContainer="ContextCuongStoreContainer" CdmEntityContainer="ContextNhat">
           <EntitySetMapping Name="CHINHANHs">
-            <EntityTypeMapping TypeName="Model.CHINHANH">
+            <EntityTypeMapping TypeName="ContextCuong.CHINHANH">
               <MappingFragment StoreEntitySet="CHINHANH">
                 <ScalarProperty Name="MACHINHANH" ColumnName="MACHINHANH" />
                 <ScalarProperty Name="TENCHINHANH" ColumnName="TENCHINHANH" />
@@ -595,7 +553,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CHITIETHDs">
-            <EntityTypeMapping TypeName="Model.CHITIETHD">
+            <EntityTypeMapping TypeName="ContextCuong.CHITIETHD">
               <MappingFragment StoreEntitySet="CHITIETHD">
                 <ScalarProperty Name="MAHD" ColumnName="MAHD" />
                 <ScalarProperty Name="MAHH" ColumnName="MAHH" />
@@ -606,7 +564,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CHUCVUs">
-            <EntityTypeMapping TypeName="Model.CHUCVU">
+            <EntityTypeMapping TypeName="ContextCuong.CHUCVU">
               <MappingFragment StoreEntitySet="CHUCVU">
                 <ScalarProperty Name="MACHUCVU" ColumnName="MACHUCVU" />
                 <ScalarProperty Name="TENCHUCVU" ColumnName="TENCHUCVU" />
@@ -614,7 +572,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HANGHOAs">
-            <EntityTypeMapping TypeName="Model.HANGHOA">
+            <EntityTypeMapping TypeName="ContextCuong.HANGHOA">
               <MappingFragment StoreEntitySet="HANGHOA">
                 <ScalarProperty Name="MAHH" ColumnName="MAHH" />
                 <ScalarProperty Name="TENHH" ColumnName="TENHH" />
@@ -628,7 +586,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HOADONs">
-            <EntityTypeMapping TypeName="Model.HOADON">
+            <EntityTypeMapping TypeName="ContextCuong.HOADON">
               <MappingFragment StoreEntitySet="HOADON">
                 <ScalarProperty Name="MAHD" ColumnName="MAHD" />
                 <ScalarProperty Name="MANV" ColumnName="MANV" />
@@ -645,7 +603,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KHACHHANGs">
-            <EntityTypeMapping TypeName="Model.KHACHHANG">
+            <EntityTypeMapping TypeName="ContextCuong.KHACHHANG">
               <MappingFragment StoreEntitySet="KHACHHANG">
                 <ScalarProperty Name="MAKH" ColumnName="MAKH" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
@@ -658,7 +616,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LOAIs">
-            <EntityTypeMapping TypeName="Model.LOAI">
+            <EntityTypeMapping TypeName="ContextCuong.LOAI">
               <MappingFragment StoreEntitySet="LOAI">
                 <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
                 <ScalarProperty Name="TENLOAI" ColumnName="TENLOAI" />
@@ -666,7 +624,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NHACUNGCAPs">
-            <EntityTypeMapping TypeName="Model.NHACUNGCAP">
+            <EntityTypeMapping TypeName="ContextCuong.NHACUNGCAP">
               <MappingFragment StoreEntitySet="NHACUNGCAP">
                 <ScalarProperty Name="MANCC" ColumnName="MANCC" />
                 <ScalarProperty Name="TENCONGTY" ColumnName="TENCONGTY" />
@@ -677,7 +635,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NHANVIENs">
-            <EntityTypeMapping TypeName="Model.NHANVIEN">
+            <EntityTypeMapping TypeName="ContextCuong.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
                 <ScalarProperty Name="MANV" ColumnName="MANV" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
@@ -694,10 +652,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="PAGINGHANGHOA" FunctionName="Model.Store.PAGINGHANGHOA" />
-          <FunctionImportMapping FunctionImportName="PAGINGHANGHOA10" FunctionName="Model.Store.PAGINGHANGHOA10" />
-          <FunctionImportMapping FunctionImportName="PAGINGHANGHOA2" FunctionName="Model.Store.PAGINGHANGHOA2" />
-          <FunctionImportMapping FunctionImportName="PAGINGHANGHOA23" FunctionName="Model.Store.PAGINGHANGHOA23" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

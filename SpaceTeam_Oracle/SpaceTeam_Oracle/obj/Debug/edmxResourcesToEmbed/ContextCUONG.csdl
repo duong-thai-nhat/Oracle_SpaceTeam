@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="ContextCuong" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="CHINHANH">
     <Key>
       <PropertyRef Name="MACHINHANH" />
@@ -226,7 +226,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ContextCUONG" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ContextNhat" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CHINHANHs" EntityType="Self.CHINHANH" />
     <EntitySet Name="CHITIETHDs" EntityType="Self.CHITIETHD" />
     <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />

@@ -7,7 +7,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhaCungCap : Form
     {
-        private ContextCuong db = new ContextCuong();
+        private ContextNhat db = new ContextNhat();
 
         public QLNhaCungCap()
         {
