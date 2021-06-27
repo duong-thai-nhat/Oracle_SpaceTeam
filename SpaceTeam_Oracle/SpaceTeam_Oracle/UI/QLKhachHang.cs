@@ -12,7 +12,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLKhachHang : Form
     {
-        ContextCuong db = new ContextCuong();
+        ContextNhat db = new ContextNhat();
         public QLKhachHang()
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace SpaceTeam_Oracle.UI
         #region Hàm Delete KH
         public void DeleteKH(int maKH)
         {
-            ContextCuong db = new ContextCuong();
+            ContextNhat db = new ContextNhat();
             var khachHang = db.KHACHHANGs.Where(kh => kh.MAKH == maKH).SingleOrDefault();
 
             db.KHACHHANGs.Remove(khachHang);

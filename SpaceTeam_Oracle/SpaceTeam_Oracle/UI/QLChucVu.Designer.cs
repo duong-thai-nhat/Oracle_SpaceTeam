@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QLChucVu));
             this.groupBoxButton = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnRefesh = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@
             // 
             // groupBoxButton
             // 
+            this.groupBoxButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBoxButton.Controls.Add(this.btnExit);
             this.groupBoxButton.Controls.Add(this.btnRefesh);
             this.groupBoxButton.Controls.Add(this.btnUpdate);
@@ -125,6 +127,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(345, 9);
@@ -136,6 +139,7 @@
             // 
             // groupBoxCN
             // 
+            this.groupBoxCN.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBoxCN.BackColor = System.Drawing.Color.PaleGreen;
             this.groupBoxCN.Controls.Add(this.dataGridViewDSCV);
             this.groupBoxCN.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -159,6 +163,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox1.BackColor = System.Drawing.Color.PaleGreen;
             this.groupBox1.Controls.Add(this.txtMaCV);
             this.groupBox1.Controls.Add(this.txtTenCV);
@@ -218,9 +223,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBoxCN);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "QLChucVu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QLChucVu";
+            this.Text = "Quản Lý Chức Vụ";
             this.Load += new System.EventHandler(this.QLChucVu_Load);
             this.groupBoxButton.ResumeLayout(false);
             this.groupBoxCN.ResumeLayout(false);

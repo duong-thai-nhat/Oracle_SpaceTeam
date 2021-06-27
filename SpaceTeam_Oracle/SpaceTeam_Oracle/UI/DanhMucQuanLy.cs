@@ -23,9 +23,9 @@ namespace SpaceTeam_Oracle.SpaceTeam
 
         private void btnQLNhanVien_Click(object sender, EventArgs e)
         {
-            using (QLNhanVien qLNV = new QLNhanVien())
+            using (QLNhanVien qLNV = new QLNhanVien(TenDN))
                 if (qLNV.ShowDialog() == DialogResult.OK)
-                    Application.Run(new QLNhanVien());
+                    Application.Run(new QLNhanVien(TenDN));
         }
 
         private void btnDoanhThu_Click(object sender, EventArgs e)
@@ -91,6 +91,11 @@ namespace SpaceTeam_Oracle.SpaceTeam
             {
                 Close();
             }
+        }
+
+        private void DanhMucQuanLy_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

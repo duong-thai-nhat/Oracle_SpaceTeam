@@ -15,7 +15,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
 {
     public partial class ThongTinCaNhan : Form
     {
-        ContextCuong db = new ContextCuong();
+        ContextNhat db = new ContextNhat();
         private string TenDN { get; set; }
         public ThongTinCaNhan(string tenNV)
         {
@@ -27,7 +27,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         {
             LoadComboboxChiNhanh();
             LoadComboboxChucVu();
-            //GetDataGridView();
+            LoadDL();
         }
         #region Load Combobox Chi Nhanh
 
@@ -216,7 +216,7 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Hàm Update Nhân Viên
         public void UpdateNhanVien(int maNV, string hoTen, bool gioiTinh, DateTime ngaySinh, string SDT, string diaChi, string luong, string tenDN, byte[] matKhau, string eMail, int maChiNhanh, int maChucVu)
         {
-            ContextCuong db = new ContextCuong();
+            ContextNhat db = new ContextNhat();
             NHANVIEN update = db.NHANVIENs.SingleOrDefault(nv => nv.MANV == maNV);
             update.HOTEN = hoTen;
             update.GIOITINH = gioiTinh;
@@ -236,57 +236,15 @@ namespace SpaceTeam_Oracle.SpaceTeam.DanhMucNV
         #region Hàm Delete Bill
         public void Delete(int maNV)
         {
-            ContextCuong db = new ContextCuong();
+            ContextNhat db = new ContextNhat();
             var nhanVien = db.NHANVIENs.Where(nv => nv.MANV == maNV).SingleOrDefault();
 
             db.NHANVIENs.Remove(nhanVien);
             db.SaveChanges();
         }
         #endregion
-        //#region Load DataGridView
-        //public void GetDataGridView()
-        //{
-        //    var employeeData = (from kh in db.KHACHHANGs
-        //                        join hd in db.HOADONs
-        //                        on kh.MAKH equals hd.MAKH
-        //                        join nv in db.NHANVIENs
-        //                        on hd.MANV equals nv.MANV
-        //                        where nv.TENDN == TenDN
-        //                        select new
-        //                        {
-        //                            kh.MAKH,
-        //                            kh.HOTEN,
-        //                            kh.DIACHI,
-        //                            kh.DIENTHOAI,
-        //                            kh.EMAIL,
-        //                            kh.GIOITINH,
-        //                            kh.NGAYSINH,
-        //                            tenNV = nv.HOTEN
-        //                        }).Distinct();
-        //    var ListEmployee = employeeData.ToList();
-        //    dataGridViewDSND.DataSource = ListEmployee;
-        //    dataGridViewDSND.Columns[0].HeaderText = "Mã Khách Hàng";
-        //    dataGridViewDSND.Columns[1].HeaderText = "Họ Tên Khách Hàng";
-        //    dataGridViewDSND.Columns[2].HeaderText = "Địa Chỉ";
-        //    dataGridViewDSND.Columns[3].HeaderText = "Số Điện Thoại";
-        //    dataGridViewDSND.Columns[4].HeaderText = "Email";
-        //    dataGridViewDSND.Columns[5].HeaderText = "Giới Tính";
-        //    dataGridViewDSND.Columns[6].HeaderText = "Ngày Sinh";
-        //    dataGridViewDSND.Columns[7].HeaderText = "Họ Tên Nhân Viên";
-        //    //dataGridViewDSND.Columns[8].HeaderText = "Chức vụ";
-        //    dataGridViewDSND.Columns[0].Width = 100;
-        //    dataGridViewDSND.Columns[1].Width = 130;
-        //    dataGridViewDSND.Columns[2].Width = 80;
-        //    dataGridViewDSND.Columns[3].Width = 90;
-        //    dataGridViewDSND.Columns[4].Width = 120;
-        //    dataGridViewDSND.Columns[5].Width = 190;
-        //    dataGridViewDSND.Columns[6].Width = 140;
-        //    dataGridViewDSND.Columns[7].Width = 120;
-        //    //dataGridViewDSND.Columns[8].Width = 160;
-        //}
-        //#endregion
 
-        private void btnLoadDL_Click(object sender, EventArgs e)
+        private void LoadDL()
         {
             decimal maNV = db.NHANVIENs.Where(nv => nv.TENDN.Equals(TenDN)).Select(nv => nv.MANV).FirstOrDefault();
             var nhanVien = db.NHANVIENs.Where(nv => nv.MANV.Equals((int)maNV));

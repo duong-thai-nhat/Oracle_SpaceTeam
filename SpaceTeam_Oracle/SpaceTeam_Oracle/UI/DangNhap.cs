@@ -10,7 +10,7 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class DangNhap : Form
     {
-        ContextCuong db = new ContextCuong();
+        ContextNhat db = new ContextNhat();
         public DangNhap()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace SpaceTeam_Oracle.UI
         #region button DangNhap
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            ContextCuong db = new ContextCuong();
+            ContextNhat db = new ContextNhat();
             if (txtDangNhap.Text != string.Empty && txtMatKhau.Text != string.Empty)
             {
                 var user = db.NHANVIENs.FirstOrDefault(nv => nv.TENDN.Equals(txtDangNhap.Text));

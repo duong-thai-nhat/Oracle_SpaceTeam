@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="ContextCuong.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="CHINHANH">
     <Key>
       <PropertyRef Name="MACHINHANH" />
@@ -208,16 +208,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ModelStoreContainer">
-    <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="SPACETEAM_3" store:Type="Tables" />
-    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="SPACETEAM_3" store:Type="Tables" />
+  <EntityContainer Name="ContextCuongStoreContainer">
+    <EntitySet Name="CHINHANH" EntityType="Self.CHINHANH" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="SPACETEAM" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="SPACETEAM" store:Type="Tables" />
     <AssociationSet Name="FK_CTHD_HD" Association="Self.FK_CTHD_HD">
       <End Role="HOADON" EntitySet="HOADON" />
       <End Role="CHITIETHD" EntitySet="CHITIETHD" />

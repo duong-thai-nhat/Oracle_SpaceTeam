@@ -15,9 +15,9 @@ namespace SpaceTeam_Oracle.UI
         #region btn Man hinh Nhan Vien
         private void btnQLNhanVien_Click(object sender, EventArgs e)
         {
-            using (QLNhanVien qLNV = new QLNhanVien())
+            using (QLNhanVien qLNV = new QLNhanVien(TenDN))
                 if (qLNV.ShowDialog() == DialogResult.OK)
-                    Application.Run(new QLNhanVien());
+                    Application.Run(new QLNhanVien(TenDN));
         }
         #endregion
 
@@ -112,5 +112,10 @@ namespace SpaceTeam_Oracle.UI
             }
         }
         #endregion
+
+        private void DanhMucAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

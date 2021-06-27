@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThongTinCaNhan));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
-            this.btnLoadDL = new System.Windows.Forms.Button();
             this.groupBoxEmployeeInfo = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbChucVu = new System.Windows.Forms.ComboBox();
@@ -67,15 +67,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.BackColor = System.Drawing.Color.PaleGreen;
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.btnSua);
-            this.groupBox2.Controls.Add(this.btnLoadDL);
-            this.groupBox2.Location = new System.Drawing.Point(50, 573);
+            this.groupBox2.Location = new System.Drawing.Point(187, 573);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(758, 79);
+            this.groupBox2.Size = new System.Drawing.Size(454, 79);
             this.groupBox2.TabIndex = 52;
             this.groupBox2.TabStop = false;
             // 
@@ -83,7 +83,7 @@
             // 
             this.btnThoat.BackColor = System.Drawing.Color.Ivory;
             this.btnThoat.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.Location = new System.Drawing.Point(582, 16);
+            this.btnThoat.Location = new System.Drawing.Point(316, 17);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(2);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(100, 48);
@@ -96,7 +96,7 @@
             // 
             this.btnSua.BackColor = System.Drawing.Color.Ivory;
             this.btnSua.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSua.Location = new System.Drawing.Point(315, 16);
+            this.btnSua.Location = new System.Drawing.Point(49, 17);
             this.btnSua.Margin = new System.Windows.Forms.Padding(2);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 48);
@@ -104,19 +104,6 @@
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
-            // btnLoadDL
-            // 
-            this.btnLoadDL.BackColor = System.Drawing.Color.Ivory;
-            this.btnLoadDL.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadDL.Location = new System.Drawing.Point(46, 16);
-            this.btnLoadDL.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLoadDL.Name = "btnLoadDL";
-            this.btnLoadDL.Size = new System.Drawing.Size(100, 48);
-            this.btnLoadDL.TabIndex = 0;
-            this.btnLoadDL.Text = "Load";
-            this.btnLoadDL.UseVisualStyleBackColor = false;
-            this.btnLoadDL.Click += new System.EventHandler(this.btnLoadDL_Click);
             // 
             // groupBoxEmployeeInfo
             // 
@@ -465,9 +452,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBoxEmployeeInfo);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ThongTinCaNhan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ThongTinCaNhan";
+            this.Text = "Thông Tin Cá Nhân";
             this.Load += new System.EventHandler(this.ThongTinCaNhan_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBoxEmployeeInfo.ResumeLayout(false);
@@ -484,7 +472,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnLoadDL;
         private System.Windows.Forms.GroupBox groupBoxEmployeeInfo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cmbChucVu;

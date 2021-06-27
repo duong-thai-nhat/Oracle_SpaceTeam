@@ -11,10 +11,12 @@ namespace SpaceTeam_Oracle.UI
 {
     public partial class QLNhanVien : Form
     {
-        ContextCuong db = new ContextCuong();
-        public QLNhanVien()
+        ContextNhat db = new ContextNhat();
+        private string TenDN { get; set; }
+        public QLNhanVien(string tenNV)
         {
             InitializeComponent();
+            TenDN = tenNV;
         }
 
         private void QLNhanVien_Load(object sender, EventArgs e)
@@ -245,9 +247,15 @@ namespace SpaceTeam_Oracle.UI
 
         private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            DataGridViewRow row = this.dataGridViewEmployee.Rows[e.RowIndex];
+            cmbChiNhanh.Text = row.Cells[7].Value.ToString();
+            cmbChucVu.Text = row.Cells[8].Value.ToString();
+            int maCN = db.NHANVIENs.Where(nv => nv.TENDN.Equals(TenDN)).Select(cn => cn.MACHINHANH).FirstOrDefault();
+            int MaCN = db.CHINHANHs.Where(cn => cn.TENCHINHANH == cmbChiNhanh.Text).Select(cn => cn.MACHINHANH).FirstOrDefault();
+            int maCV = db.NHANVIENs.Where(cv => cv.TENDN.Equals(TenDN)).Select(cv => cv.MACHUCVU).FirstOrDefault();
+            int MaCV = db.CHUCVUs.Where(cv => cv.TENCHUCVU == cmbChucVu.Text).Select(cv => cv.MACHUCVU).FirstOrDefault();
+            if (maCV == 1 || (maCV == 20 && MaCN == maCN && MaCV == 21))
             {
-                DataGridViewRow row = this.dataGridViewEmployee.Rows[e.RowIndex];
                 txtMaNV.Text = row.Cells[0].Value.ToString();
                 txtHoTen.Text = row.Cells[1].Value.ToString();
                 txtEmail.Text = row.Cells[9].Value.ToString();
@@ -259,8 +267,6 @@ namespace SpaceTeam_Oracle.UI
                 txtSDT.Text = row.Cells[4].Value.ToString();
                 txtDiaChi.Text = row.Cells[5].Value.ToString();
                 txtTenDN.Text = row.Cells[6].Value.ToString();
-                cmbChiNhanh.Text = row.Cells[7].Value.ToString();
-                cmbChucVu.Text = row.Cells[8].Value.ToString();
                 //load mk
                 int tmp = int.Parse(row.Cells[0].Value.ToString());
                 var employeeAccountData = db.NHANVIENs.Where(emp => emp.MANV == tmp)
@@ -282,7 +288,7 @@ namespace SpaceTeam_Oracle.UI
 
                 txtLuong.Text = this.DecryptString(luong, key, iv);
             }
-            catch
+            else
             {
                 txtLuong.Text = "*********";
                 MessageBox.Show("Bạn không thể xem lương người khác", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -375,9 +381,17 @@ namespace SpaceTeam_Oracle.UI
         {
             int maNV = int.Parse(txtMaNV.Text);
             DateTime dateBD = dtpkBD.Value;
-
+            var nV = db.NHANVIENs.FirstOrDefault(nv => nv.MANV.Equals(maNV));
             string matKhau = txtMatKhau.Text.Trim();
-            byte[] matKhauHash = GetHashSHA1(matKhau);
+            byte[] matKhauHash ;
+            if (System.Text.Encoding.UTF8.GetString(nV.MATKHAU) == txtMatKhau.Text)
+            {
+                matKhauHash = nV.MATKHAU;
+            }
+            else
+            {
+                matKhauHash = GetHashSHA1(matKhau);
+            }
             SHA256 mySHA256 = SHA256Managed.Create();
             string password = "spaceTeam";
             byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(password));
