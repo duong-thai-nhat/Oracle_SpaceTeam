@@ -172,9 +172,7 @@
             // dtTKNgayBanTu
             // 
             this.dtTKNgayBanTu.CustomFormat = "";
-            this.dtTKNgayBanTu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtTKNgayBanTu.Location = new System.Drawing.Point(174, 204);
-            this.dtTKNgayBanTu.Margin = new System.Windows.Forms.Padding(2);
             this.dtTKNgayBanTu.Name = "dtTKNgayBanTu";
             this.dtTKNgayBanTu.Size = new System.Drawing.Size(220, 29);
             this.dtTKNgayBanTu.TabIndex = 51;
@@ -267,7 +265,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.Controls.Add(this.cmbChiNhanh);
             this.groupBox2.Controls.Add(this.btnTK);
             this.groupBox2.Controls.Add(this.label4);

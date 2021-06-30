@@ -35,7 +35,6 @@
             this.btnDSHHDaBan = new System.Windows.Forms.Button();
             this.btnDSDonHang = new System.Windows.Forms.Button();
             this.btnTTCaNhan = new System.Windows.Forms.Button();
-            this.btnDoanhThu = new System.Windows.Forms.Button();
             this.btnTaoDonHang = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -49,19 +48,18 @@
             this.panel1.Controls.Add(this.btnDSHHDaBan);
             this.panel1.Controls.Add(this.btnDSDonHang);
             this.panel1.Controls.Add(this.btnTTCaNhan);
-            this.panel1.Controls.Add(this.btnDoanhThu);
             this.panel1.Controls.Add(this.btnTaoDonHang);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(49, 10);
+            this.panel1.Location = new System.Drawing.Point(49, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(703, 381);
+            this.panel1.Size = new System.Drawing.Size(703, 380);
             this.panel1.TabIndex = 8;
             // 
             // btnQLKhachHang
             // 
             this.btnQLKhachHang.BackColor = System.Drawing.Color.Ivory;
             this.btnQLKhachHang.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnQLKhachHang.Location = new System.Drawing.Point(503, 181);
+            this.btnQLKhachHang.Location = new System.Drawing.Point(272, 239);
             this.btnQLKhachHang.Name = "btnQLKhachHang";
             this.btnQLKhachHang.Size = new System.Drawing.Size(159, 70);
             this.btnQLKhachHang.TabIndex = 7;
@@ -73,7 +71,7 @@
             // 
             this.btnThoát.BackColor = System.Drawing.Color.Ivory;
             this.btnThoát.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnThoát.Location = new System.Drawing.Point(274, 298);
+            this.btnThoát.Location = new System.Drawing.Point(502, 239);
             this.btnThoát.Name = "btnThoát";
             this.btnThoát.Size = new System.Drawing.Size(159, 70);
             this.btnThoát.TabIndex = 6;
@@ -85,7 +83,7 @@
             // 
             this.btnDSHHDaBan.BackColor = System.Drawing.Color.Ivory;
             this.btnDSHHDaBan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDSHHDaBan.Location = new System.Drawing.Point(274, 181);
+            this.btnDSHHDaBan.Location = new System.Drawing.Point(44, 239);
             this.btnDSHHDaBan.Name = "btnDSHHDaBan";
             this.btnDSHHDaBan.Size = new System.Drawing.Size(159, 70);
             this.btnDSHHDaBan.TabIndex = 5;
@@ -97,7 +95,7 @@
             // 
             this.btnDSDonHang.BackColor = System.Drawing.Color.Ivory;
             this.btnDSDonHang.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDSDonHang.Location = new System.Drawing.Point(45, 181);
+            this.btnDSDonHang.Location = new System.Drawing.Point(502, 119);
             this.btnDSDonHang.Name = "btnDSDonHang";
             this.btnDSDonHang.Size = new System.Drawing.Size(159, 70);
             this.btnDSDonHang.TabIndex = 4;
@@ -109,7 +107,7 @@
             // 
             this.btnTTCaNhan.BackColor = System.Drawing.Color.Ivory;
             this.btnTTCaNhan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnTTCaNhan.Location = new System.Drawing.Point(503, 61);
+            this.btnTTCaNhan.Location = new System.Drawing.Point(273, 119);
             this.btnTTCaNhan.Name = "btnTTCaNhan";
             this.btnTTCaNhan.Size = new System.Drawing.Size(159, 70);
             this.btnTTCaNhan.TabIndex = 3;
@@ -117,23 +115,11 @@
             this.btnTTCaNhan.UseVisualStyleBackColor = false;
             this.btnTTCaNhan.Click += new System.EventHandler(this.btnTTCaNhan_Click);
             // 
-            // btnDoanhThu
-            // 
-            this.btnDoanhThu.BackColor = System.Drawing.Color.Ivory;
-            this.btnDoanhThu.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDoanhThu.Location = new System.Drawing.Point(274, 61);
-            this.btnDoanhThu.Name = "btnDoanhThu";
-            this.btnDoanhThu.Size = new System.Drawing.Size(159, 70);
-            this.btnDoanhThu.TabIndex = 2;
-            this.btnDoanhThu.Text = "Doanh Thu";
-            this.btnDoanhThu.UseVisualStyleBackColor = false;
-            this.btnDoanhThu.Click += new System.EventHandler(this.btnDoanhThu_Click);
-            // 
             // btnTaoDonHang
             // 
             this.btnTaoDonHang.BackColor = System.Drawing.Color.Ivory;
             this.btnTaoDonHang.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.btnTaoDonHang.Location = new System.Drawing.Point(45, 61);
+            this.btnTaoDonHang.Location = new System.Drawing.Point(44, 119);
             this.btnTaoDonHang.Name = "btnTaoDonHang";
             this.btnTaoDonHang.Size = new System.Drawing.Size(159, 70);
             this.btnTaoDonHang.TabIndex = 1;
@@ -145,7 +131,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(283, 8);
+            this.label1.Location = new System.Drawing.Point(282, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 31);
             this.label1.TabIndex = 0;
@@ -156,7 +142,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.ClientSize = new System.Drawing.Size(800, 477);
+            this.ClientSize = new System.Drawing.Size(800, 394);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DanhMucNV";
@@ -177,7 +163,6 @@
         private System.Windows.Forms.Button btnDSHHDaBan;
         private System.Windows.Forms.Button btnDSDonHang;
         private System.Windows.Forms.Button btnTTCaNhan;
-        private System.Windows.Forms.Button btnDoanhThu;
         private System.Windows.Forms.Button btnTaoDonHang;
         private System.Windows.Forms.Label label1;
     }
