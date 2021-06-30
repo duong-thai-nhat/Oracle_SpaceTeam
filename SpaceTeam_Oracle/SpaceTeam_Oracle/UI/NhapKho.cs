@@ -81,7 +81,7 @@ namespace SpaceTeam_Oracle
         public void InsertHH(int maHH, string tenHH, int maLoai, int soLuong, int donGia, decimal giamGia, string moTa, int maNCC)
         {
             HANGHOA add = new HANGHOA();
-            add.MAHH = GetIdHH();
+            add.MAHH = maHH;
             add.TENHH = tenHH;
             add.MALOAI = maLoai;
             add.SOLUONG = soLuong;

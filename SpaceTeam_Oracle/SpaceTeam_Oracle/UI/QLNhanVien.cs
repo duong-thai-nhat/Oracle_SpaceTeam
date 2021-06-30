@@ -24,6 +24,9 @@ namespace SpaceTeam_Oracle.UI
             LoadComboboxChiNhanh();
             LoadComboboxChucVu();
             GetDataGridView(pageNumber, numberRecord);
+            cmbChiNhanh.Text = "";
+            cmbChucVu.Text = "";
+            dtpkBD.Value = new DateTime(2021, 06, 30);
         }
 
         #region Load Combobox Chi Nhanh
@@ -254,7 +257,7 @@ namespace SpaceTeam_Oracle.UI
             int MaCN = db.CHINHANHs.Where(cn => cn.TENCHINHANH == cmbChiNhanh.Text).Select(cn => cn.MACHINHANH).FirstOrDefault();
             int maCV = db.NHANVIENs.Where(cv => cv.TENDN.Equals(TenDN)).Select(cv => cv.MACHUCVU).FirstOrDefault();
             int MaCV = db.CHUCVUs.Where(cv => cv.TENCHUCVU == cmbChucVu.Text).Select(cv => cv.MACHUCVU).FirstOrDefault();
-            if (maCV == 1 || (maCV == 20 && MaCN == maCN && MaCV == 21))
+            if (maCV == 1 || (maCV == 20 && MaCN == maCN && (MaCV != 20 || MaCV != 1)))
             {
                 txtMaNV.Text = row.Cells[0].Value.ToString();
                 txtHoTen.Text = row.Cells[1].Value.ToString();
@@ -307,6 +310,9 @@ namespace SpaceTeam_Oracle.UI
             txtTenDN.Text = " ";
             txtEmail.Text = " ";
             txtLuong.Text = " ";
+            cmbChiNhanh.Text = "";
+            cmbChucVu.Text = "";
+            dtpkBD.Value = new DateTime(2021, 06, 30);
         }
         #endregion
 
@@ -343,12 +349,20 @@ namespace SpaceTeam_Oracle.UI
             int chiNhanh = int.Parse(cmbChiNhanh.SelectedValue.ToString());
             int chucVu = int.Parse(cmbChucVu.SelectedValue.ToString());
             string email = txtEmail.Text;
+            int maCN = db.NHANVIENs.Where(cv => cv.TENDN.Equals(TenDN)).Select(cn => cn.MACHINHANH).FirstOrDefault();
             try
             {
-                InsertNV(hoTen, gioiTinh, dateBD, sDT, diaChi, tenDN, matKhauHash, email, luong, chiNhanh, chucVu);
+                if (maCN == chiNhanh)
+                {
+                    InsertNV(hoTen, gioiTinh, dateBD, sDT, diaChi, tenDN, matKhauHash, email, luong, chiNhanh, chucVu);
 
-                MessageBox.Show("Thêm Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetDataGridView(pageNumber, numberRecord);
+                    MessageBox.Show("Thêm Nhân Viên Thành Công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GetDataGridView(pageNumber, numberRecord);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm Nhân Viên Không Thành Công. Chỉ có quyền thêm Nhân Viên thuộc chi nhánh quản lý  ", "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
